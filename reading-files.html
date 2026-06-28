@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go by Example: Reading Files</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      window.onkeydown = (e) => {
+          if (e.ctrlKey || e.altKey || e.shiftKey || e.metaKey) {
+              return;
+          }
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'base64-encoding.html';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'writing-files.html';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="reading-files">
+      <h2><a href="./">Go by Example</a>: Reading Files</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Fayllarni o&rsquo;qish va yozish ko&rsquo;plab Go dasturlari uchun
+kerak bo&rsquo;ladigan asosiy vazifalardir. Avval fayllarni
+o&rsquo;qishning ba&rsquo;zi misollarini ko&rsquo;rib chiqamiz.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a href="https://go.dev/play/p/C59g-7wSkEs"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;bufio&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;io&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;path/filepath&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Fayllarni o&rsquo;qish ko&rsquo;pchilik chaqiruvlarni xatolarga
+tekshirishni talab qiladi. Bu yordamchi funksiya quyidagi
+xatolarni tekshirishimizni soddalashtiradi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">check</span><span class="p">(</span><span class="nx">e</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">e</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">panic</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Ehtimol, eng asosiy fayl o&rsquo;qish vazifasi faylning butun
+mazmunini xotiraga yuklashdir.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">path</span> <span class="o">:=</span> <span class="nx">filepath</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nf">TempDir</span><span class="p">(),</span> <span class="s">&#34;dat&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">dat</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">ReadFile</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">check</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">dat</span><span class="p">))</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Ko&rsquo;pincha faylning qaysi qismlari va qanday o&rsquo;qilishi
+ustidan ko&rsquo;proq nazorat xohlaysiz. Bu vazifalar uchun
+<code>os.File</code> qiymatini olish maqsadida faylni <code>Open</code> qilishdan
+boshlang.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">f</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">check</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Faylning boshidan bir nechta bayt o&rsquo;qiymiz. 5 tagacha
+o&rsquo;qishga ruxsat beramiz, lekin amalda nechtasi o&rsquo;qilganini
+ham qayd qilamiz.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">b1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">n1</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">f</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">b1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">check</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%d bytes: %s\n&#34;</span><span class="p">,</span> <span class="nx">n1</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">b1</span><span class="p">[:</span><span class="nx">n1</span><span class="p">]))</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Shuningdek, fayldagi ma&rsquo;lum bir joyga <code>Seek</code> qilib, o&rsquo;sha
+yerdan <code>Read</code> qilishingiz mumkin.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">o2</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">f</span><span class="p">.</span><span class="nf">Seek</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="nx">io</span><span class="p">.</span><span class="nx">SeekStart</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">check</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">b2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">n2</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">f</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">b2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">check</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%d bytes @ %d: &#34;</span><span class="p">,</span> <span class="nx">n2</span><span class="p">,</span> <span class="nx">o2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%v\n&#34;</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">b2</span><span class="p">[:</span><span class="nx">n2</span><span class="p">]))</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Boshqa seek qilish usullari joriy kursor pozitsiyasiga
+nisbatan,</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">f</span><span class="p">.</span><span class="nf">Seek</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nx">io</span><span class="p">.</span><span class="nx">SeekCurrent</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">check</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>va faylning oxiriga nisbatan amalga oshiriladi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">f</span><span class="p">.</span><span class="nf">Seek</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="nx">io</span><span class="p">.</span><span class="nx">SeekEnd</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">check</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>io</code> paketi fayl o&rsquo;qish uchun foydali bo&rsquo;lishi mumkin
+bo&rsquo;lgan ba&rsquo;zi funksiyalarni taqdim etadi. Masalan,
+yuqoridagiga o&rsquo;xshash o&rsquo;qishlar <code>ReadAtLeast</code> bilan
+yanada ishonchli amalga oshirilishi mumkin.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">o3</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">f</span><span class="p">.</span><span class="nf">Seek</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="nx">io</span><span class="p">.</span><span class="nx">SeekStart</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">check</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">b3</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">n3</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">io</span><span class="p">.</span><span class="nf">ReadAtLeast</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">b3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">check</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%d bytes @ %d: %s\n&#34;</span><span class="p">,</span> <span class="nx">n3</span><span class="p">,</span> <span class="nx">o3</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">b3</span><span class="p">))</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>O&rsquo;rnatilgan rewind yo&rsquo;q, lekin <code>Seek(0, io.SeekStart)</code>
+buni amalga oshiradi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">f</span><span class="p">.</span><span class="nf">Seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">io</span><span class="p">.</span><span class="nx">SeekStart</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">check</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>bufio</code> paketi buferlangan o&rsquo;quvchini amalga oshiradi,
+bu ko&rsquo;plab kichik o&rsquo;qishlardagi samaradorligi uchun ham,
+taqdim etadigan qo&rsquo;shimcha o&rsquo;qish metodlari tufayli ham
+foydali bo&rsquo;lishi mumkin.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">r4</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nf">NewReader</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">b4</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">r4</span><span class="p">.</span><span class="nf">Peek</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">check</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;5 bytes: %s\n&#34;</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">b4</span><span class="p">))</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Ishingiz tugagach, faylni yoping (odatda bu <code>Open</code>
+qilingandan so&rsquo;ng darhol <code>defer</code> bilan rejalashtiriladi).</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">f</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="gp">$</span> echo &#34;hello&#34; &gt; /tmp/dat
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> echo &#34;go&#34; &gt;&gt;   /tmp/dat
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> go run reading-files.go
+</span></span><span class="line"><span class="cl"><span class="go">hello
+</span></span></span><span class="line"><span class="cl"><span class="go">go
+</span></span></span><span class="line"><span class="cl"><span class="go">5 bytes: hello
+</span></span></span><span class="line"><span class="cl"><span class="go">2 bytes @ 6: go
+</span></span></span><span class="line"><span class="cl"><span class="go">2 bytes @ 6: go
+</span></span></span><span class="line"><span class="cl"><span class="go">5 bytes: hello</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Keyin fayllarni yozishni ko&rsquo;rib chiqamiz.</p>
+
+          </td>
+          <td class="code empty">
+            
+          
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Keyingi misol: <a href="writing-files.html" rel="next">Writing Files</a>.
+      </p>
+      
+
+    <p class="footer">
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"bufio\"\u000A    \"fmt\"\u000A    \"io\"\u000A    \"os\"\u000A    \"path/filepath\"\u000A)\u000A');codeLines.push('func check(e error) {\u000A    if e !\u003D nil {\u000A        panic(e)\u000A    }\u000A}\u000A');codeLines.push('func main() {\u000A');codeLines.push('    path :\u003D filepath.Join(os.TempDir(), \"dat\")\u000A    dat, err :\u003D os.ReadFile(path)\u000A    check(err)\u000A    fmt.Print(string(dat))\u000A');codeLines.push('    f, err :\u003D os.Open(path)\u000A    check(err)\u000A');codeLines.push('    b1 :\u003D make([]byte, 5)\u000A    n1, err :\u003D f.Read(b1)\u000A    check(err)\u000A    fmt.Printf(\"%d bytes: %s\\n\", n1, string(b1[:n1]))\u000A');codeLines.push('    o2, err :\u003D f.Seek(6, io.SeekStart)\u000A    check(err)\u000A    b2 :\u003D make([]byte, 2)\u000A    n2, err :\u003D f.Read(b2)\u000A    check(err)\u000A    fmt.Printf(\"%d bytes @ %d: \", n2, o2)\u000A    fmt.Printf(\"%v\\n\", string(b2[:n2]))\u000A');codeLines.push('    _, err \u003D f.Seek(2, io.SeekCurrent)\u000A    check(err)\u000A');codeLines.push('    _, err \u003D f.Seek(-4, io.SeekEnd)\u000A    check(err)\u000A');codeLines.push('    o3, err :\u003D f.Seek(6, io.SeekStart)\u000A    check(err)\u000A    b3 :\u003D make([]byte, 2)\u000A    n3, err :\u003D io.ReadAtLeast(f, b3, 2)\u000A    check(err)\u000A    fmt.Printf(\"%d bytes @ %d: %s\\n\", n3, o3, string(b3))\u000A');codeLines.push('    _, err \u003D f.Seek(0, io.SeekStart)\u000A    check(err)\u000A');codeLines.push('    r4 :\u003D bufio.NewReader(f)\u000A    b4, err :\u003D r4.Peek(5)\u000A    check(err)\u000A    fmt.Printf(\"5 bytes: %s\\n\", string(b4))\u000A');codeLines.push('    f.Close()\u000A}\u000A');codeLines.push('');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

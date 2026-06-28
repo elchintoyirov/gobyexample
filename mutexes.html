@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go by Example: Mutexes</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      window.onkeydown = (e) => {
+          if (e.ctrlKey || e.altKey || e.shiftKey || e.metaKey) {
+              return;
+          }
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'atomic-counters.html';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'stateful-goroutines.html';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="mutexes">
+      <h2><a href="./">Go by Example</a>: Mutexes</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Oldingi misolda biz <a href="atomic-counters.html">atomik amallar</a>
+yordamida oddiy hisoblagich holatini qanday boshqarishni
+ko&rsquo;rdik. Murakkabroq holat uchun bir nechta goroutina
+orasida ma&rsquo;lumotlarga xavfsiz kirish uchun
+<a href="https://en.wikipedia.org/wiki/Mutual_exclusion"><em>mutex</em></a> dan
+foydalanishimiz mumkin.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a href="https://go.dev/play/p/PwyZaKW7gn7"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;sync&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Container hisoblagichlar map ini saqlaydi; biz uni bir
+nechta goroutinadan parallel yangilamoqchi bo&rsquo;lganimiz uchun
+kirishni sinxronlash maqsadida <code>Mutex</code> qo&rsquo;shamiz.
+E&rsquo;tibor bering, mutexlar nusxalanmasligi kerak, shuning
+uchun bu <code>struct</code> uzatilsa, u ko&rsquo;rsatkich orqali
+bajarilishi kerak.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Container</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mu</span>       <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">counters</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>counters</code> ga kirishdan oldin mutex ni bloklang; uni
+funksiya oxirida <a href="defer.html">defer</a> operatori yordamida
+blokdan chiqaring.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Container</span><span class="p">)</span> <span class="nf">inc</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">c</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">defer</span> <span class="nx">c</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">c</span><span class="p">.</span><span class="nx">counters</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>E&rsquo;tibor bering, mutex ning nol qiymati o&rsquo;zicha ishlatsa
+bo&rsquo;ladi, shuning uchun bu yerda ishga tushirish talab etilmaydi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">c</span> <span class="o">:=</span> <span class="nx">Container</span><span class="p">{</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">        <span class="nx">counters</span><span class="p">:</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="s">&#34;a&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#34;b&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Bu funksiya nomlangan hisoblagichni siklda oshiradi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">doIncrement</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">n</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="k">range</span> <span class="nx">n</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">c</span><span class="p">.</span><span class="nf">inc</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Bir nechta goroutinani parallel ishga tushiramiz; e&rsquo;tibor
+bering, ularning barchasi bir xil <code>Container</code> ga kiradi,
+va ulardan ikkitasi bir xil hisoblagichga kiradi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">wg</span><span class="p">.</span><span class="nf">Go</span><span class="p">(</span><span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">doIncrement</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">wg</span><span class="p">.</span><span class="nf">Go</span><span class="p">(</span><span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">doIncrement</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">wg</span><span class="p">.</span><span class="nf">Go</span><span class="p">(</span><span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">doIncrement</span><span class="p">(</span><span class="s">&#34;b&#34;</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Goroutinalar tugashini kutamiz</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">counters</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Dasturni ishga tushirish hisoblagichlar kutilganidek
+yangilanganini ko&rsquo;rsatadi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="gp">$</span> go run mutexes.go
+</span></span><span class="line"><span class="cl"><span class="go">map[a:20000 b:10000]</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Keyingi navbatda biz xuddi shu holatni boshqarish vazifasini
+faqat goroutinalar va kanallar yordamida amalga oshirishni
+ko&rsquo;rib chiqamiz.</p>
+
+          </td>
+          <td class="code empty">
+            
+          
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Keyingi misol: <a href="stateful-goroutines.html" rel="next">Stateful Goroutines</a>.
+      </p>
+      
+
+    <p class="footer">
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"sync\"\u000A)\u000A');codeLines.push('type Container struct {\u000A    mu       sync.Mutex\u000A    counters map[string]int\u000A}\u000A');codeLines.push('func (c *Container) inc(name string) {\u000A');codeLines.push('    c.mu.Lock()\u000A    defer c.mu.Unlock()\u000A    c.counters[name]++\u000A}\u000A');codeLines.push('func main() {\u000A    c :\u003D Container{\u000A');codeLines.push('        counters: map[string]int{\"a\": 0, \"b\": 0},\u000A    }\u000A');codeLines.push('    var wg sync.WaitGroup\u000A');codeLines.push('    doIncrement :\u003D func(name string, n int) {\u000A        for range n {\u000A            c.inc(name)\u000A        }\u000A    }\u000A');codeLines.push('    wg.Go(func() {\u000A        doIncrement(\"a\", 10000)\u000A    })\u000A');codeLines.push('    wg.Go(func() {\u000A        doIncrement(\"a\", 10000)\u000A    })\u000A');codeLines.push('    wg.Go(func() {\u000A        doIncrement(\"b\", 10000)\u000A    })\u000A');codeLines.push('    wg.Wait()\u000A    fmt.Println(c.counters)\u000A}\u000A');codeLines.push('');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

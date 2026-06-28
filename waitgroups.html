@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go by Example: WaitGroups</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      window.onkeydown = (e) => {
+          if (e.ctrlKey || e.altKey || e.shiftKey || e.metaKey) {
+              return;
+          }
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'worker-pools.html';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'rate-limiting.html';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="waitgroups">
+      <h2><a href="./">Go by Example</a>: WaitGroups</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Bir nechta goroutinaning tugashini kutish uchun biz
+<em>wait group</em> (kutish guruhi) dan foydalanishimiz mumkin.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a href="https://go.dev/play/p/ClJLYPrytLy"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;sync&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;time&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Bu har bir goroutinada ishga tushiradigan funksiyamiz.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">worker</span><span class="p">(</span><span class="nx">id</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Worker %d starting\n&#34;</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Resurs talab qiladigan vazifani simulyatsiya qilish uchun uxlaymiz.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Worker %d done\n&#34;</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Bu WaitGroup shu yerda ishga tushirilgan barcha
+goroutinalarning tugashini kutish uchun ishlatiladi.
+Eslatma: agar WaitGroup funksiyalarga aniq uzatilsa,
+bu <em>ko&rsquo;rsatkich orqali</em> amalga oshirilishi kerak.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>WaitGroup.Go</code> yordamida bir nechta goroutina ishga tushiramiz</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">wg</span><span class="p">.</span><span class="nf">Go</span><span class="p">(</span><span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">worker</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>wg</code> tomonidan boshlangan barcha goroutinalar
+tugaguncha bloklaymiz. Goroutina o&rsquo;zi chaqirgan
+funksiya qaytarganda tugagan hisoblanadi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>E&rsquo;tibor bering, bu yondashuvda ishchilardan
+xatolarni tarqatishning oddiy usuli yo&rsquo;q. Yanada
+murakkab holatlar uchun
+<a href="https://pkg.go.dev/golang.org/x/sync/errgroup">errgroup paketidan</a>
+foydalanishni ko&rsquo;rib chiqing.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="gp">$</span> go run waitgroups.go
+</span></span><span class="line"><span class="cl"><span class="go">Worker 5 starting
+</span></span></span><span class="line"><span class="cl"><span class="go">Worker 3 starting
+</span></span></span><span class="line"><span class="cl"><span class="go">Worker 4 starting
+</span></span></span><span class="line"><span class="cl"><span class="go">Worker 1 starting
+</span></span></span><span class="line"><span class="cl"><span class="go">Worker 2 starting
+</span></span></span><span class="line"><span class="cl"><span class="go">Worker 4 done
+</span></span></span><span class="line"><span class="cl"><span class="go">Worker 1 done
+</span></span></span><span class="line"><span class="cl"><span class="go">Worker 2 done
+</span></span></span><span class="line"><span class="cl"><span class="go">Worker 5 done
+</span></span></span><span class="line"><span class="cl"><span class="go">Worker 3 done</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Ishchilarning ishga tushish va tugash tartibi har bir
+chaqiruvda boshqacha bo&rsquo;lishi ehtimoli yuqori.</p>
+
+          </td>
+          <td class="code empty">
+            
+          
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Keyingi misol: <a href="rate-limiting.html" rel="next">Rate Limiting</a>.
+      </p>
+      
+
+    <p class="footer">
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"sync\"\u000A    \"time\"\u000A)\u000A');codeLines.push('func worker(id int) {\u000A    fmt.Printf(\"Worker %d starting\\n\", id)\u000A');codeLines.push('    time.Sleep(time.Second)\u000A    fmt.Printf(\"Worker %d done\\n\", id)\u000A}\u000A');codeLines.push('func main() {\u000A');codeLines.push('    var wg sync.WaitGroup\u000A');codeLines.push('    for i :\u003D 1; i \u003C\u003D 5; i++ {\u000A        wg.Go(func() {\u000A            worker(i)\u000A        })\u000A    }\u000A');codeLines.push('    wg.Wait()\u000A');codeLines.push('}\u000A');codeLines.push('');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

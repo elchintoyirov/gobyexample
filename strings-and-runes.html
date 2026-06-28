@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go by Example: Strings and Runes</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      window.onkeydown = (e) => {
+          if (e.ctrlKey || e.altKey || e.shiftKey || e.metaKey) {
+              return;
+          }
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'pointers.html';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'structs.html';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="strings-and-runes">
+      <h2><a href="./">Go by Example</a>: Strings and Runes</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Go satri faqat o&rsquo;qish uchun mo&rsquo;ljallangan baytlar slice&rsquo;idir.
+Til va standart kutubxona satrlarni alohida tarzda -
+<a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a> da kodlangan
+matn konteynerlari sifatida ko&rsquo;rib chiqadi. Boshqa tillarda
+satrlar &ldquo;belgilar&rdquo;dan tashkil topadi. Go&rsquo;da belgi tushunchasi
+<code>rune</code> deb ataladi - bu Unicode kod nuqtasini ifodalovchi
+butun son. <a href="https://go.dev/blog/strings">Ushbu Go blog posti</a>
+mavzuga yaxshi kirish bo&rsquo;ladi.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a href="https://go.dev/play/p/T2r57tBQ8kR"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;unicode/utf8&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>s</code> - bu tay tilida &ldquo;salom&rdquo; so&rsquo;zini ifodalovchi literal
+qiymat berilgan <code>string</code>. Go satr literallari UTF-8 da
+kodlangan matndir.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="kd">const</span> <span class="nx">s</span> <span class="p">=</span> <span class="s">&#34;สวัสดี&#34;</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Satrlar <code>[]byte</code> ga ekvivalent bo&rsquo;lgani uchun, bu uning
+ichida saqlangan xom baytlar uzunligini beradi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Len:&#34;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">))</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Satrni indekslash har bir indeksdagi xom bayt qiymatlarini
+beradi. Bu sikl <code>s</code> dagi kod nuqtalarini tashkil etuvchi
+barcha baytlarning o&rsquo;n oltilik qiymatlarini hosil qiladi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%x &#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">()</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Satrda nechta <em>runa</em> borligini sanash uchun biz <code>utf8</code>
+paketidan foydalanishimiz mumkin. E&rsquo;tibor bering,
+<code>RuneCountInString</code> ning ishlash vaqti satr o&rsquo;lchamiga
+bog&rsquo;liq, chunki u har bir UTF-8 runani ketma-ket
+dekodlashi kerak. Ba&rsquo;zi tay belgilari bir nechta baytga
+cho&rsquo;zilishi mumkin bo&rsquo;lgan UTF-8 kod nuqtalari bilan
+ifodalanadi, shuning uchun bu sanoq natijasi kutilmagan
+bo&rsquo;lishi mumkin.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Rune count:&#34;</span><span class="p">,</span> <span class="nx">utf8</span><span class="p">.</span><span class="nf">RuneCountInString</span><span class="p">(</span><span class="nx">s</span><span class="p">))</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>range</code> sikli satrlarni alohida tarzda ishlaydi va har bir
+<code>rune</code> ni uning satrdagi siljishi bilan birga dekodlaydi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">idx</span><span class="p">,</span> <span class="nx">runeValue</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">s</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%#U starts at %d\n&#34;</span><span class="p">,</span> <span class="nx">runeValue</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Biz <code>utf8.DecodeRuneInString</code> funksiyasidan oshkora
+foydalanib xuddi shu iteratsiyaga erishishimiz mumkin.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;\nUsing DecodeRuneInString&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">w</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> <span class="nx">i</span> <span class="o">+=</span> <span class="nx">w</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">runeValue</span><span class="p">,</span> <span class="nx">width</span> <span class="o">:=</span> <span class="nx">utf8</span><span class="p">.</span><span class="nf">DecodeRuneInString</span><span class="p">(</span><span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">:])</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%#U starts at %d\n&#34;</span><span class="p">,</span> <span class="nx">runeValue</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">w</span> <span class="p">=</span> <span class="nx">width</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Bu funksiyaga <code>rune</code> qiymatini uzatishni namoyish etadi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">        <span class="nf">examineRune</span><span class="p">(</span><span class="nx">runeValue</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">examineRune</span><span class="p">(</span><span class="nx">r</span> <span class="kt">rune</span><span class="p">)</span> <span class="p">{</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Bittalik tirnoq ichiga olingan qiymatlar <em>runa literallari</em>
+hisoblanadi. Biz <code>rune</code> qiymatini runa literali bilan
+to&rsquo;g&rsquo;ridan-to&rsquo;g&rsquo;ri solishtirishimiz mumkin.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">r</span> <span class="o">==</span> <span class="sc">&#39;t&#39;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;found tee&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">r</span> <span class="o">==</span> <span class="sc">&#39;ส&#39;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;found so sua&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="gp">$</span> go run strings-and-runes.go
+</span></span><span class="line"><span class="cl"><span class="go">Len: 18
+</span></span></span><span class="line"><span class="cl"><span class="go">e0 b8 aa e0 b8 a7 e0 b8 b1 e0 b8 aa e0 b8 94 e0 b8 b5 
+</span></span></span><span class="line"><span class="cl"><span class="go">Rune count: 6
+</span></span></span><span class="line"><span class="cl"><span class="go">U+0E2A &#39;ส&#39; starts at 0
+</span></span></span><span class="line"><span class="cl"><span class="go">U+0E27 &#39;ว&#39; starts at 3
+</span></span></span><span class="line"><span class="cl"><span class="go">U+0E31 &#39;ั&#39; starts at 6
+</span></span></span><span class="line"><span class="cl"><span class="go">U+0E2A &#39;ส&#39; starts at 9
+</span></span></span><span class="line"><span class="cl"><span class="go">U+0E14 &#39;ด&#39; starts at 12
+</span></span></span><span class="line"><span class="cl"><span class="go">U+0E35 &#39;ี&#39; starts at 15</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="go">Using DecodeRuneInString
+</span></span></span><span class="line"><span class="cl"><span class="go">U+0E2A &#39;ส&#39; starts at 0
+</span></span></span><span class="line"><span class="cl"><span class="go">found so sua
+</span></span></span><span class="line"><span class="cl"><span class="go">U+0E27 &#39;ว&#39; starts at 3
+</span></span></span><span class="line"><span class="cl"><span class="go">U+0E31 &#39;ั&#39; starts at 6
+</span></span></span><span class="line"><span class="cl"><span class="go">U+0E2A &#39;ส&#39; starts at 9
+</span></span></span><span class="line"><span class="cl"><span class="go">found so sua
+</span></span></span><span class="line"><span class="cl"><span class="go">U+0E14 &#39;ด&#39; starts at 12
+</span></span></span><span class="line"><span class="cl"><span class="go">U+0E35 &#39;ี&#39; starts at 15</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Keyingi misol: <a href="structs.html" rel="next">Structs</a>.
+      </p>
+      
+
+    <p class="footer">
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"unicode/utf8\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    const s \u003D \"สวัสดี\"\u000A');codeLines.push('    fmt.Println(\"Len:\", len(s))\u000A');codeLines.push('    for i :\u003D 0; i \u003C len(s); i++ {\u000A        fmt.Printf(\"%x \", s[i])\u000A    }\u000A    fmt.Println()\u000A');codeLines.push('    fmt.Println(\"Rune count:\", utf8.RuneCountInString(s))\u000A');codeLines.push('    for idx, runeValue :\u003D range s {\u000A        fmt.Printf(\"%#U starts at %d\\n\", runeValue, idx)\u000A    }\u000A');codeLines.push('    fmt.Println(\"\\nUsing DecodeRuneInString\")\u000A    for i, w :\u003D 0, 0; i \u003C len(s); i +\u003D w {\u000A        runeValue, width :\u003D utf8.DecodeRuneInString(s[i:])\u000A        fmt.Printf(\"%#U starts at %d\\n\", runeValue, i)\u000A        w \u003D width\u000A');codeLines.push('        examineRune(runeValue)\u000A    }\u000A}\u000A');codeLines.push('func examineRune(r rune) {\u000A');codeLines.push('    if r \u003D\u003D \'t\' {\u000A        fmt.Println(\"found tee\")\u000A    } else if r \u003D\u003D \'ส\' {\u000A        fmt.Println(\"found so sua\")\u000A    }\u000A}\u000A');codeLines.push('');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

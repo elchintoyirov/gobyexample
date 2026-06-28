@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go by Example: Timers</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      window.onkeydown = (e) => {
+          if (e.ctrlKey || e.altKey || e.shiftKey || e.metaKey) {
+              return;
+          }
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'range-over-channels.html';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'tickers.html';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="timers">
+      <h2><a href="./">Go by Example</a>: Timers</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Biz ko&rsquo;pincha Go kodini kelajakda biror nuqtada yoki
+biror oraliqda takror-takror bajarishni xohlaymiz. Go ning
+o&rsquo;rnatilgan <em>taymer</em> va <em>ticker</em> imkoniyatlari bu
+vazifalarning ikkalasini ham osonlashtiradi. Avval
+taymerlarni, so&rsquo;ngra <a href="tickers.html">tickerlarni</a> ko&rsquo;rib chiqamiz.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a href="https://go.dev/play/p/eYJcEWiRy5o"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;time&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Taymerlar kelajakdagi bitta hodisani ifodalaydi. Siz
+taymerga qancha kutmoqchi ekanligingizni aytasiz va u
+o&rsquo;sha vaqtda xabar beriladigan kanalni taqdim etadi.
+Bu taymer 2 soniya kutadi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">timer1</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">NewTimer</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>&lt;-timer1.C</code> taymerning <code>C</code> kanalida taymer
+ishga tushganini bildiruvchi qiymat yuborilguncha
+bloklaydi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="o">&lt;-</span><span class="nx">timer1</span><span class="p">.</span><span class="nx">C</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Timer 1 fired&#34;</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Agar shunchaki kutmoqchi bo&rsquo;lsangiz, <code>time.Sleep</code>
+dan foydalanishingiz mumkin edi. Taymer foydali
+bo&rsquo;lishining bir sababi shundaki, uni ishga
+tushishidan oldin bekor qilishingiz mumkin.
+Quyida shunga misol keltirilgan.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">timer2</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">NewTimer</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&lt;-</span><span class="nx">timer2</span><span class="p">.</span><span class="nx">C</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Timer 2 fired&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}()</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">stop2</span> <span class="o">:=</span> <span class="nx">timer2</span><span class="p">.</span><span class="nf">Stop</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">stop2</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Timer 2 stopped&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>timer2</code> aslida to&rsquo;xtatilganini ko&rsquo;rsatish uchun,
+agar u umuman ishga tushadigan bo&rsquo;lsa, unga ishga
+tushishga yetarli vaqt beramiz.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Birinchi taymer biz dasturni ishga tushirganimizdan ~2s
+keyin ishga tushadi, lekin ikkinchisi ishga tushish
+imkoniyatiga ega bo&rsquo;lishidan oldin to&rsquo;xtatilishi kerak.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="gp">$</span> go run timers.go
+</span></span><span class="line"><span class="cl"><span class="go">Timer 1 fired
+</span></span></span><span class="line"><span class="cl"><span class="go">Timer 2 stopped</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Keyingi misol: <a href="tickers.html" rel="next">Tickers</a>.
+      </p>
+      
+
+    <p class="footer">
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"time\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    timer1 :\u003D time.NewTimer(2 * time.Second)\u000A');codeLines.push('    \u003C-timer1.C\u000A    fmt.Println(\"Timer 1 fired\")\u000A');codeLines.push('    timer2 :\u003D time.NewTimer(time.Second)\u000A    go func() {\u000A        \u003C-timer2.C\u000A        fmt.Println(\"Timer 2 fired\")\u000A    }()\u000A    stop2 :\u003D timer2.Stop()\u000A    if stop2 {\u000A        fmt.Println(\"Timer 2 stopped\")\u000A    }\u000A');codeLines.push('    time.Sleep(2 * time.Second)\u000A}\u000A');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

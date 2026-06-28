@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go by Example: Goroutines</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      window.onkeydown = (e) => {
+          if (e.ctrlKey || e.altKey || e.shiftKey || e.metaKey) {
+              return;
+          }
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'custom-errors.html';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'channels.html';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="goroutines">
+      <h2><a href="./">Go by Example</a>: Goroutines</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p><em>Goroutina</em> - bu yengil bajarilish oqimidir.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a href="https://go.dev/play/p/8bas1PENoz7"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;time&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">f</span><span class="p">(</span><span class="nx">from</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="mi">3</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">from</span><span class="p">,</span> <span class="s">&#34;:&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Faraz qilaylik, bizda <code>f(s)</code> funksiya chaqiruvi bor.
+Mana uni odatdagidek, sinxron tarzda ishga tushirib
+chaqiramiz.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nf">f</span><span class="p">(</span><span class="s">&#34;direct&#34;</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Ushbu funksiyani goroutinada chaqirish uchun
+<code>go f(s)</code> dan foydalaning. Bu yangi goroutina
+chaqiruvchi goroutina bilan parallel bajariladi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="k">go</span> <span class="nf">f</span><span class="p">(</span><span class="s">&#34;goroutine&#34;</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Shuningdek, anonim funksiya chaqiruvi uchun goroutina
+ishga tushirishingiz mumkin.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}(</span><span class="s">&#34;going&#34;</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Endi bizning ikkita funksiya chaqiruvimiz alohida
+goroutinalarda asinxron ishlamoqda. Ularning tugashini
+kuting (yanada ishonchli yondashuv uchun
+<a href="waitgroups.html">WaitGroup</a> dan foydalaning).</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;done&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Ushbu dasturni ishga tushirganimizda, avval bloklovchi
+chaqiruvning natijasini, so&rsquo;ngra ikkita goroutinaning
+natijasini ko&rsquo;ramiz. Goroutinalarning natijasi
+aralashib ketishi mumkin, chunki goroutinalar Go
+runtime tomonidan parallel ishga tushiriladi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="gp">$</span> go run goroutines.go
+</span></span><span class="line"><span class="cl"><span class="go">direct : 0
+</span></span></span><span class="line"><span class="cl"><span class="go">direct : 1
+</span></span></span><span class="line"><span class="cl"><span class="go">direct : 2
+</span></span></span><span class="line"><span class="cl"><span class="go">goroutine : 0
+</span></span></span><span class="line"><span class="cl"><span class="go">going
+</span></span></span><span class="line"><span class="cl"><span class="go">goroutine : 1
+</span></span></span><span class="line"><span class="cl"><span class="go">goroutine : 2
+</span></span></span><span class="line"><span class="cl"><span class="go">done</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Keyingi misolda biz parallel Go dasturlarida
+goroutinalarni to&rsquo;ldiruvchi vositani ko&rsquo;rib chiqamiz:
+kanallar.</p>
+
+          </td>
+          <td class="code empty">
+            
+          
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Keyingi misol: <a href="channels.html" rel="next">Channels</a>.
+      </p>
+      
+
+    <p class="footer">
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"time\"\u000A)\u000A');codeLines.push('func f(from string) {\u000A    for i :\u003D range 3 {\u000A        fmt.Println(from, \":\", i)\u000A    }\u000A}\u000A');codeLines.push('func main() {\u000A');codeLines.push('    f(\"direct\")\u000A');codeLines.push('    go f(\"goroutine\")\u000A');codeLines.push('    go func(msg string) {\u000A        fmt.Println(msg)\u000A    }(\"going\")\u000A');codeLines.push('    time.Sleep(time.Second)\u000A    fmt.Println(\"done\")\u000A}\u000A');codeLines.push('');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>
