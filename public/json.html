@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go by Example: JSON</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      window.onkeydown = (e) => {
+          if (e.ctrlKey || e.altKey || e.shiftKey || e.metaKey) {
+              return;
+          }
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'regular-expressions.html';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'xml.html';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="json">
+      <h2><a href="./">Go by Example</a>: JSON</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Go ichki va maxsus ma&rsquo;lumotlar tiplaridan va ularga
+kodlash hamda dekodlashni qo&rsquo;shgan holda, JSON kodlash va
+dekodlash uchun ichki qo&rsquo;llab-quvvatlashni taqdim etadi.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a href="https://go.dev/play/p/wfB9I4NX237"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;encoding/json&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;strings&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Biz quyida maxsus tiplarni kodlash va dekodlashni
+namoyish qilish uchun ushbu ikkita structdan
+foydalanamiz.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">response1</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Page</span>   <span class="kt">int</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Fruits</span> <span class="p">[]</span><span class="kt">string</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>JSON&rsquo;da faqat eksport qilingan maydonlar
+kodlanadi/dekodlanadi. Eksport qilinishi uchun maydonlar
+bosh harf bilan boshlanishi kerak.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">response2</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Page</span>   <span class="kt">int</span>      <span class="s">`json:&#34;page&#34;`</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Fruits</span> <span class="p">[]</span><span class="kt">string</span> <span class="s">`json:&#34;fruits&#34;`</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Avval biz asosiy ma&rsquo;lumotlar tiplarini JSON
+satrlariga kodlashni ko&rsquo;rib chiqamiz. Mana atomik
+qiymatlar uchun ba&rsquo;zi misollar.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">bolB</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">Marshal</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">bolB</span><span class="p">))</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">intB</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">Marshal</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">intB</span><span class="p">))</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">fltB</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">Marshal</span><span class="p">(</span><span class="mf">2.34</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">fltB</span><span class="p">))</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">strB</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">Marshal</span><span class="p">(</span><span class="s">&#34;gopher&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">strB</span><span class="p">))</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Va mana slicelar va maplar uchun ba&rsquo;zilari, ular
+kutganingizdek JSON massivlari va obyektlariga
+kodlanadi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">slcD</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;apple&#34;</span><span class="p">,</span> <span class="s">&#34;peach&#34;</span><span class="p">,</span> <span class="s">&#34;pear&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">slcB</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">Marshal</span><span class="p">(</span><span class="nx">slcD</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">slcB</span><span class="p">))</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">mapD</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="s">&#34;apple&#34;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s">&#34;lettuce&#34;</span><span class="p">:</span> <span class="mi">7</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mapB</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">Marshal</span><span class="p">(</span><span class="nx">mapD</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">mapB</span><span class="p">))</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>JSON paketi sizning maxsus ma&rsquo;lumotlar tiplaringizni
+avtomatik ravishda kodlay oladi. U kodlangan natijaga
+faqat eksport qilingan maydonlarni kiritadi va standart
+holatda o&rsquo;sha nomlarni JSON kalitlari sifatida
+ishlatadi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">res1D</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">response1</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Page</span><span class="p">:</span>   <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Fruits</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;apple&#34;</span><span class="p">,</span> <span class="s">&#34;peach&#34;</span><span class="p">,</span> <span class="s">&#34;pear&#34;</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">res1B</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">Marshal</span><span class="p">(</span><span class="nx">res1D</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">res1B</span><span class="p">))</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Kodlangan JSON kalit nomlarini sozlash uchun struct
+maydon e&rsquo;lonlarida teglardan foydalanishingiz mumkin.
+Bunday teglarning misolini ko&rsquo;rish uchun yuqoridagi
+<code>response2</code> ta&rsquo;rifini tekshiring.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">res2D</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">response2</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Page</span><span class="p">:</span>   <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Fruits</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;apple&#34;</span><span class="p">,</span> <span class="s">&#34;peach&#34;</span><span class="p">,</span> <span class="s">&#34;pear&#34;</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">res2B</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">Marshal</span><span class="p">(</span><span class="nx">res2D</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">res2B</span><span class="p">))</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Endi JSON ma&rsquo;lumotlarini Go qiymatlariga dekodlashni
+ko&rsquo;rib chiqaylik. Mana umumiy ma&rsquo;lumotlar tuzilmasi
+uchun misol.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">byt</span> <span class="o">:=</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">`{&#34;num&#34;:6.13,&#34;strs&#34;:[&#34;a&#34;,&#34;b&#34;]}`</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Biz JSON paketi dekodlangan ma&rsquo;lumotlarni joylashtirishi
+mumkin bo&rsquo;lgan o&rsquo;zgaruvchini taqdim etishimiz kerak. Bu
+<code>map[string]interface{}</code> satrlardan ixtiyoriy ma&rsquo;lumotlar
+tiplariga bo&rsquo;lgan mapni saqlaydi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">dat</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Mana haqiqiy dekodlash va bog&rsquo;liq xatolarni tekshirish.
+Qisqalik uchun biz ushbu misollarda xatolarni
+e&rsquo;tiborsiz qoldiramiz; haqiqiy kodda siz doimo xatolarni
+tekshirishingiz va ularga qarab harakat qilishingiz
+kerak.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">Unmarshal</span><span class="p">(</span><span class="nx">byt</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">dat</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">dat</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Dekodlangan mapdagi qiymatlardan foydalanish uchun biz
+ularni mos tipiga aylantirishimiz kerak. Masalan, bu
+yerda biz <code>num</code> dagi qiymatni kutilgan <code>float64</code> tipiga
+aylantiramiz.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">num</span> <span class="o">:=</span> <span class="nx">dat</span><span class="p">[</span><span class="s">&#34;num&#34;</span><span class="p">].(</span><span class="kt">float64</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Ichma-ich joylashgan ma&rsquo;lumotlarga kirish bir qator
+aylantirishlarni talab qiladi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">strs</span> <span class="o">:=</span> <span class="nx">dat</span><span class="p">[</span><span class="s">&#34;strs&#34;</span><span class="p">].([]</span><span class="kd">interface</span><span class="p">{})</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">str1</span> <span class="o">:=</span> <span class="nx">strs</span><span class="p">[</span><span class="mi">0</span><span class="p">].(</span><span class="kt">string</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">str1</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Shuningdek, biz JSON ni maxsus ma&rsquo;lumotlar tiplariga
+dekodlashimiz mumkin. Bu dasturlarimizga qo&rsquo;shimcha
+tip xavfsizligini qo&rsquo;shish va dekodlangan ma&rsquo;lumotlarga
+kirishda tip tasdiqlariga bo&rsquo;lgan ehtiyojni bartaraf
+etish afzalliklariga ega.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">str</span> <span class="o">:=</span> <span class="s">`{&#34;page&#34;: 1, &#34;fruits&#34;: [&#34;apple&#34;, &#34;peach&#34;]}`</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">res</span> <span class="o">:=</span> <span class="nx">response2</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">_</span> <span class="p">=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">Unmarshal</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">str</span><span class="p">),</span> <span class="o">&amp;</span><span class="nx">res</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">Fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Yuqoridagi misollarda biz har doim ma&rsquo;lumotlar va
+standart chiqishdagi JSON ko&rsquo;rinishi o&rsquo;rtasida bayt va
+satrlardan oraliq sifatida foydalandik. Shuningdek, biz
+JSON kodlashlarini to&rsquo;g&rsquo;ridan-to&rsquo;g&rsquo;ri <code>os.Stdout</code> kabi
+<code>os.Writer</code> larga yoki hatto HTTP javob tanalariga ham
+stream qilishimiz mumkin.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">enc</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">NewEncoder</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdout</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">d</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="s">&#34;apple&#34;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s">&#34;lettuce&#34;</span><span class="p">:</span> <span class="mi">7</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">_</span> <span class="p">=</span> <span class="nx">enc</span><span class="p">.</span><span class="nf">Encode</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>os.Stdin</code> kabi <code>os.Reader</code> lardan yoki HTTP so&rsquo;rov
+tanalaridan stream o&rsquo;qish <code>json.Decoder</code> bilan amalga
+oshiriladi.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">dec</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">NewDecoder</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">NewReader</span><span class="p">(</span><span class="nx">str</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">res1</span> <span class="o">:=</span> <span class="nx">response2</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">_</span> <span class="p">=</span> <span class="nx">dec</span><span class="p">.</span><span class="nf">Decode</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">res1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">res1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="gp">$</span> go run json.go
+</span></span><span class="line"><span class="cl"><span class="go">true
+</span></span></span><span class="line"><span class="cl"><span class="go">1
+</span></span></span><span class="line"><span class="cl"><span class="go">2.34
+</span></span></span><span class="line"><span class="cl"><span class="go">&#34;gopher&#34;
+</span></span></span><span class="line"><span class="cl"><span class="go">[&#34;apple&#34;,&#34;peach&#34;,&#34;pear&#34;]
+</span></span></span><span class="line"><span class="cl"><span class="go">{&#34;apple&#34;:5,&#34;lettuce&#34;:7}
+</span></span></span><span class="line"><span class="cl"><span class="go">{&#34;Page&#34;:1,&#34;Fruits&#34;:[&#34;apple&#34;,&#34;peach&#34;,&#34;pear&#34;]}
+</span></span></span><span class="line"><span class="cl"><span class="go">{&#34;page&#34;:1,&#34;fruits&#34;:[&#34;apple&#34;,&#34;peach&#34;,&#34;pear&#34;]}
+</span></span></span><span class="line"><span class="cl"><span class="go">map[num:6.13 strs:[a b]]
+</span></span></span><span class="line"><span class="cl"><span class="go">6.13
+</span></span></span><span class="line"><span class="cl"><span class="go">a
+</span></span></span><span class="line"><span class="cl"><span class="go">{1 [apple peach]}
+</span></span></span><span class="line"><span class="cl"><span class="go">apple
+</span></span></span><span class="line"><span class="cl"><span class="go">{&#34;apple&#34;:5,&#34;lettuce&#34;:7}
+</span></span></span><span class="line"><span class="cl"><span class="go">{1 [apple peach]}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Biz bu yerda Go&rsquo;da JSON asoslarini ko&rsquo;rib chiqdik, lekin
+ko&rsquo;proq ma&rsquo;lumot uchun <a href="https://go.dev/blog/json">JSON and Go</a>
+blog postini va <a href="https://pkg.go.dev/encoding/json">JSON paketi hujjatlarini</a>
+ko&rsquo;rib chiqing.</p>
+
+          </td>
+          <td class="code empty">
+            
+          
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Keyingi misol: <a href="xml.html" rel="next">XML</a>.
+      </p>
+      
+
+    <p class="footer">
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"encoding/json\"\u000A    \"fmt\"\u000A    \"os\"\u000A    \"strings\"\u000A)\u000A');codeLines.push('type response1 struct {\u000A    Page   int\u000A    Fruits []string\u000A}\u000A');codeLines.push('type response2 struct {\u000A    Page   int      `json:\"page\"`\u000A    Fruits []string `json:\"fruits\"`\u000A}\u000A');codeLines.push('func main() {\u000A');codeLines.push('    bolB, _ :\u003D json.Marshal(true)\u000A    fmt.Println(string(bolB))\u000A');codeLines.push('    intB, _ :\u003D json.Marshal(1)\u000A    fmt.Println(string(intB))\u000A');codeLines.push('    fltB, _ :\u003D json.Marshal(2.34)\u000A    fmt.Println(string(fltB))\u000A');codeLines.push('    strB, _ :\u003D json.Marshal(\"gopher\")\u000A    fmt.Println(string(strB))\u000A');codeLines.push('    slcD :\u003D []string{\"apple\", \"peach\", \"pear\"}\u000A    slcB, _ :\u003D json.Marshal(slcD)\u000A    fmt.Println(string(slcB))\u000A');codeLines.push('    mapD :\u003D map[string]int{\"apple\": 5, \"lettuce\": 7}\u000A    mapB, _ :\u003D json.Marshal(mapD)\u000A    fmt.Println(string(mapB))\u000A');codeLines.push('    res1D :\u003D \u0026response1{\u000A        Page:   1,\u000A        Fruits: []string{\"apple\", \"peach\", \"pear\"}}\u000A    res1B, _ :\u003D json.Marshal(res1D)\u000A    fmt.Println(string(res1B))\u000A');codeLines.push('    res2D :\u003D \u0026response2{\u000A        Page:   1,\u000A        Fruits: []string{\"apple\", \"peach\", \"pear\"}}\u000A    res2B, _ :\u003D json.Marshal(res2D)\u000A    fmt.Println(string(res2B))\u000A');codeLines.push('    byt :\u003D []byte(`{\"num\":6.13,\"strs\":[\"a\",\"b\"]}`)\u000A');codeLines.push('    var dat map[string]interface{}\u000A');codeLines.push('    if err :\u003D json.Unmarshal(byt, \u0026dat); err !\u003D nil {\u000A        panic(err)\u000A    }\u000A    fmt.Println(dat)\u000A');codeLines.push('    num :\u003D dat[\"num\"].(float64)\u000A    fmt.Println(num)\u000A');codeLines.push('    strs :\u003D dat[\"strs\"].([]interface{})\u000A    str1 :\u003D strs[0].(string)\u000A    fmt.Println(str1)\u000A');codeLines.push('    str :\u003D `{\"page\": 1, \"fruits\": [\"apple\", \"peach\"]}`\u000A    res :\u003D response2{}\u000A    _ \u003D json.Unmarshal([]byte(str), \u0026res)\u000A    fmt.Println(res)\u000A    fmt.Println(res.Fruits[0])\u000A');codeLines.push('    enc :\u003D json.NewEncoder(os.Stdout)\u000A    d :\u003D map[string]int{\"apple\": 5, \"lettuce\": 7}\u000A    _ \u003D enc.Encode(d)\u000A');codeLines.push('    dec :\u003D json.NewDecoder(strings.NewReader(str))\u000A    res1 :\u003D response2{}\u000A    _ \u003D dec.Decode(\u0026res1)\u000A    fmt.Println(res1)\u000A}\u000A');codeLines.push('');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

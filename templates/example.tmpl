@@ -12,12 +12,12 @@
           }
           {{if .PrevExample}}
           if (e.key == "ArrowLeft") {
-              window.location.href = '{{.PrevExample.ID}}';
+              window.location.href = '{{.PrevExample.ID}}.html';
           }
           {{end}}
           {{if .NextExample}}
           if (e.key == "ArrowRight") {
-              window.location.href = '{{.NextExample.ID}}';
+              window.location.href = '{{.NextExample.ID}}.html';
           }
           {{end}}
       }

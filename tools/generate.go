@@ -292,6 +292,17 @@ func parseExamples() []*Example {
 	return examples
 }
 
+// rewriteLinks appends ".html" to internal links that point to example pages.
+// This keeps the generated site working on static hosts that serve files by
+// extension (e.g. GitHub Pages), where extensionless files are treated as
+// downloads rather than HTML pages.
+func rewriteLinks(content string, examples []*Example) string {
+	for _, e := range examples {
+		content = strings.ReplaceAll(content, `href="`+e.ID+`"`, `href="`+e.ID+`.html"`)
+	}
+	return content
+}
+
 func renderIndex(examples []*Example) {
 	if verbose() {
 		fmt.Println("Rendering index")
@@ -299,10 +310,9 @@ func renderIndex(examples []*Example) {
 	indexTmpl := template.New("index")
 	template.Must(indexTmpl.Parse(mustReadFile("templates/footer.tmpl")))
 	template.Must(indexTmpl.Parse(mustReadFile("templates/index.tmpl")))
-	indexF, err := os.Create(siteDir + "/index.html")
-	check(err)
-	defer indexF.Close()
-	check(indexTmpl.Execute(indexF, examples))
+	var buf bytes.Buffer
+	check(indexTmpl.Execute(&buf, examples))
+	check(os.WriteFile(siteDir+"/index.html", []byte(rewriteLinks(buf.String(), examples)), 0644))
 }
 
 func renderExamples(examples []*Example) {
@@ -313,10 +323,9 @@ func renderExamples(examples []*Example) {
 	template.Must(exampleTmpl.Parse(mustReadFile("templates/footer.tmpl")))
 	template.Must(exampleTmpl.Parse(mustReadFile("templates/example.tmpl")))
 	for _, example := range examples {
-		exampleF, err := os.Create(siteDir + "/" + example.ID)
-		check(err)
-		defer exampleF.Close()
-		check(exampleTmpl.Execute(exampleF, example))
+		var buf bytes.Buffer
+		check(exampleTmpl.Execute(&buf, example))
+		check(os.WriteFile(siteDir+"/"+example.ID+".html", []byte(rewriteLinks(buf.String(), examples)), 0644))
 	}
 }
 

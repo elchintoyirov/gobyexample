@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go by Example: Logging</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      window.onkeydown = (e) => {
+          if (e.ctrlKey || e.altKey || e.shiftKey || e.metaKey) {
+              return;
+          }
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'environment-variables.html';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'http-client.html';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="logging">
+      <h2><a href="./">Go by Example</a>: Logging</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Go standart kutubxonasi Go dasturlaridan loglarni
+chiqarish uchun sodda vositalarni taqdim etadi: erkin
+shakldagi chiqish uchun <a href="https://pkg.go.dev/log">log</a>
+paketi va tuzilmali chiqish uchun
+<a href="https://pkg.go.dev/log/slog">log/slog</a> paketi.</p>
+
+          </td>
+          <td class="code leading">
+            <a href="https://go.dev/play/p/V7AAqubW8yW"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;bytes&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;log&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;os&#34;</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="s">&#34;log/slog&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>log</code> paketidan <code>Println</code> kabi funksiyalarni oddiy
+chaqirish <em>standart</em> loggerdan foydalanadi, u allaqachon
+<code>os.Stderr</code> ga oqilona log chiqarish uchun oldindan
+sozlangan. <code>Fatal*</code> yoki <code>Panic*</code> kabi qo&rsquo;shimcha
+metodlar logdan keyin dasturdan chiqadi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;standard logger&#34;</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Loggerlar chiqish formatini belgilash uchun <em>bayroqlar</em>
+bilan sozlanishi mumkin. Standart holatda, standart
+loggerda <code>log.Ldate</code> va <code>log.Ltime</code> bayroqlari
+o&rsquo;rnatilgan va ular <code>log.LstdFlags</code> da to&rsquo;plangan.
+Masalan, biz uning bayroqlarini vaqtni mikrosekund
+aniqligida chiqarish uchun o&rsquo;zgartirishimiz mumkin.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">log</span><span class="p">.</span><span class="nf">SetFlags</span><span class="p">(</span><span class="nx">log</span><span class="p">.</span><span class="nx">LstdFlags</span> <span class="p">|</span> <span class="nx">log</span><span class="p">.</span><span class="nx">Lmicroseconds</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;with micro&#34;</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>U, shuningdek, <code>log</code> funksiyasi chaqirilgan fayl nomi
+va qatorni chiqarishni qo&rsquo;llab-quvvatlaydi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">log</span><span class="p">.</span><span class="nf">SetFlags</span><span class="p">(</span><span class="nx">log</span><span class="p">.</span><span class="nx">LstdFlags</span> <span class="p">|</span> <span class="nx">log</span><span class="p">.</span><span class="nx">Lshortfile</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;with file/line&#34;</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Maxsus logger yaratish va uni uzatish foydali bo&rsquo;lishi
+mumkin. Yangi logger yaratganda, biz uning chiqishini
+boshqa loggerlardan ajratish uchun <em>prefiks</em>
+o&rsquo;rnatishimiz mumkin.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">mylog</span> <span class="o">:=</span> <span class="nx">log</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdout</span><span class="p">,</span> <span class="s">&#34;my:&#34;</span><span class="p">,</span> <span class="nx">log</span><span class="p">.</span><span class="nx">LstdFlags</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mylog</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;from mylog&#34;</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Biz mavjud loggerlarda (shu jumladan standart loggerda)
+prefiksni <code>SetPrefix</code> metodi bilan o&rsquo;rnatishimiz mumkin.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">mylog</span><span class="p">.</span><span class="nf">SetPrefix</span><span class="p">(</span><span class="s">&#34;ohmy:&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mylog</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;from mylog&#34;</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Loggerlar maxsus chiqish maqsadlariga ega bo&rsquo;lishi
+mumkin; istalgan <code>io.Writer</code> ishlaydi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">buf</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">Buffer</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">buflog</span> <span class="o">:=</span> <span class="nx">log</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">buf</span><span class="p">,</span> <span class="s">&#34;buf:&#34;</span><span class="p">,</span> <span class="nx">log</span><span class="p">.</span><span class="nx">LstdFlags</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Bu chaqiruv log chiqishini <code>buf</code> ga yozadi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">buflog</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Bu aslida uni standart chiqishda ko&rsquo;rsatadi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;from buflog:&#34;</span><span class="p">,</span> <span class="nx">buf</span><span class="p">.</span><span class="nf">String</span><span class="p">())</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>slog</code> paketi <em>tuzilmali</em> log chiqishini taqdim etadi.
+Masalan, JSON formatida loglash sodda.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">jsonHandler</span> <span class="o">:=</span> <span class="nx">slog</span><span class="p">.</span><span class="nf">NewJSONHandler</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">myslog</span> <span class="o">:=</span> <span class="nx">slog</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">jsonHandler</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">myslog</span><span class="p">.</span><span class="nf">Info</span><span class="p">(</span><span class="s">&#34;hi there&#34;</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Xabardan tashqari, <code>slog</code> chiqishi ixtiyoriy sondagi
+key=value juftliklarini o&rsquo;z ichiga olishi mumkin.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">myslog</span><span class="p">.</span><span class="nf">Info</span><span class="p">(</span><span class="s">&#34;hello again&#34;</span><span class="p">,</span> <span class="s">&#34;key&#34;</span><span class="p">,</span> <span class="s">&#34;val&#34;</span><span class="p">,</span> <span class="s">&#34;age&#34;</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Namuna chiqish; chiqarilgan sana va vaqt misol qachon
+ishga tushirilganiga bog&rsquo;liq bo&rsquo;ladi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="gp">$</span> go run logging.go
+</span></span><span class="line"><span class="cl"><span class="go">2023/08/22 10:45:16 standard logger
+</span></span></span><span class="line"><span class="cl"><span class="go">2023/08/22 10:45:16.904141 with micro
+</span></span></span><span class="line"><span class="cl"><span class="go">2023/08/22 10:45:16 logging.go:40: with file/line
+</span></span></span><span class="line"><span class="cl"><span class="go">my:2023/08/22 10:45:16 from mylog
+</span></span></span><span class="line"><span class="cl"><span class="go">ohmy:2023/08/22 10:45:16 from mylog
+</span></span></span><span class="line"><span class="cl"><span class="go">from buflog:buf:2023/08/22 10:45:16 hello</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Bular veb-saytda taqdimot aniqligi uchun bir nechta
+qatorga bo&rsquo;lingan; aslida ular bitta qatorda chiqariladi.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="go">{&#34;time&#34;:&#34;2023-08-22T10:45:16.904166391-07:00&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="go"> &#34;level&#34;:&#34;INFO&#34;,&#34;msg&#34;:&#34;hi there&#34;}
+</span></span></span><span class="line"><span class="cl"><span class="go">{&#34;time&#34;:&#34;2023-08-22T10:45:16.904178985-07:00&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="go">    &#34;level&#34;:&#34;INFO&#34;,&#34;msg&#34;:&#34;hello again&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="go">    &#34;key&#34;:&#34;val&#34;,&#34;age&#34;:25}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Keyingi misol: <a href="http-client.html" rel="next">HTTP Client</a>.
+      </p>
+      
+
+    <p class="footer">
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"bytes\"\u000A    \"fmt\"\u000A    \"log\"\u000A    \"os\"\u000A');codeLines.push('    \"log/slog\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    log.Println(\"standard logger\")\u000A');codeLines.push('    log.SetFlags(log.LstdFlags | log.Lmicroseconds)\u000A    log.Println(\"with micro\")\u000A');codeLines.push('    log.SetFlags(log.LstdFlags | log.Lshortfile)\u000A    log.Println(\"with file/line\")\u000A');codeLines.push('    mylog :\u003D log.New(os.Stdout, \"my:\", log.LstdFlags)\u000A    mylog.Println(\"from mylog\")\u000A');codeLines.push('    mylog.SetPrefix(\"ohmy:\")\u000A    mylog.Println(\"from mylog\")\u000A');codeLines.push('    var buf bytes.Buffer\u000A    buflog :\u003D log.New(\u0026buf, \"buf:\", log.LstdFlags)\u000A');codeLines.push('    buflog.Println(\"hello\")\u000A');codeLines.push('    fmt.Print(\"from buflog:\", buf.String())\u000A');codeLines.push('    jsonHandler :\u003D slog.NewJSONHandler(os.Stderr, nil)\u000A    myslog :\u003D slog.New(jsonHandler)\u000A    myslog.Info(\"hi there\")\u000A');codeLines.push('    myslog.Info(\"hello again\", \"key\", \"val\", \"age\", 25)\u000A}\u000A');codeLines.push('');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

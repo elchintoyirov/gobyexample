@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go by Example: Atomic Counters</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      window.onkeydown = (e) => {
+          if (e.ctrlKey || e.altKey || e.shiftKey || e.metaKey) {
+              return;
+          }
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'rate-limiting.html';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'mutexes.html';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="atomic-counters">
+      <h2><a href="./">Go by Example</a>: Atomic Counters</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Go&rsquo;da holatni boshqarishning asosiy mexanizmi kanallar
+orqali aloqa qilishdir. Buni biz, masalan,
+<a href="worker-pools.html">worker pools</a> misolida ko&rsquo;rgan edik. Ammo
+holatni boshqarishning yana bir nechta usullari mavjud.
+Bu yerda biz bir nechta goroutinalar tomonidan
+foydalaniladigan <em>atomik hisoblagichlar</em> uchun
+<code>sync/atomic</code> paketidan foydalanishni ko&rsquo;rib chiqamiz.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a href="https://go.dev/play/p/oLe0FsDiSr9"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;sync&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;sync/atomic&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>(Har doim musbat bo&rsquo;lgan) hisoblagichimizni ifodalash
+uchun atomik butun son tipidan foydalanamiz.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">ops</span> <span class="nx">atomic</span><span class="p">.</span><span class="nx">Uint64</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>WaitGroup barcha goroutinalar o&rsquo;z ishlarini
+tugatishini kutishimizga yordam beradi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Biz 50 ta goroutina ishga tushiramiz, ularning har biri
+hisoblagichni aniq 1000 marta oshiradi.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="k">for</span> <span class="k">range</span> <span class="mi">50</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">wg</span><span class="p">.</span><span class="nf">Go</span><span class="p">(</span><span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="k">range</span> <span class="mi">1000</span> <span class="p">{</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Hisoblagichni atomik tarzda oshirish uchun <code>Add</code>dan foydalanamiz.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">                <span class="nx">ops</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Barcha goroutinalar tugaguncha kutamiz.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Bu yerda hech qaysi goroutina &lsquo;ops&rsquo;ga yozmayapti, lekin
+<code>Load</code> yordamida boshqa goroutinalar uni (atomik tarzda)
+yangilab turgan paytda ham qiymatni atomik tarzda
+xavfsiz o&rsquo;qish mumkin.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ops:&#34;</span><span class="p">,</span> <span class="nx">ops</span><span class="p">.</span><span class="nf">Load</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Biz aniq 50,000 ta amal bo&rsquo;lishini kutamiz. Agar atomik
+bo&rsquo;lmagan butun sondan foydalanib, uni <code>ops++</code> bilan
+oshirganimizda edi, ehtimol har gal ishga tushirishda
+o&rsquo;zgarib turadigan boshqacha son olardik, chunki
+goroutinalar bir-biriga xalal berardi. Bundan tashqari,
+<code>-race</code> bayrog&rsquo;i bilan ishga tushirganimizda data race
+xatoliklariga duch kelardik.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="gp">$</span> go run atomic-counters.go
+</span></span><span class="line"><span class="cl"><span class="go">ops: 50000</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Keyingi misolda holatni boshqarishning yana bir vositasi
+bo&rsquo;lgan mutexlarni ko&rsquo;rib chiqamiz.</p>
+
+          </td>
+          <td class="code empty">
+            
+          
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Keyingi misol: <a href="mutexes.html" rel="next">Mutexes</a>.
+      </p>
+      
+
+    <p class="footer">
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"sync\"\u000A    \"sync/atomic\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    var ops atomic.Uint64\u000A');codeLines.push('    var wg sync.WaitGroup\u000A');codeLines.push('    for range 50 {\u000A        wg.Go(func() {\u000A            for range 1000 {\u000A');codeLines.push('                ops.Add(1)\u000A            }\u000A        })\u000A    }\u000A');codeLines.push('    wg.Wait()\u000A');codeLines.push('    fmt.Println(\"ops:\", ops.Load())\u000A}\u000A');codeLines.push('');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>
