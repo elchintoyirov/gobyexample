@@ -30,10 +30,10 @@
         
         <tr>
           <td class="docs">
-            <p><a href="https://en.wikipedia.org/wiki/Variadic_function"><em>Variadic functions</em></a>
-can be called with any number of trailing arguments.
-For example, <code>fmt.Println</code> is a common variadic
-function.</p>
+            <p><a href="https://en.wikipedia.org/wiki/Variadic_function"><em>Variadik (o&rsquo;zgaruvchan argumentli) funksiyalar</em></a>
+istalgan miqdordagi oxirgi argumentlar bilan chaqirilishi
+mumkin. Masalan, <code>fmt.Println</code> keng tarqalgan variadik
+funksiyadir.</p>
 
           </td>
           <td class="code empty leading">
@@ -47,7 +47,7 @@ function.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/glNdE8aKPNq"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/ww-Ngk3qems"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -64,8 +64,8 @@ function.</p>
         
         <tr>
           <td class="docs">
-            <p>Here&rsquo;s a function that will take an arbitrary number
-of <code>int</code>s as arguments.</p>
+            <p>Quyida argument sifatida ixtiyoriy miqdordagi <code>int</code>
+larni qabul qiladigan funksiya keltirilgan.</p>
 
           </td>
           <td class="code leading">
@@ -78,9 +78,9 @@ of <code>int</code>s as arguments.</p>
         
         <tr>
           <td class="docs">
-            <p>Within the function, the type of <code>nums</code> is
-equivalent to <code>[]int</code>. We can call <code>len(nums)</code>,
-iterate over it with <code>range</code>, etc.</p>
+            <p>Funksiya ichida <code>nums</code> ning tipi <code>[]int</code> ga
+teng. Biz <code>len(nums)</code> ni chaqirishimiz, uni <code>range</code>
+bilan aylanib chiqishimiz va hokazo qilishimiz mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -105,8 +105,8 @@ iterate over it with <code>range</code>, etc.</p>
         
         <tr>
           <td class="docs">
-            <p>Variadic functions can be called in the usual way
-with individual arguments.</p>
+            <p>Variadik funksiyalarni odatdagi tarzda alohida
+argumentlar bilan chaqirish mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -118,9 +118,9 @@ with individual arguments.</p>
         
         <tr>
           <td class="docs">
-            <p>If you already have multiple args in a slice,
-apply them to a variadic function using
-<code>func(slice...)</code> like this.</p>
+            <p>Agar sizda allaqachon slice ichida bir nechta
+argument bo&rsquo;lsa, ularni variadik funksiyaga
+shu tarzda <code>func(slice...)</code> orqali qo&rsquo;llang.</p>
 
           </td>
           <td class="code">
@@ -150,8 +150,9 @@ apply them to a variadic function using
         
         <tr>
           <td class="docs">
-            <p>Another key aspect of functions in Go is their ability
-to form closures, which we&rsquo;ll look at next.</p>
+            <p>Go dagi funksiyalarning yana bir muhim jihati ularning
+closure (yopuq funksiya) hosil qila olish qobiliyatidir,
+buni keyingi qadamda ko&rsquo;rib chiqamiz.</p>
 
           </td>
           <td class="code empty">
@@ -164,12 +165,12 @@ to form closures, which we&rsquo;ll look at next.</p>
       
       
       <p class="next">
-        Next example: <a href="closures" rel="next">Closures</a>.
+        Keyingi misol: <a href="closures" rel="next">Closures</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

@@ -30,9 +30,10 @@
         
         <tr>
           <td class="docs">
-            <p>Go has built-in support for <em>multiple return values</em>.
-This feature is used often in idiomatic Go, for example
-to return both result and error values from a function.</p>
+            <p>Go <em>bir nechta qaytariladigan qiymatlar</em> ni ichki o&rsquo;rnatilgan
+holda qo&rsquo;llab-quvvatlaydi. Bu xususiyat idiomatik Go da tez-tez
+ishlatiladi, masalan funksiyadan ham natija ham xato qiymatlarini
+qaytarish uchun.</p>
 
           </td>
           <td class="code empty leading">
@@ -46,7 +47,7 @@ to return both result and error values from a function.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/vZdUvLB1WbK"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/XhZF-YJdAxS"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -63,8 +64,8 @@ to return both result and error values from a function.</p>
         
         <tr>
           <td class="docs">
-            <p>The <code>(int, int)</code> in this function signature shows that
-the function returns 2 <code>int</code>s.</p>
+            <p>Ushbu funksiya imzosidagi <code>(int, int)</code> funksiya 2 ta <code>int</code>
+qaytarishini ko&rsquo;rsatadi.</p>
 
           </td>
           <td class="code leading">
@@ -87,8 +88,8 @@ the function returns 2 <code>int</code>s.</p>
         
         <tr>
           <td class="docs">
-            <p>Here we use the 2 different return values from the
-call with <em>multiple assignment</em>.</p>
+            <p>Bu yerda biz chaqiruvdan kelgan 2 ta turli qaytariladigan
+qiymatni <em>bir nechta o&rsquo;zlashtirish</em> bilan ishlatamiz.</p>
 
           </td>
           <td class="code leading">
@@ -101,8 +102,8 @@ call with <em>multiple assignment</em>.</p>
         
         <tr>
           <td class="docs">
-            <p>If you only want a subset of the returned values,
-use the blank identifier <code>_</code>.</p>
+            <p>Agar sizga qaytarilgan qiymatlarning faqat bir qismi kerak
+bo&rsquo;lsa, bo&rsquo;sh identifikator <code>_</code> dan foydalaning.</p>
 
           </td>
           <td class="code">
@@ -132,8 +133,9 @@ use the blank identifier <code>_</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>Accepting a variable number of arguments is another nice
-feature of Go functions; we&rsquo;ll look at this next.</p>
+            <p>O&rsquo;zgaruvchan sonli argumentlarni qabul qilish Go
+funksiyalarining yana bir yaxshi xususiyati; buni keyingi
+navbatda ko&rsquo;rib chiqamiz.</p>
 
           </td>
           <td class="code empty">
@@ -146,12 +148,12 @@ feature of Go functions; we&rsquo;ll look at this next.</p>
       
       
       <p class="next">
-        Next example: <a href="variadic-functions" rel="next">Variadic Functions</a>.
+        Keyingi misol: <a href="variadic-functions" rel="next">Variadic Functions</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

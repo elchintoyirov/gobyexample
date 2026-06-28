@@ -30,10 +30,11 @@
         
         <tr>
           <td class="docs">
-            <p><em>Timeouts</em> are important for programs that connect to
-external resources or that otherwise need to bound
-execution time. Implementing timeouts in Go is easy and
-elegant thanks to channels and <code>select</code>.</p>
+            <p><em>Vaqt tugashi</em> tashqi resurslarga ulanadigan yoki
+boshqacha sababga ko&rsquo;ra bajarilish vaqtini cheklashi
+kerak bo&rsquo;lgan dasturlar uchun muhim. Go da vaqt
+tugashini amalga oshirish kanallar va <code>select</code>
+tufayli oson va nafis.</p>
 
           </td>
           <td class="code empty leading">
@@ -47,7 +48,7 @@ elegant thanks to channels and <code>select</code>.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/gyr0NbVKBVf"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/SxkSxkfukbi"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -77,12 +78,12 @@ elegant thanks to channels and <code>select</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>For our example, suppose we&rsquo;re executing an external
-call that returns its result on a channel <code>c1</code>
-after 2s. Note that the channel is buffered, so the
-send in the goroutine is nonblocking. This is a
-common pattern to prevent goroutine leaks in case the
-channel is never read.</p>
+            <p>Misol uchun, 2s dan keyin natijasini <code>c1</code> kanaliga
+qaytaradigan tashqi chaqiruvni bajaryapmiz deylik.
+E&rsquo;tibor bering, kanal buferlangan, shuning uchun
+goroutinadagi yuborish bloklamaydi. Bu kanal hech
+qachon o&rsquo;qilmagan taqdirda goroutina oqib ketishining
+oldini olish uchun keng tarqalgan usul.</p>
 
           </td>
           <td class="code leading">
@@ -97,12 +98,12 @@ channel is never read.</p>
         
         <tr>
           <td class="docs">
-            <p>Here&rsquo;s the <code>select</code> implementing a timeout.
-<code>res := &lt;-c1</code> awaits the result and <code>&lt;-time.After</code>
-awaits a value to be sent after the timeout of
-1s. Since <code>select</code> proceeds with the first
-receive that&rsquo;s ready, we&rsquo;ll take the timeout case
-if the operation takes more than the allowed 1s.</p>
+            <p>Quyida vaqt tugashini amalga oshiruvchi <code>select</code>.
+<code>res := &lt;-c1</code> natijani kutadi, <code>&lt;-time.After</code> esa 1s
+vaqt tugashidan keyin yuboriladigan qiymatni kutadi.
+<code>select</code> tayyor bo&rsquo;lgan birinchi qabul bilan davom
+etgani uchun, operatsiya ruxsat etilgan 1s dan ko&rsquo;proq
+vaqt olsa, vaqt tugashi holatini olamiz.</p>
 
           </td>
           <td class="code leading">
@@ -118,8 +119,9 @@ if the operation takes more than the allowed 1s.</p>
         
         <tr>
           <td class="docs">
-            <p>If we allow a longer timeout of 3s, then the receive
-from <code>c2</code> will succeed and we&rsquo;ll print the result.</p>
+            <p>Agar 3s lik uzunroq vaqt tugashiga ruxsat bersak,
+<code>c2</code> dan qabul qilish muvaffaqiyatli bo&rsquo;ladi va
+natijani chop etamiz.</p>
 
           </td>
           <td class="code">
@@ -145,8 +147,9 @@ from <code>c2</code> will succeed and we&rsquo;ll print the result.</p>
         
         <tr>
           <td class="docs">
-            <p>Running this program shows the first operation timing
-out and the second succeeding.</p>
+            <p>Bu dasturni ishga tushirish birinchi operatsiyaning
+vaqti tugaganini va ikkinchisi muvaffaqiyatli bo&rsquo;lganini
+ko&rsquo;rsatadi.</p>
 
           </td>
           <td class="code">
@@ -161,12 +164,12 @@ out and the second succeeding.</p>
       
       
       <p class="next">
-        Next example: <a href="non-blocking-channel-operations" rel="next">Non-Blocking Channel Operations</a>.
+        Keyingi misol: <a href="non-blocking-channel-operations" rel="next">Non-Blocking Channel Operations</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

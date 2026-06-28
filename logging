@@ -30,16 +30,15 @@
         
         <tr>
           <td class="docs">
-            <p>The Go standard library provides straightforward
-tools for outputting logs from Go programs, with
-the <a href="https://pkg.go.dev/log">log</a> package for
-free-form output and the
-<a href="https://pkg.go.dev/log/slog">log/slog</a> package for
-structured output.</p>
+            <p>Go standart kutubxonasi Go dasturlaridan loglarni
+chiqarish uchun sodda vositalarni taqdim etadi: erkin
+shakldagi chiqish uchun <a href="https://pkg.go.dev/log">log</a>
+paketi va tuzilmali chiqish uchun
+<a href="https://pkg.go.dev/log/slog">log/slog</a> paketi.</p>
 
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/Qd0uCqBlYUn"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/V7AAqubW8yW"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -81,12 +80,11 @@ structured output.</p>
         
         <tr>
           <td class="docs">
-            <p>Simply invoking functions like <code>Println</code> from the
-<code>log</code> package uses the <em>standard</em> logger, which
-is already pre-configured for reasonable logging
-output to <code>os.Stderr</code>. Additional methods like
-<code>Fatal*</code> or <code>Panic*</code> will exit the program after
-logging.</p>
+            <p><code>log</code> paketidan <code>Println</code> kabi funksiyalarni oddiy
+chaqirish <em>standart</em> loggerdan foydalanadi, u allaqachon
+<code>os.Stderr</code> ga oqilona log chiqarish uchun oldindan
+sozlangan. <code>Fatal*</code> yoki <code>Panic*</code> kabi qo&rsquo;shimcha
+metodlar logdan keyin dasturdan chiqadi.</p>
 
           </td>
           <td class="code leading">
@@ -97,12 +95,12 @@ logging.</p>
         
         <tr>
           <td class="docs">
-            <p>Loggers can be configured with <em>flags</em> to set
-their output format. By default, the standard
-logger has the <code>log.Ldate</code> and <code>log.Ltime</code> flags
-set, and these are collected in <code>log.LstdFlags</code>.
-We can change its flags to emit time with
-microsecond accuracy, for example.</p>
+            <p>Loggerlar chiqish formatini belgilash uchun <em>bayroqlar</em>
+bilan sozlanishi mumkin. Standart holatda, standart
+loggerda <code>log.Ldate</code> va <code>log.Ltime</code> bayroqlari
+o&rsquo;rnatilgan va ular <code>log.LstdFlags</code> da to&rsquo;plangan.
+Masalan, biz uning bayroqlarini vaqtni mikrosekund
+aniqligida chiqarish uchun o&rsquo;zgartirishimiz mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -114,8 +112,8 @@ microsecond accuracy, for example.</p>
         
         <tr>
           <td class="docs">
-            <p>It also supports emitting the file name and
-line from which the <code>log</code> function is called.</p>
+            <p>U, shuningdek, <code>log</code> funksiyasi chaqirilgan fayl nomi
+va qatorni chiqarishni qo&rsquo;llab-quvvatlaydi.</p>
 
           </td>
           <td class="code leading">
@@ -127,10 +125,10 @@ line from which the <code>log</code> function is called.</p>
         
         <tr>
           <td class="docs">
-            <p>It may be useful to create a custom logger and
-pass it around. When creating a new logger, we
-can set a <em>prefix</em> to distinguish its output
-from other loggers.</p>
+            <p>Maxsus logger yaratish va uni uzatish foydali bo&rsquo;lishi
+mumkin. Yangi logger yaratganda, biz uning chiqishini
+boshqa loggerlardan ajratish uchun <em>prefiks</em>
+o&rsquo;rnatishimiz mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -142,9 +140,8 @@ from other loggers.</p>
         
         <tr>
           <td class="docs">
-            <p>We can set the prefix
-on existing loggers (including the standard one)
-with the <code>SetPrefix</code> method.</p>
+            <p>Biz mavjud loggerlarda (shu jumladan standart loggerda)
+prefiksni <code>SetPrefix</code> metodi bilan o&rsquo;rnatishimiz mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -156,8 +153,8 @@ with the <code>SetPrefix</code> method.</p>
         
         <tr>
           <td class="docs">
-            <p>Loggers can have custom output targets;
-any <code>io.Writer</code> works.</p>
+            <p>Loggerlar maxsus chiqish maqsadlariga ega bo&rsquo;lishi
+mumkin; istalgan <code>io.Writer</code> ishlaydi.</p>
 
           </td>
           <td class="code leading">
@@ -169,7 +166,7 @@ any <code>io.Writer</code> works.</p>
         
         <tr>
           <td class="docs">
-            <p>This call writes the log output into <code>buf</code>.</p>
+            <p>Bu chaqiruv log chiqishini <code>buf</code> ga yozadi.</p>
 
           </td>
           <td class="code leading">
@@ -180,7 +177,7 @@ any <code>io.Writer</code> works.</p>
         
         <tr>
           <td class="docs">
-            <p>This will actually show it on standard output.</p>
+            <p>Bu aslida uni standart chiqishda ko&rsquo;rsatadi.</p>
 
           </td>
           <td class="code leading">
@@ -191,9 +188,8 @@ any <code>io.Writer</code> works.</p>
         
         <tr>
           <td class="docs">
-            <p>The <code>slog</code> package provides
-<em>structured</em> log output. For example, logging
-in JSON format is straightforward.</p>
+            <p><code>slog</code> paketi <em>tuzilmali</em> log chiqishini taqdim etadi.
+Masalan, JSON formatida loglash sodda.</p>
 
           </td>
           <td class="code leading">
@@ -206,9 +202,8 @@ in JSON format is straightforward.</p>
         
         <tr>
           <td class="docs">
-            <p>In addition to the message, <code>slog</code> output can
-contain an arbitrary number of key=value
-pairs.</p>
+            <p>Xabardan tashqari, <code>slog</code> chiqishi ixtiyoriy sondagi
+key=value juftliklarini o&rsquo;z ichiga olishi mumkin.</p>
 
           </td>
           <td class="code">
@@ -224,8 +219,8 @@ pairs.</p>
         
         <tr>
           <td class="docs">
-            <p>Sample output; the date and time
-emitted will depend on when the example ran.</p>
+            <p>Namuna chiqish; chiqarilgan sana va vaqt misol qachon
+ishga tushirilganiga bog&rsquo;liq bo&rsquo;ladi.</p>
 
           </td>
           <td class="code leading">
@@ -242,9 +237,8 @@ emitted will depend on when the example ran.</p>
         
         <tr>
           <td class="docs">
-            <p>These are wrapped for clarity of presentation
-on the website; in reality they are emitted
-on a single line.</p>
+            <p>Bular veb-saytda taqdimot aniqligi uchun bir nechta
+qatorga bo&rsquo;lingan; aslida ular bitta qatorda chiqariladi.</p>
 
           </td>
           <td class="code">
@@ -261,12 +255,12 @@ on a single line.</p>
       
       
       <p class="next">
-        Next example: <a href="http-client" rel="next">HTTP Client</a>.
+        Keyingi misol: <a href="http-client" rel="next">HTTP Client</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

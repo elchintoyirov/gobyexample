@@ -30,10 +30,10 @@
         
         <tr>
           <td class="docs">
-            <p>Unit testing is an important part of writing
-principled Go programs. The <code>testing</code> package
-provides the tools we need to write unit tests
-and the <code>go test</code> command runs tests.</p>
+            <p>Unit testlash printsipial Go dasturlarini yozishning muhim
+qismidir. <code>testing</code> paketi bizga unit testlar yozish uchun
+kerakli vositalarni taqdim etadi, <code>go test</code> buyrug&rsquo;i esa
+testlarni ishga tushiradi.</p>
 
           </td>
           <td class="code empty leading">
@@ -44,13 +44,13 @@ and the <code>go test</code> command runs tests.</p>
         
         <tr>
           <td class="docs">
-            <p>For the sake of demonstration, this code is in package
-<code>main</code>, but it could be any package. Testing code
-typically lives in the same package as the code it tests.</p>
+            <p>Namoyish maqsadida bu kod <code>main</code> paketida, lekin u istalgan
+paket bo&rsquo;lishi mumkin. Test kodi odatda u test qiladigan kod
+bilan bir xil paketda joylashadi.</p>
 
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/osZckbKSkse"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/ooGZi29Pabn"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -70,11 +70,10 @@ typically lives in the same package as the code it tests.</p>
         
         <tr>
           <td class="docs">
-            <p>We&rsquo;ll be testing this simple implementation of an
-integer minimum. Typically, the code we&rsquo;re testing
-would be in a source file named something like
-<code>intutils.go</code>, and the test file for it would then
-be named <code>intutils_test.go</code>.</p>
+            <p>Biz butun sonlar minimumining bu oddiy implementatsiyasini
+test qilamiz. Odatda, biz test qilayotgan kod <code>intutils.go</code>
+kabi nomlangan manba faylda bo&rsquo;lar edi, va u uchun test fayli
+esa <code>intutils_test.go</code> deb nomlangan bo&rsquo;lardi.</p>
 
           </td>
           <td class="code leading">
@@ -90,8 +89,8 @@ be named <code>intutils_test.go</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>A test is created by writing a function with a name
-beginning with <code>Test</code>.</p>
+            <p>Test <code>Test</code> bilan boshlanadigan nomli funksiya yozish orqali
+yaratiladi.</p>
 
           </td>
           <td class="code leading">
@@ -104,9 +103,10 @@ beginning with <code>Test</code>.</p>
         
         <tr>
           <td class="docs">
-            <p><code>t.Error*</code> will report test failures but continue
-executing the test. <code>t.Fatal*</code> will report test
-failures and stop the test immediately.</p>
+            <p><code>t.Error*</code> test muvaffaqiyatsizliklarini xabar qiladi,
+lekin testni bajarishni davom ettiradi. <code>t.Fatal*</code> test
+muvaffaqiyatsizliklarini xabar qiladi va testni darhol
+to&rsquo;xtatadi.</p>
 
           </td>
           <td class="code leading">
@@ -119,10 +119,10 @@ failures and stop the test immediately.</p>
         
         <tr>
           <td class="docs">
-            <p>Writing tests can be repetitive, so it&rsquo;s idiomatic to
-use a <em>table-driven style</em>, where test inputs and
-expected outputs are listed in a table and a single loop
-walks over them and performs the test logic.</p>
+            <p>Test yozish takrorlanuvchan bo&rsquo;lishi mumkin, shuning uchun
+*jadvalga asoslangan uslub*dan foydalanish odatiy holdir, unda
+test kirishlari va kutilgan chiqishlar jadvalda keltiriladi va
+bitta sikl ular bo&rsquo;ylab yurib test mantiqini bajaradi.</p>
 
           </td>
           <td class="code leading">
@@ -143,9 +143,9 @@ walks over them and performs the test logic.</p>
         
         <tr>
           <td class="docs">
-            <p><code>t.Run</code> enables running &ldquo;subtests&rdquo;, one for each
-table entry. These are shown separately
-when executing <code>go test -v</code>.</p>
+            <p><code>t.Run</code> &ldquo;subtest&rdquo;larni, har bir jadval yozuvi uchun
+bittadan, ishga tushirish imkonini beradi. Bular
+<code>go test -v</code> bajarilganda alohida ko&rsquo;rsatiladi.</p>
 
           </td>
           <td class="code leading">
@@ -174,10 +174,10 @@ when executing <code>go test -v</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>Benchmark tests typically go in <code>_test.go</code> files and are
-named beginning with <code>Benchmark</code>.
-Any code that&rsquo;s required for the benchmark to run but should
-not be measured goes before this loop.</p>
+            <p>Benchmark testlari odatda <code>_test.go</code> fayllarida bo&rsquo;ladi va
+<code>Benchmark</code> bilan boshlanadigan nom bilan nomlanadi.
+Benchmark ishlashi uchun zarur, lekin o&rsquo;lchanmasligi kerak
+bo&rsquo;lgan har qanday kod bu sikldan oldin keladi.</p>
 
           </td>
           <td class="code leading">
@@ -189,9 +189,9 @@ not be measured goes before this loop.</p>
         
         <tr>
           <td class="docs">
-            <p>The benchmark runner will automatically execute this loop
-body many times to determine a reasonable estimate of the
-run-time of a single iteration.</p>
+            <p>Benchmark ishga tushiruvchisi bitta iteratsiyaning
+ishlash vaqtini oqilona baholash uchun bu sikl tanasini
+avtomatik ravishda ko&rsquo;p marta bajaradi.</p>
 
           </td>
           <td class="code">
@@ -208,7 +208,8 @@ run-time of a single iteration.</p>
         
         <tr>
           <td class="docs">
-            <p>Run all tests in the current project in verbose mode.</p>
+            <p>Joriy loyihadagi barcha testlarni batafsil (verbose)
+rejimda ishga tushiring.</p>
 
           </td>
           <td class="code leading">
@@ -235,9 +236,9 @@ run-time of a single iteration.</p>
         
         <tr>
           <td class="docs">
-            <p>Run all benchmarks in the current project. All tests
-are run prior to benchmarks. The <code>bench</code> flag filters
-benchmark function names with a regexp.</p>
+            <p>Joriy loyihadagi barcha benchmarklarni ishga tushiring. Barcha
+testlar benchmarklardan oldin ishga tushiriladi. <code>bench</code>
+bayrog&rsquo;i benchmark funksiya nomlarini regexp bilan filtrlaydi.</p>
 
           </td>
           <td class="code">
@@ -256,12 +257,12 @@ benchmark function names with a regexp.</p>
       
       
       <p class="next">
-        Next example: <a href="command-line-arguments" rel="next">Command-Line Arguments</a>.
+        Keyingi misol: <a href="command-line-arguments" rel="next">Command-Line Arguments</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

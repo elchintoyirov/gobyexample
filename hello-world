@@ -26,12 +26,12 @@
         
         <tr>
           <td class="docs">
-            <p>Our first program will print the classic &ldquo;hello world&rdquo;
-message. Here&rsquo;s the full source code.</p>
+            <p>Bizning birinchi dasturimiz klassik &ldquo;hello world&rdquo;
+xabarini chop etadi. Mana to&rsquo;liq manba kodi.</p>
 
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/NeviD0awXjt"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/BPWATIWd8dV"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -64,8 +64,8 @@ message. Here&rsquo;s the full source code.</p>
         
         <tr>
           <td class="docs">
-            <p>To run the program, put the code in <code>hello-world.go</code> and
-use <code>go run</code>.</p>
+            <p>Dasturni ishga tushirish uchun kodni <code>hello-world.go</code>
+fayliga joylashtiring va <code>go run</code> dan foydalaning.</p>
 
           </td>
           <td class="code leading">
@@ -77,8 +77,8 @@ use <code>go run</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>Sometimes we&rsquo;ll want to build our programs into
-binaries. We can do this using <code>go build</code>.</p>
+            <p>Ba&rsquo;zan dasturlarimizni binar fayllarga kompilyatsiya
+qilmoqchi bo&rsquo;lamiz. Buni <code>go build</code> yordamida qilamiz.</p>
 
           </td>
           <td class="code leading">
@@ -91,7 +91,7 @@ binaries. We can do this using <code>go build</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>We can then execute the built binary directly.</p>
+            <p>So&rsquo;ngra qurilgan binar faylni to&rsquo;g&rsquo;ridan-to&rsquo;g&rsquo;ri ishga tushiramiz.</p>
 
           </td>
           <td class="code leading">
@@ -103,8 +103,8 @@ binaries. We can do this using <code>go build</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>Now that we can run and build basic Go programs, let&rsquo;s
-learn more about the language.</p>
+            <p>Endi oddiy Go dasturlarini ishga tushira va qura olamiz,
+keling, til haqida ko&rsquo;proq o&rsquo;rganamiz.</p>
 
           </td>
           <td class="code empty">
@@ -117,12 +117,12 @@ learn more about the language.</p>
       
       
       <p class="next">
-        Next example: <a href="values" rel="next">Values</a>.
+        Keyingi misol: <a href="values" rel="next">Values</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

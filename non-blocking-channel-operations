@@ -30,10 +30,11 @@
         
         <tr>
           <td class="docs">
-            <p>Basic sends and receives on channels are blocking.
-However, we can use <code>select</code> with a <code>default</code> clause to
-implement <em>non-blocking</em> sends, receives, and even
-non-blocking multi-way <code>select</code>s.</p>
+            <p>Kanallardagi oddiy yuborish va qabul qilishlar bloklovchidir.
+Biroq, biz <code>select</code> ni <code>default</code> bandi bilan ishlatib,
+<em>bloklamaydigan</em> yuborish, qabul qilish va hatto
+bloklamaydigan ko&rsquo;p yo&rsquo;nalishli <code>select</code> larni amalga
+oshirishimiz mumkin.</p>
 
           </td>
           <td class="code empty leading">
@@ -47,7 +48,7 @@ non-blocking multi-way <code>select</code>s.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/TFv6-7OVNVq"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/lXZVIoaru4y"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -76,10 +77,10 @@ non-blocking multi-way <code>select</code>s.</p>
         
         <tr>
           <td class="docs">
-            <p>Here&rsquo;s a non-blocking receive. If a value is
-available on <code>messages</code> then <code>select</code> will take
-the <code>&lt;-messages</code> <code>case</code> with that value. If not
-it will immediately take the <code>default</code> case.</p>
+            <p>Mana bloklamaydigan qabul qilish. Agar <code>messages</code> da
+qiymat mavjud bo&rsquo;lsa, <code>select</code> o&rsquo;sha qiymat bilan
+<code>&lt;-messages</code> <code>case</code> ini oladi. Agar bo&rsquo;lmasa, u darhol
+<code>default</code> case ini oladi.</p>
 
           </td>
           <td class="code leading">
@@ -95,10 +96,10 @@ it will immediately take the <code>default</code> case.</p>
         
         <tr>
           <td class="docs">
-            <p>A non-blocking send works similarly. Here <code>msg</code>
-cannot be sent to the <code>messages</code> channel, because
-the channel has no buffer and there is no receiver.
-Therefore the <code>default</code> case is selected.</p>
+            <p>Bloklamaydigan yuborish ham xuddi shunday ishlaydi. Bu
+yerda <code>msg</code> ni <code>messages</code> kanaliga yuborib bo&rsquo;lmaydi,
+chunki kanalda bufer yo&rsquo;q va qabul qiluvchi ham yo&rsquo;q.
+Shuning uchun <code>default</code> case tanlanadi.</p>
 
           </td>
           <td class="code leading">
@@ -115,10 +116,11 @@ Therefore the <code>default</code> case is selected.</p>
         
         <tr>
           <td class="docs">
-            <p>We can use multiple <code>case</code>s above the <code>default</code>
-clause to implement a multi-way non-blocking
-select. Here we attempt non-blocking receives
-on both <code>messages</code> and <code>signals</code>.</p>
+            <p>Biz <code>default</code> bandi ustida bir nechta <code>case</code> dan
+foydalanib, ko&rsquo;p yo&rsquo;nalishli bloklamaydigan select ni
+amalga oshirishimiz mumkin. Bu yerda biz ham <code>messages</code>
+ham <code>signals</code> da bloklamaydigan qabul qilishlarga harakat
+qilamiz.</p>
 
           </td>
           <td class="code">
@@ -156,12 +158,12 @@ on both <code>messages</code> and <code>signals</code>.</p>
       
       
       <p class="next">
-        Next example: <a href="closing-channels" rel="next">Closing Channels</a>.
+        Keyingi misol: <a href="closing-channels" rel="next">Closing Channels</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

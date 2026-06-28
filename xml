@@ -30,8 +30,8 @@
         
         <tr>
           <td class="docs">
-            <p>Go offers built-in support for XML and XML-like
-formats with the <code>encoding/xml</code> package.</p>
+            <p>Go <code>encoding/xml</code> paketi orqali XML va XML ga o&rsquo;xshash
+formatlar uchun o&rsquo;rnatilgan qo&rsquo;llab-quvvatlashni taklif qiladi.</p>
 
           </td>
           <td class="code empty leading">
@@ -45,7 +45,7 @@ formats with the <code>encoding/xml</code> package.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/vsP5mIrNJOG"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/XTtXNOddRge"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -65,13 +65,13 @@ formats with the <code>encoding/xml</code> package.</p>
         
         <tr>
           <td class="docs">
-            <p>Plant will be mapped to XML. Similarly to the
-JSON examples, field tags contain directives for the
-encoder and decoder. Here we use some special features
-of the XML package: the <code>XMLName</code> field name dictates
-the name of the XML element representing this struct;
-<code>id,attr</code> means that the <code>Id</code> field is an XML
-<em>attribute</em> rather than a nested element.</p>
+            <p>Plant XML ga moslashtiriladi. JSON misollariga o&rsquo;xshab,
+maydon teglari enkoder va dekoder uchun ko&rsquo;rsatmalarni
+o&rsquo;z ichiga oladi. Bu yerda XML paketining ba&rsquo;zi maxsus
+xususiyatlaridan foydalanamiz: <code>XMLName</code> maydon nomi bu
+struct ni ifodalovchi XML elementining nomini belgilaydi;
+<code>id,attr</code> esa <code>Id</code> maydoni ichki element emas, balki XML
+<em>atributi</em> ekanligini bildiradi.</p>
 
           </td>
           <td class="code leading">
@@ -112,9 +112,9 @@ the name of the XML element representing this struct;
         
         <tr>
           <td class="docs">
-            <p>Emit XML representing our plant; using
-<code>MarshalIndent</code> to produce a more
-human-readable output.</p>
+            <p>O&rsquo;simligimizni ifodalovchi XML ni chiqaramiz;
+inson uchun o&rsquo;qish osonroq bo&rsquo;lgan natija hosil
+qilish uchun <code>MarshalIndent</code> dan foydalanamiz.</p>
 
           </td>
           <td class="code leading">
@@ -126,8 +126,8 @@ human-readable output.</p>
         
         <tr>
           <td class="docs">
-            <p>To add a generic XML header to the output, append
-it explicitly.</p>
+            <p>Natijaga umumiy XML sarlavhasini qo&rsquo;shish uchun
+uni aniq tarzda qo&rsquo;shing.</p>
 
           </td>
           <td class="code leading">
@@ -138,10 +138,10 @@ it explicitly.</p>
         
         <tr>
           <td class="docs">
-            <p>Use <code>Unmarshal</code> to parse a stream of bytes with XML
-into a data structure. If the XML is malformed or
-cannot be mapped onto Plant, a descriptive error
-will be returned.</p>
+            <p>XML li baytlar oqimini ma&rsquo;lumotlar tuzilmasiga
+tahlil qilish uchun <code>Unmarshal</code> dan foydalaning.
+Agar XML noto&rsquo;g&rsquo;ri shakllangan bo&rsquo;lsa yoki Plant ga
+moslashtirib bo&rsquo;lmasa, tavsiflovchi xato qaytariladi.</p>
 
           </td>
           <td class="code leading">
@@ -167,8 +167,8 @@ will be returned.</p>
         
         <tr>
           <td class="docs">
-            <p>The <code>parent&gt;child&gt;plant</code> field tag tells the encoder
-to nest all <code>plant</code>s under <code>&lt;parent&gt;&lt;child&gt;...</code></p>
+            <p><code>parent&gt;child&gt;plant</code> maydon tegi enkoderga barcha
+<code>plant</code> larni <code>&lt;parent&gt;&lt;child&gt;...</code> ostida joylashtirishni aytadi</p>
 
           </td>
           <td class="code leading">
@@ -249,12 +249,12 @@ to nest all <code>plant</code>s under <code>&lt;parent&gt;&lt;child&gt;...</code
       
       
       <p class="next">
-        Next example: <a href="time" rel="next">Time</a>.
+        Keyingi misol: <a href="time" rel="next">Time</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

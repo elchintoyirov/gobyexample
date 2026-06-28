@@ -30,8 +30,9 @@
         
         <tr>
           <td class="docs">
-            <p>Go provides built-in support for <a href="https://en.wikipedia.org/wiki/Base64">base64
-encoding/decoding</a>.</p>
+            <p>Go <a href="https://en.wikipedia.org/wiki/Base64">base64
+kodlash/dekodlash</a>
+uchun o&rsquo;rnatilgan qo&rsquo;llab-quvvatlashni taqdim etadi.</p>
 
           </td>
           <td class="code empty leading">
@@ -45,16 +46,16 @@ encoding/decoding</a>.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/yztzkirFEvv"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/JkkiuKSGJ8h"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
         
         <tr>
           <td class="docs">
-            <p>This syntax imports the <code>encoding/base64</code> package with
-the <code>b64</code> name instead of the default <code>base64</code>. It&rsquo;ll
-save us some space below.</p>
+            <p>Ushbu sintaksis <code>encoding/base64</code> paketini standart
+<code>base64</code> nomi o&rsquo;rniga <code>b64</code> nomi bilan import qiladi. Bu
+quyida bizga biroz joy tejaydi.</p>
 
           </td>
           <td class="code leading">
@@ -78,7 +79,7 @@ save us some space below.</p>
         
         <tr>
           <td class="docs">
-            <p>Here&rsquo;s the <code>string</code> we&rsquo;ll encode/decode.</p>
+            <p>Mana biz kodlaydigan/dekodlaydigan <code>string</code>.</p>
 
           </td>
           <td class="code leading">
@@ -89,10 +90,11 @@ save us some space below.</p>
         
         <tr>
           <td class="docs">
-            <p>Go supports both standard and URL-compatible
-base64. Here&rsquo;s how to encode using the standard
-encoder. The encoder requires a <code>[]byte</code> so we
-convert our <code>string</code> to that type.</p>
+            <p>Go ham standart, ham URL bilan mos keluvchi base64&rsquo;ni
+qo&rsquo;llab-quvvatlaydi. Mana standart enkoder yordamida
+qanday kodlash kerakligi. Enkoder <code>[]byte</code> talab
+qiladi, shuning uchun <code>string</code>imizni o&rsquo;sha tipga
+o&rsquo;tkazamiz.</p>
 
           </td>
           <td class="code leading">
@@ -104,9 +106,9 @@ convert our <code>string</code> to that type.</p>
         
         <tr>
           <td class="docs">
-            <p>Decoding may return an error, which you can check
-if you don&rsquo;t already know the input to be
-well-formed.</p>
+            <p>Dekodlash xato qaytarishi mumkin, agar kirish
+ma&rsquo;lumotining to&rsquo;g&rsquo;ri shakllanganini oldindan
+bilmasangiz, buni tekshirishingiz mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -119,8 +121,8 @@ well-formed.</p>
         
         <tr>
           <td class="docs">
-            <p>This encodes/decodes using a URL-compatible base64
-format.</p>
+            <p>Bu URL bilan mos keluvchi base64 formati yordamida
+kodlaydi/dekodlaydi.</p>
 
           </td>
           <td class="code">
@@ -139,9 +141,10 @@ format.</p>
         
         <tr>
           <td class="docs">
-            <p>The string encodes to slightly different values with the
-standard and URL base64 encoders (trailing <code>+</code> vs <code>-</code>)
-but they both decode to the original string as desired.</p>
+            <p>Satr standart va URL base64 enkoderlari bilan biroz
+farqli qiymatlarga kodlanadi (oxiridagi <code>+</code> va <code>-</code>), lekin
+ularning ikkalasi ham kerakli tarzda asl satrga
+dekodlanadi.</p>
 
           </td>
           <td class="code leading">
@@ -167,12 +170,12 @@ but they both decode to the original string as desired.</p>
       
       
       <p class="next">
-        Next example: <a href="reading-files" rel="next">Reading Files</a>.
+        Keyingi misol: <a href="reading-files" rel="next">Reading Files</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

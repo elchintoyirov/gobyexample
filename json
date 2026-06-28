@@ -30,9 +30,9 @@
         
         <tr>
           <td class="docs">
-            <p>Go offers built-in support for JSON encoding and
-decoding, including to and from built-in and custom
-data types.</p>
+            <p>Go ichki va maxsus ma&rsquo;lumotlar tiplaridan va ularga
+kodlash hamda dekodlashni qo&rsquo;shgan holda, JSON kodlash va
+dekodlash uchun ichki qo&rsquo;llab-quvvatlashni taqdim etadi.</p>
 
           </td>
           <td class="code empty leading">
@@ -46,7 +46,7 @@ data types.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/z6LEC8UI8l8"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/wfB9I4NX237"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -68,8 +68,9 @@ data types.</p>
         
         <tr>
           <td class="docs">
-            <p>We&rsquo;ll use these two structs to demonstrate encoding and
-decoding of custom types below.</p>
+            <p>Biz quyida maxsus tiplarni kodlash va dekodlashni
+namoyish qilish uchun ushbu ikkita structdan
+foydalanamiz.</p>
 
           </td>
           <td class="code leading">
@@ -83,8 +84,9 @@ decoding of custom types below.</p>
         
         <tr>
           <td class="docs">
-            <p>Only exported fields will be encoded/decoded in JSON.
-Fields must start with capital letters to be exported.</p>
+            <p>JSON&rsquo;da faqat eksport qilingan maydonlar
+kodlanadi/dekodlanadi. Eksport qilinishi uchun maydonlar
+bosh harf bilan boshlanishi kerak.</p>
 
           </td>
           <td class="code leading">
@@ -108,9 +110,9 @@ Fields must start with capital letters to be exported.</p>
         
         <tr>
           <td class="docs">
-            <p>First we&rsquo;ll look at encoding basic data types to
-JSON strings. Here are some examples for atomic
-values.</p>
+            <p>Avval biz asosiy ma&rsquo;lumotlar tiplarini JSON
+satrlariga kodlashni ko&rsquo;rib chiqamiz. Mana atomik
+qiymatlar uchun ba&rsquo;zi misollar.</p>
 
           </td>
           <td class="code leading">
@@ -155,8 +157,9 @@ values.</p>
         
         <tr>
           <td class="docs">
-            <p>And here are some for slices and maps, which encode
-to JSON arrays and objects as you&rsquo;d expect.</p>
+            <p>Va mana slicelar va maplar uchun ba&rsquo;zilari, ular
+kutganingizdek JSON massivlari va obyektlariga
+kodlanadi.</p>
 
           </td>
           <td class="code leading">
@@ -181,10 +184,11 @@ to JSON arrays and objects as you&rsquo;d expect.</p>
         
         <tr>
           <td class="docs">
-            <p>The JSON package can automatically encode your
-custom data types. It will only include exported
-fields in the encoded output and will by default
-use those names as the JSON keys.</p>
+            <p>JSON paketi sizning maxsus ma&rsquo;lumotlar tiplaringizni
+avtomatik ravishda kodlay oladi. U kodlangan natijaga
+faqat eksport qilingan maydonlarni kiritadi va standart
+holatda o&rsquo;sha nomlarni JSON kalitlari sifatida
+ishlatadi.</p>
 
           </td>
           <td class="code leading">
@@ -199,10 +203,10 @@ use those names as the JSON keys.</p>
         
         <tr>
           <td class="docs">
-            <p>You can use tags on struct field declarations
-to customize the encoded JSON key names. Check the
-definition of <code>response2</code> above to see an example
-of such tags.</p>
+            <p>Kodlangan JSON kalit nomlarini sozlash uchun struct
+maydon e&rsquo;lonlarida teglardan foydalanishingiz mumkin.
+Bunday teglarning misolini ko&rsquo;rish uchun yuqoridagi
+<code>response2</code> ta&rsquo;rifini tekshiring.</p>
 
           </td>
           <td class="code leading">
@@ -217,9 +221,9 @@ of such tags.</p>
         
         <tr>
           <td class="docs">
-            <p>Now let&rsquo;s look at decoding JSON data into Go
-values. Here&rsquo;s an example for a generic data
-structure.</p>
+            <p>Endi JSON ma&rsquo;lumotlarini Go qiymatlariga dekodlashni
+ko&rsquo;rib chiqaylik. Mana umumiy ma&rsquo;lumotlar tuzilmasi
+uchun misol.</p>
 
           </td>
           <td class="code leading">
@@ -230,10 +234,10 @@ structure.</p>
         
         <tr>
           <td class="docs">
-            <p>We need to provide a variable where the JSON
-package can put the decoded data. This
-<code>map[string]interface{}</code> will hold a map of strings
-to arbitrary data types.</p>
+            <p>Biz JSON paketi dekodlangan ma&rsquo;lumotlarni joylashtirishi
+mumkin bo&rsquo;lgan o&rsquo;zgaruvchini taqdim etishimiz kerak. Bu
+<code>map[string]interface{}</code> satrlardan ixtiyoriy ma&rsquo;lumotlar
+tiplariga bo&rsquo;lgan mapni saqlaydi.</p>
 
           </td>
           <td class="code leading">
@@ -244,11 +248,11 @@ to arbitrary data types.</p>
         
         <tr>
           <td class="docs">
-            <p>Here&rsquo;s the actual decoding, and a check for
-associated errors.
-For the sake of brevity we ignore the errors in
-these examples; in real code, you should always check
-for errors and act upon them.</p>
+            <p>Mana haqiqiy dekodlash va bog&rsquo;liq xatolarni tekshirish.
+Qisqalik uchun biz ushbu misollarda xatolarni
+e&rsquo;tiborsiz qoldiramiz; haqiqiy kodda siz doimo xatolarni
+tekshirishingiz va ularga qarab harakat qilishingiz
+kerak.</p>
 
           </td>
           <td class="code leading">
@@ -262,10 +266,10 @@ for errors and act upon them.</p>
         
         <tr>
           <td class="docs">
-            <p>In order to use the values in the decoded map,
-we&rsquo;ll need to convert them to their appropriate type.
-For example here we convert the value in <code>num</code> to
-the expected <code>float64</code> type.</p>
+            <p>Dekodlangan mapdagi qiymatlardan foydalanish uchun biz
+ularni mos tipiga aylantirishimiz kerak. Masalan, bu
+yerda biz <code>num</code> dagi qiymatni kutilgan <code>float64</code> tipiga
+aylantiramiz.</p>
 
           </td>
           <td class="code leading">
@@ -277,8 +281,8 @@ the expected <code>float64</code> type.</p>
         
         <tr>
           <td class="docs">
-            <p>Accessing nested data requires a series of
-conversions.</p>
+            <p>Ichma-ich joylashgan ma&rsquo;lumotlarga kirish bir qator
+aylantirishlarni talab qiladi.</p>
 
           </td>
           <td class="code leading">
@@ -291,11 +295,11 @@ conversions.</p>
         
         <tr>
           <td class="docs">
-            <p>We can also decode JSON into custom data types.
-This has the advantages of adding additional
-type-safety to our programs and eliminating the
-need for type assertions when accessing the decoded
-data.</p>
+            <p>Shuningdek, biz JSON ni maxsus ma&rsquo;lumotlar tiplariga
+dekodlashimiz mumkin. Bu dasturlarimizga qo&rsquo;shimcha
+tip xavfsizligini qo&rsquo;shish va dekodlangan ma&rsquo;lumotlarga
+kirishda tip tasdiqlariga bo&rsquo;lgan ehtiyojni bartaraf
+etish afzalliklariga ega.</p>
 
           </td>
           <td class="code leading">
@@ -310,11 +314,12 @@ data.</p>
         
         <tr>
           <td class="docs">
-            <p>In the examples above we always used bytes and
-strings as intermediates between the data and
-JSON representation on standard out. We can also
-stream JSON encodings directly to <code>os.Writer</code>s like
-<code>os.Stdout</code> or even HTTP response bodies.</p>
+            <p>Yuqoridagi misollarda biz har doim ma&rsquo;lumotlar va
+standart chiqishdagi JSON ko&rsquo;rinishi o&rsquo;rtasida bayt va
+satrlardan oraliq sifatida foydalandik. Shuningdek, biz
+JSON kodlashlarini to&rsquo;g&rsquo;ridan-to&rsquo;g&rsquo;ri <code>os.Stdout</code> kabi
+<code>os.Writer</code> larga yoki hatto HTTP javob tanalariga ham
+stream qilishimiz mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -327,8 +332,9 @@ stream JSON encodings directly to <code>os.Writer</code>s like
         
         <tr>
           <td class="docs">
-            <p>Streaming reads from <code>os.Reader</code>s like <code>os.Stdin</code>
-or HTTP request bodies is done with <code>json.Decoder</code>.</p>
+            <p><code>os.Stdin</code> kabi <code>os.Reader</code> lardan yoki HTTP so&rsquo;rov
+tanalaridan stream o&rsquo;qish <code>json.Decoder</code> bilan amalga
+oshiriladi.</p>
 
           </td>
           <td class="code">
@@ -372,10 +378,10 @@ or HTTP request bodies is done with <code>json.Decoder</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>We&rsquo;ve covered the basic of JSON in Go here, but check
-out the <a href="https://go.dev/blog/json">JSON and Go</a>
-blog post and <a href="https://pkg.go.dev/encoding/json">JSON package docs</a>
-for more.</p>
+            <p>Biz bu yerda Go&rsquo;da JSON asoslarini ko&rsquo;rib chiqdik, lekin
+ko&rsquo;proq ma&rsquo;lumot uchun <a href="https://go.dev/blog/json">JSON and Go</a>
+blog postini va <a href="https://pkg.go.dev/encoding/json">JSON paketi hujjatlarini</a>
+ko&rsquo;rib chiqing.</p>
 
           </td>
           <td class="code empty">
@@ -388,12 +394,12 @@ for more.</p>
       
       
       <p class="next">
-        Next example: <a href="xml" rel="next">XML</a>.
+        Keyingi misol: <a href="xml" rel="next">XML</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

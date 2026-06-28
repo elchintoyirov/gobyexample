@@ -30,10 +30,10 @@
         
         <tr>
           <td class="docs">
-            <p>It&rsquo;s possible to define custom error types by
-implementing the <code>Error()</code> method on them. Here&rsquo;s a
-variant on the example above that uses a custom type
-to explicitly represent an argument error.</p>
+            <p>Maxsus xato tiplarini ularda <code>Error()</code> metodini
+amalga oshirish orqali aniqlash mumkin. Quyida argument
+xatosini oshkora ifodalash uchun maxsus tipdan foydalanadigan
+yuqoridagi misolning bir variantini ko&rsquo;rasiz.</p>
 
           </td>
           <td class="code empty leading">
@@ -47,7 +47,7 @@ to explicitly represent an argument error.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/0WHh8JFOjQq"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/0uMhTPr1ixz"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -67,7 +67,7 @@ to explicitly represent an argument error.</p>
         
         <tr>
           <td class="docs">
-            <p>A custom error type usually has the suffix &ldquo;Error&rdquo;.</p>
+            <p>Maxsus xato tipi odatda &ldquo;Error&rdquo; qo&rsquo;shimchasiga ega bo&rsquo;ladi.</p>
 
           </td>
           <td class="code leading">
@@ -81,8 +81,8 @@ to explicitly represent an argument error.</p>
         
         <tr>
           <td class="docs">
-            <p>Adding this <code>Error</code> method makes <code>argError</code> implement
-the <code>error</code> interface.</p>
+            <p>Ushbu <code>Error</code> metodini qo&rsquo;shish <code>argError</code> ni <code>error</code>
+interfeysini amalga oshiradigan qiladi.</p>
 
           </td>
           <td class="code leading">
@@ -106,7 +106,7 @@ the <code>error</code> interface.</p>
         
         <tr>
           <td class="docs">
-            <p>Return our custom error.</p>
+            <p>Maxsus xatomizni qaytaramiz.</p>
 
           </td>
           <td class="code leading">
@@ -130,11 +130,11 @@ the <code>error</code> interface.</p>
         
         <tr>
           <td class="docs">
-            <p><code>errors.AsType</code> is a more advanced version of <code>errors.Is</code>.
-It checks that a given error (or any error in its chain)
-matches a specific error type and converts to a value
-of that type, also returning <code>true</code>. If there&rsquo;s no match, the
-second return value is <code>false</code>.</p>
+            <p><code>errors.AsType</code> <code>errors.Is</code> ning yanada ilg&rsquo;or versiyasidir.
+U berilgan xato (yoki uning zanjiridagi har qanday xato)
+muayyan xato tipiga mos kelishini tekshiradi va uni o&rsquo;sha tipdagi
+qiymatga aylantiradi hamda <code>true</code> ni qaytaradi. Agar moslik bo&rsquo;lmasa,
+ikkinchi qaytariladigan qiymat <code>false</code> bo&rsquo;ladi.</p>
 
           </td>
           <td class="code">
@@ -170,12 +170,12 @@ second return value is <code>false</code>.</p>
       
       
       <p class="next">
-        Next example: <a href="goroutines" rel="next">Goroutines</a>.
+        Keyingi misol: <a href="goroutines" rel="next">Goroutines</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

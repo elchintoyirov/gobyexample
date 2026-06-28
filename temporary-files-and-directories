@@ -30,11 +30,11 @@
         
         <tr>
           <td class="docs">
-            <p>Throughout program execution, we often want to create
-data that isn&rsquo;t needed after the program exits.
-<em>Temporary files and directories</em> are useful for this
-purpose since they don&rsquo;t pollute the file system over
-time.</p>
+            <p>Dastur bajarilishi davomida biz ko&rsquo;pincha dastur chiqib
+ketgandan keyin kerak bo&rsquo;lmaydigan ma&rsquo;lumotlarni yaratishni
+xohlaymiz. <em>Vaqtinchalik fayllar va kataloglar</em> shu maqsadda
+foydalidir, chunki ular vaqt o&rsquo;tishi bilan fayl tizimini
+ifloslantirmaydi.</p>
 
           </td>
           <td class="code empty leading">
@@ -48,7 +48,7 @@ time.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/hVcPg9RH3_V"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/nzLunKMowEj"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -93,11 +93,11 @@ time.</p>
         
         <tr>
           <td class="docs">
-            <p>The easiest way to create a temporary file is by
-calling <code>os.CreateTemp</code>. It creates a file <em>and</em>
-opens it for reading and writing. We provide <code>&quot;&quot;</code>
-as the first argument, so <code>os.CreateTemp</code> will
-create the file in the default location for our OS.</p>
+            <p>Vaqtinchalik fayl yaratishning eng oson yo&rsquo;li
+<code>os.CreateTemp</code> ni chaqirishdir. U fayl yaratadi <em>va</em> uni
+o&rsquo;qish va yozish uchun ochadi. Biz birinchi argument
+sifatida <code>&quot;&quot;</code> beramiz, shuning uchun <code>os.CreateTemp</code> faylni
+OS&rsquo;imiz uchun sukut bo&rsquo;yicha joyda yaratadi.</p>
 
           </td>
           <td class="code leading">
@@ -109,12 +109,12 @@ create the file in the default location for our OS.</p>
         
         <tr>
           <td class="docs">
-            <p>Display the name of the temporary file. On
-Unix-based OSes the directory will likely be <code>/tmp</code>.
-The file name starts with the prefix given as the
-second argument to <code>os.CreateTemp</code> and the rest
-is chosen automatically to ensure that concurrent
-calls will always create different file names.</p>
+            <p>Vaqtinchalik faylning nomini ko&rsquo;rsating. Unix asosidagi
+OS&rsquo;larda katalog ehtimol <code>/tmp</code> bo&rsquo;ladi. Fayl nomi
+<code>os.CreateTemp</code> ga ikkinchi argument sifatida berilgan
+prefiks bilan boshlanadi, qolgan qismi esa bir vaqtning
+o&rsquo;zidagi chaqiruvlar har doim turli xil fayl nomlarini
+yaratishini ta&rsquo;minlash uchun avtomatik tanlanadi.</p>
 
           </td>
           <td class="code leading">
@@ -125,10 +125,9 @@ calls will always create different file names.</p>
         
         <tr>
           <td class="docs">
-            <p>Clean up the file after we&rsquo;re done. The OS is
-likely to clean up temporary files by itself after
-some time, but it&rsquo;s good practice to do this
-explicitly.</p>
+            <p>Ishimiz tugagandan keyin faylni tozalang. OS ehtimol bir
+muncha vaqtdan keyin vaqtinchalik fayllarni o&rsquo;zi tozalaydi,
+lekin buni oshkora bajarish yaxshi amaliyotdir.</p>
 
           </td>
           <td class="code leading">
@@ -139,7 +138,7 @@ explicitly.</p>
         
         <tr>
           <td class="docs">
-            <p>We can write some data to the file.</p>
+            <p>Biz faylga bir oz ma&rsquo;lumot yozishimiz mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -151,11 +150,10 @@ explicitly.</p>
         
         <tr>
           <td class="docs">
-            <p>If we intend to write many temporary files, we may
-prefer to create a temporary <em>directory</em>.
-<code>os.MkdirTemp</code>&rsquo;s arguments are the same as
-<code>CreateTemp</code>&rsquo;s, but it returns a directory <em>name</em>
-rather than an open file.</p>
+            <p>Agar biz ko&rsquo;plab vaqtinchalik fayllar yozmoqchi bo&rsquo;lsak,
+vaqtinchalik <em>katalog</em> yaratishni afzal ko&rsquo;rishimiz mumkin.
+<code>os.MkdirTemp</code> ning argumentlari <code>CreateTemp</code> ningidek, lekin
+u ochiq fayl o&rsquo;rniga katalog <em>nomini</em> qaytaradi.</p>
 
           </td>
           <td class="code leading">
@@ -178,8 +176,8 @@ rather than an open file.</p>
         
         <tr>
           <td class="docs">
-            <p>Now we can synthesize temporary file names by
-prefixing them with our temporary directory.</p>
+            <p>Endi biz vaqtinchalik fayl nomlarini ularning oldiga
+vaqtinchalik katalogimizni qo&rsquo;shib hosil qilishimiz mumkin.</p>
 
           </td>
           <td class="code">
@@ -211,12 +209,12 @@ prefixing them with our temporary directory.</p>
       
       
       <p class="next">
-        Next example: <a href="embed-directive" rel="next">Embed Directive</a>.
+        Keyingi misol: <a href="embed-directive" rel="next">Embed Directive</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

@@ -30,9 +30,9 @@
         
         <tr>
           <td class="docs">
-            <p>Go has various value types including strings,
-integers, floats, booleans, etc. Here are a few
-basic examples.</p>
+            <p>Go da satrlar, butun sonlar, kasr sonlar, mantiqiy
+qiymatlar va hokazo kabi turli xil qiymat tiplari
+mavjud. Quyida bir nechta oddiy misol keltirilgan.</p>
 
           </td>
           <td class="code empty leading">
@@ -46,7 +46,7 @@ basic examples.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/YnVS3LZr8pk"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/QVr5N9qpHae"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -73,7 +73,7 @@ basic examples.</p>
         
         <tr>
           <td class="docs">
-            <p>Strings, which can be added together with <code>+</code>.</p>
+            <p>Satrlar, ularni <code>+</code> bilan birlashtirish mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -84,7 +84,7 @@ basic examples.</p>
         
         <tr>
           <td class="docs">
-            <p>Integers and floats.</p>
+            <p>Butun sonlar va kasr sonlar.</p>
 
           </td>
           <td class="code leading">
@@ -96,7 +96,7 @@ basic examples.</p>
         
         <tr>
           <td class="docs">
-            <p>Booleans, with boolean operators as you&rsquo;d expect.</p>
+            <p>Mantiqiy qiymatlar, kutilganidek mantiqiy operatorlar bilan.</p>
 
           </td>
           <td class="code">
@@ -132,12 +132,12 @@ basic examples.</p>
       
       
       <p class="next">
-        Next example: <a href="variables" rel="next">Variables</a>.
+        Keyingi misol: <a href="variables" rel="next">Variables</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

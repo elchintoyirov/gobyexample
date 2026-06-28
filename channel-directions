@@ -30,10 +30,10 @@
         
         <tr>
           <td class="docs">
-            <p>When using channels as function parameters, you can
-specify if a channel is meant to only send or receive
-values. This specificity increases the type-safety of
-the program.</p>
+            <p>Kanallarni funksiya parametrlari sifatida ishlatganda,
+kanal faqat qiymat jo&rsquo;natish yoki qabul qilish uchun
+mo&rsquo;ljallanganligini ko&rsquo;rsatishingiz mumkin. Bu aniqlik
+dasturning tip xavfsizligini oshiradi.</p>
 
           </td>
           <td class="code empty leading">
@@ -47,7 +47,7 @@ the program.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/mjNJDHwUH4R"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/GKfSxsjoC4c"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -64,9 +64,9 @@ the program.</p>
         
         <tr>
           <td class="docs">
-            <p>This <code>ping</code> function only accepts a channel for sending
-values. It would be a compile-time error to try to
-receive on this channel.</p>
+            <p>Bu <code>ping</code> funksiyasi faqat qiymat jo&rsquo;natish uchun kanalni
+qabul qiladi. Bu kanaldan qabul qilishga urinish
+kompilyatsiya vaqtidagi xato bo&rsquo;lardi.</p>
 
           </td>
           <td class="code leading">
@@ -79,8 +79,9 @@ receive on this channel.</p>
         
         <tr>
           <td class="docs">
-            <p>The <code>pong</code> function accepts one channel for receives
-(<code>pings</code>) and a second for sends (<code>pongs</code>).</p>
+            <p><code>pong</code> funksiyasi qabul qilish uchun bitta kanalni
+(<code>pings</code>) va jo&rsquo;natish uchun ikkinchisini (<code>pongs</code>) qabul
+qiladi.</p>
 
           </td>
           <td class="code leading">
@@ -127,12 +128,12 @@ receive on this channel.</p>
       
       
       <p class="next">
-        Next example: <a href="select" rel="next">Select</a>.
+        Keyingi misol: <a href="select" rel="next">Select</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

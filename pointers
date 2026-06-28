@@ -30,9 +30,9 @@
         
         <tr>
           <td class="docs">
-            <p>Go supports <em><a href="https://en.wikipedia.org/wiki/Pointer_(computer_programming)">pointers</a></em>,
-allowing you to pass references to values and records
-within your program.</p>
+            <p>Go <em><a href="https://en.wikipedia.org/wiki/Pointer_(computer_programming)">ko&rsquo;rsatkichlar</a></em> ni qo&rsquo;llab-quvvatlaydi,
+bu dasturingiz ichidagi qiymatlar va yozuvlarga havolalarni
+uzatish imkonini beradi.</p>
 
           </td>
           <td class="code empty leading">
@@ -46,7 +46,7 @@ within your program.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/OlWCLpxAyBz"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/MjVQxQ2QXMw"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -63,11 +63,11 @@ within your program.</p>
         
         <tr>
           <td class="docs">
-            <p>We&rsquo;ll show how pointers work in contrast to values with
-2 functions: <code>zeroval</code> and <code>zeroptr</code>. <code>zeroval</code> has an
-<code>int</code> parameter, so arguments will be passed to it by
-value. <code>zeroval</code> will get a copy of <code>ival</code> distinct
-from the one in the calling function.</p>
+            <p>Biz ko&rsquo;rsatkichlar qiymatlarga nisbatan qanday ishlashini
+2 ta funksiya bilan ko&rsquo;rsatamiz: <code>zeroval</code> va <code>zeroptr</code>.
+<code>zeroval</code> <code>int</code> parametriga ega, shuning uchun argumentlar
+unga qiymat bo&rsquo;yicha uzatiladi. <code>zeroval</code> chaqiruvchi
+funksiyadagidan farqli <code>ival</code> ning nusxasini oladi.</p>
 
           </td>
           <td class="code leading">
@@ -80,12 +80,12 @@ from the one in the calling function.</p>
         
         <tr>
           <td class="docs">
-            <p><code>zeroptr</code> in contrast has an <code>*int</code> parameter, meaning
-that it takes an <code>int</code> pointer. The <code>*iptr</code> code in the
-function body then <em>dereferences</em> the pointer from its
-memory address to the current value at that address.
-Assigning a value to a dereferenced pointer changes the
-value at the referenced address.</p>
+            <p><code>zeroptr</code> esa aksincha <code>*int</code> parametriga ega, ya&rsquo;ni u
+<code>int</code> ko&rsquo;rsatkichini qabul qiladi. Funksiya tanasidagi
+<code>*iptr</code> kodi keyin ko&rsquo;rsatkichni uning xotira manzilidan
+o&rsquo;sha manzildagi joriy qiymatga <em>dereferensiya qiladi</em>.
+Dereferensiya qilingan ko&rsquo;rsatkichga qiymat o&rsquo;zlashtirish
+havola qilingan manzildagi qiymatni o&rsquo;zgartiradi.</p>
 
           </td>
           <td class="code leading">
@@ -121,8 +121,8 @@ value at the referenced address.</p>
         
         <tr>
           <td class="docs">
-            <p>The <code>&amp;i</code> syntax gives the memory address of <code>i</code>,
-i.e. a pointer to <code>i</code>.</p>
+            <p><code>&amp;i</code> sintaksisi <code>i</code> ning xotira manzilini, ya&rsquo;ni <code>i</code> ga
+ko&rsquo;rsatkichni beradi.</p>
 
           </td>
           <td class="code leading">
@@ -134,7 +134,7 @@ i.e. a pointer to <code>i</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>Pointers can be printed too.</p>
+            <p>Ko&rsquo;rsatkichlarni ham chop etish mumkin.</p>
 
           </td>
           <td class="code">
@@ -150,9 +150,9 @@ i.e. a pointer to <code>i</code>.</p>
         
         <tr>
           <td class="docs">
-            <p><code>zeroval</code> doesn&rsquo;t change the <code>i</code> in <code>main</code>, but
-<code>zeroptr</code> does because it has a reference to
-the memory address for that variable.</p>
+            <p><code>zeroval</code> <code>main</code> dagi <code>i</code> ni o&rsquo;zgartirmaydi, lekin
+<code>zeroptr</code> o&rsquo;zgartiradi chunki u o&rsquo;sha o&rsquo;zgaruvchining
+xotira manziliga havolaga ega.</p>
 
           </td>
           <td class="code">
@@ -169,12 +169,12 @@ the memory address for that variable.</p>
       
       
       <p class="next">
-        Next example: <a href="strings-and-runes" rel="next">Strings and Runes</a>.
+        Keyingi misol: <a href="strings-and-runes" rel="next">Strings and Runes</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

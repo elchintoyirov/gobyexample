@@ -30,8 +30,9 @@
         
         <tr>
           <td class="docs">
-            <p>Parsing numbers from strings is a basic but common task
-in many programs; here&rsquo;s how to do it in Go.</p>
+            <p>Satrlardan sonlarni tahlil qilish ko&rsquo;plab dasturlarda
+oddiy lekin keng tarqalgan vazifa; mana buni Go da qanday
+bajarish mumkin.</p>
 
           </td>
           <td class="code empty leading">
@@ -45,15 +46,15 @@ in many programs; here&rsquo;s how to do it in Go.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/ZAMEid6Fpmu"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/UcLzVg7KTmD"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
         
         <tr>
           <td class="docs">
-            <p>The built-in package <code>strconv</code> provides the number
-parsing.</p>
+            <p>Ichki o&rsquo;rnatilgan <code>strconv</code> paketi sonni tahlil qilishni
+ta&rsquo;minlaydi.</p>
 
           </td>
           <td class="code leading">
@@ -77,8 +78,8 @@ parsing.</p>
         
         <tr>
           <td class="docs">
-            <p>With <code>ParseFloat</code>, this <code>64</code> tells how many bits of
-precision to parse.</p>
+            <p><code>ParseFloat</code> da bu <code>64</code> qancha bit aniqlikni tahlil
+qilishni bildiradi.</p>
 
           </td>
           <td class="code leading">
@@ -90,9 +91,8 @@ precision to parse.</p>
         
         <tr>
           <td class="docs">
-            <p>For <code>ParseInt</code>, the <code>0</code> means infer the base from
-the string. <code>64</code> requires that the result fit in 64
-bits.</p>
+            <p><code>ParseInt</code> uchun <code>0</code> asosni satrdan aniqlashni
+bildiradi. <code>64</code> esa natija 64 bitga sig&rsquo;ishini talab qiladi.</p>
 
           </td>
           <td class="code leading">
@@ -104,7 +104,7 @@ bits.</p>
         
         <tr>
           <td class="docs">
-            <p><code>ParseInt</code> will recognize hex-formatted numbers.</p>
+            <p><code>ParseInt</code> o&rsquo;n oltilik (hex) formatdagi sonlarni taniydi.</p>
 
           </td>
           <td class="code leading">
@@ -116,7 +116,7 @@ bits.</p>
         
         <tr>
           <td class="docs">
-            <p>A <code>ParseUint</code> is also available.</p>
+            <p><code>ParseUint</code> ham mavjud.</p>
 
           </td>
           <td class="code leading">
@@ -128,8 +128,8 @@ bits.</p>
         
         <tr>
           <td class="docs">
-            <p><code>Atoi</code> is a convenience function for basic base-10
-<code>int</code> parsing.</p>
+            <p><code>Atoi</code> oddiy 10 lik asosdagi <code>int</code> ni tahlil qilish uchun
+qulay funksiya.</p>
 
           </td>
           <td class="code leading">
@@ -141,7 +141,7 @@ bits.</p>
         
         <tr>
           <td class="docs">
-            <p>Parse functions return an error on bad input.</p>
+            <p>Tahlil qilish funksiyalari yaroqsiz kiritmada xato qaytaradi.</p>
 
           </td>
           <td class="code">
@@ -174,7 +174,8 @@ bits.</p>
         
         <tr>
           <td class="docs">
-            <p>Next we&rsquo;ll look at another common parsing task: URLs.</p>
+            <p>Keyingi navbatda biz yana bir keng tarqalgan tahlil qilish
+vazifasini ko&rsquo;rib chiqamiz: URL lar.</p>
 
           </td>
           <td class="code empty">
@@ -187,12 +188,12 @@ bits.</p>
       
       
       <p class="next">
-        Next example: <a href="url-parsing" rel="next">URL Parsing</a>.
+        Keyingi misol: <a href="url-parsing" rel="next">URL Parsing</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

@@ -30,8 +30,8 @@
         
         <tr>
           <td class="docs">
-            <p><em>Interfaces</em> are named collections of method
-signatures.</p>
+            <p><em>Interfeyslar</em> - bu metod imzolarining nomlangan
+to&rsquo;plamlaridir.</p>
 
           </td>
           <td class="code empty leading">
@@ -45,7 +45,7 @@ signatures.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/xAAbgd7GOKD"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/ABqpsj-4rnq"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -65,7 +65,7 @@ signatures.</p>
         
         <tr>
           <td class="docs">
-            <p>Here&rsquo;s a basic interface for geometric shapes.</p>
+            <p>Mana geometrik shakllar uchun asosiy interfeys.</p>
 
           </td>
           <td class="code leading">
@@ -79,8 +79,8 @@ signatures.</p>
         
         <tr>
           <td class="docs">
-            <p>For our example we&rsquo;ll implement this interface on
-<code>rect</code> and <code>circle</code> types.</p>
+            <p>Misolimiz uchun biz ushbu interfeysni <code>rect</code> va <code>circle</code>
+tiplarida amalga oshiramiz.</p>
 
           </td>
           <td class="code leading">
@@ -96,9 +96,10 @@ signatures.</p>
         
         <tr>
           <td class="docs">
-            <p>To implement an interface in Go, we just need to
-implement all the methods in the interface. Here we
-implement <code>geometry</code> on <code>rect</code>s.</p>
+            <p>Go&rsquo;da interfeysni amalga oshirish uchun biz shunchaki
+interfeysdagi barcha metodlarni amalga oshirishimiz
+kerak. Bu yerda biz <code>rect</code> larda <code>geometry</code> ni amalga
+oshiramiz.</p>
 
           </td>
           <td class="code leading">
@@ -114,7 +115,7 @@ implement <code>geometry</code> on <code>rect</code>s.</p>
         
         <tr>
           <td class="docs">
-            <p>The implementation for <code>circle</code>s.</p>
+            <p><code>circle</code> lar uchun amalga oshirish.</p>
 
           </td>
           <td class="code leading">
@@ -130,10 +131,10 @@ implement <code>geometry</code> on <code>rect</code>s.</p>
         
         <tr>
           <td class="docs">
-            <p>If a variable has an interface type, then we can call
-methods that are in the named interface. Here&rsquo;s a
-generic <code>measure</code> function taking advantage of this
-to work on any <code>geometry</code>.</p>
+            <p>Agar o&rsquo;zgaruvchi interfeys tipiga ega bo&rsquo;lsa, biz
+nomlangan interfeysdagi metodlarni chaqira olamiz. Mana
+istalgan <code>geometry</code> ustida ishlash uchun bundan
+foydalanadigan generik <code>measure</code> funksiyasi.</p>
 
           </td>
           <td class="code leading">
@@ -148,9 +149,10 @@ to work on any <code>geometry</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>Sometimes it&rsquo;s useful to know the runtime type of an
-interface value. One option is using a <em>type assertion</em>
-as shown here; another is a <a href="switch">type <code>switch</code></a>.</p>
+            <p>Ba&rsquo;zan interfeys qiymatining runtime tipini bilish
+foydali bo&rsquo;ladi. Bir variant - bu yerda ko&rsquo;rsatilganidek
+<em>tip tasdig&rsquo;i</em> dan foydalanish; boshqasi esa <a href="switch">tip
+<code>switch</code></a>.</p>
 
           </td>
           <td class="code leading">
@@ -177,10 +179,10 @@ as shown here; another is a <a href="switch">type <code>switch</code></a>.</p>
         
         <tr>
           <td class="docs">
-            <p>The <code>circle</code> and <code>rect</code> struct types both
-implement the <code>geometry</code> interface so we can use
-instances of
-these structs as arguments to <code>measure</code>.</p>
+            <p><code>circle</code> va <code>rect</code> struct tiplari ikkalasi ham
+<code>geometry</code> interfeysini amalga oshiradi, shuning
+uchun biz ushbu structlarning namunalarini <code>measure</code>
+ga argument sifatida ishlatishimiz mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -225,8 +227,9 @@ these structs as arguments to <code>measure</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>To understand how Go&rsquo;s interfaces work under the hood,
-check out this <a href="https://research.swtch.com/interfaces">blog post</a>.</p>
+            <p>Go interfeyslari ichkarida qanday ishlashini tushunish
+uchun ushbu <a href="https://research.swtch.com/interfaces">blog postini</a>
+ko&rsquo;rib chiqing.</p>
 
           </td>
           <td class="code empty">
@@ -239,12 +242,12 @@ check out this <a href="https://research.swtch.com/interfaces">blog post</a>.</p
       
       
       <p class="next">
-        Next example: <a href="enums" rel="next">Enums</a>.
+        Keyingi misol: <a href="enums" rel="next">Enums</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

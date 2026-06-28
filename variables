@@ -30,9 +30,9 @@
         
         <tr>
           <td class="docs">
-            <p>In Go, <em>variables</em> are explicitly declared and used by
-the compiler to e.g. check type-correctness of function
-calls.</p>
+            <p>Go da <em>o&rsquo;zgaruvchilar</em> aniq e&rsquo;lon qilinadi va kompilyator
+tomonidan, masalan, funksiya chaqiruvlarining tip
+to&rsquo;g&rsquo;riligini tekshirish uchun ishlatiladi.</p>
 
           </td>
           <td class="code empty leading">
@@ -46,7 +46,7 @@ calls.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/N5rWndIliJW"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/Ukbp9xzmK6-"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -73,7 +73,7 @@ calls.</p>
         
         <tr>
           <td class="docs">
-            <p><code>var</code> declares 1 or more variables.</p>
+            <p><code>var</code> 1 yoki undan ortiq o&rsquo;zgaruvchilarni e&rsquo;lon qiladi.</p>
 
           </td>
           <td class="code leading">
@@ -85,7 +85,7 @@ calls.</p>
         
         <tr>
           <td class="docs">
-            <p>You can declare multiple variables at once.</p>
+            <p>Bir nechta o&rsquo;zgaruvchini bir vaqtda e&rsquo;lon qilishingiz mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -97,7 +97,7 @@ calls.</p>
         
         <tr>
           <td class="docs">
-            <p>Go will infer the type of initialized variables.</p>
+            <p>Go ishga tushirilgan o&rsquo;zgaruvchilarning tipini aniqlaydi.</p>
 
           </td>
           <td class="code leading">
@@ -109,9 +109,9 @@ calls.</p>
         
         <tr>
           <td class="docs">
-            <p>Variables declared without a corresponding
-initialization are <em>zero-valued</em>. For example, the
-zero value for an <code>int</code> is <code>0</code>.</p>
+            <p>Mos keladigan ishga tushirishsiz e&rsquo;lon qilingan
+o&rsquo;zgaruvchilar <em>nol qiymatli</em> bo&rsquo;ladi. Masalan, <code>int</code>
+uchun nol qiymat <code>0</code> dir.</p>
 
           </td>
           <td class="code leading">
@@ -123,10 +123,10 @@ zero value for an <code>int</code> is <code>0</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>The <code>:=</code> syntax is shorthand for declaring and
-initializing a variable, e.g. for
-<code>var f string = &quot;apple&quot;</code> in this case.
-This syntax is only available inside functions.</p>
+            <p><code>:=</code> sintaksisi o&rsquo;zgaruvchini e&rsquo;lon qilish va ishga
+tushirishning qisqartirilgan shaklidir, masalan bu
+holatda <code>var f string = &quot;apple&quot;</code> uchun. Bu sintaksis
+faqat funksiyalar ichida mavjud.</p>
 
           </td>
           <td class="code">
@@ -160,12 +160,12 @@ This syntax is only available inside functions.</p>
       
       
       <p class="next">
-        Next example: <a href="constants" rel="next">Constants</a>.
+        Keyingi misol: <a href="constants" rel="next">Constants</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

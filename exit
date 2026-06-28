@@ -26,8 +26,8 @@
         
         <tr>
           <td class="docs">
-            <p>Use <code>os.Exit</code> to immediately exit with a given
-status.</p>
+            <p>Berilgan status bilan darhol chiqish uchun <code>os.Exit</code> dan
+foydalaning.</p>
 
           </td>
           <td class="code empty leading">
@@ -41,7 +41,7 @@ status.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/b9aYzlENkb__R"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/r9Kt8ZIqxev"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -71,8 +71,8 @@ status.</p>
         
         <tr>
           <td class="docs">
-            <p><code>defer</code>s will <em>not</em> be run when using <code>os.Exit</code>, so
-this <code>fmt.Println</code> will never be called.</p>
+            <p><code>os.Exit</code> dan foydalanganda <code>defer</code>lar <em>ishga tushmaydi</em>,
+shuning uchun bu <code>fmt.Println</code> hech qachon chaqirilmaydi.</p>
 
           </td>
           <td class="code leading">
@@ -83,7 +83,7 @@ this <code>fmt.Println</code> will never be called.</p>
         
         <tr>
           <td class="docs">
-            <p>Exit with status 3.</p>
+            <p>3-status bilan chiqamiz.</p>
 
           </td>
           <td class="code leading">
@@ -95,10 +95,10 @@ this <code>fmt.Println</code> will never be called.</p>
         
         <tr>
           <td class="docs">
-            <p>Note that unlike e.g. C, Go does not use an integer
-return value from <code>main</code> to indicate exit status. If
-you&rsquo;d like to exit with a non-zero status you should
-use <code>os.Exit</code>.</p>
+            <p>E&rsquo;tibor bering, masalan C&rsquo;dan farqli o&rsquo;laroq, Go chiqish
+statusini bildirish uchun <code>main</code> dan butun sonli qaytariladigan
+qiymatdan foydalanmaydi. Agar noldan farqli status bilan
+chiqmoqchi bo&rsquo;lsangiz, <code>os.Exit</code> dan foydalanishingiz kerak.</p>
 
           </td>
           <td class="code empty">
@@ -113,8 +113,8 @@ use <code>os.Exit</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>If you run <code>exit.go</code> using <code>go run</code>, the exit
-will be picked up by <code>go</code> and printed.</p>
+            <p>Agar <code>exit.go</code> ni <code>go run</code> yordamida ishga tushirsangiz,
+chiqish <code>go</code> tomonidan qabul qilinadi va chop etiladi.</p>
 
           </td>
           <td class="code leading">
@@ -126,8 +126,8 @@ will be picked up by <code>go</code> and printed.</p>
         
         <tr>
           <td class="docs">
-            <p>By building and executing a binary you can see
-the status in the terminal.</p>
+            <p>Binar faylni build qilib bajarish orqali statusni
+terminalda ko&rsquo;rishingiz mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -141,7 +141,7 @@ the status in the terminal.</p>
         
         <tr>
           <td class="docs">
-            <p>Note that the <code>!</code> from our program never got printed.</p>
+            <p>E&rsquo;tibor bering, dasturimizdagi <code>!</code> hech qachon chop etilmadi.</p>
 
           </td>
           <td class="code empty">
@@ -155,7 +155,7 @@ the status in the terminal.</p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

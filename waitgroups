@@ -30,8 +30,8 @@
         
         <tr>
           <td class="docs">
-            <p>To wait for multiple goroutines to finish, we can
-use a <em>wait group</em>.</p>
+            <p>Bir nechta goroutinaning tugashini kutish uchun biz
+<em>wait group</em> (kutish guruhi) dan foydalanishimiz mumkin.</p>
 
           </td>
           <td class="code empty leading">
@@ -45,7 +45,7 @@ use a <em>wait group</em>.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/csaELahJTWt"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/ClJLYPrytLy"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -66,7 +66,7 @@ use a <em>wait group</em>.</p>
         
         <tr>
           <td class="docs">
-            <p>This is the function we&rsquo;ll run in every goroutine.</p>
+            <p>Bu har bir goroutinada ishga tushiradigan funksiyamiz.</p>
 
           </td>
           <td class="code leading">
@@ -78,7 +78,7 @@ use a <em>wait group</em>.</p>
         
         <tr>
           <td class="docs">
-            <p>Sleep to simulate an expensive task.</p>
+            <p>Resurs talab qiladigan vazifani simulyatsiya qilish uchun uxlaymiz.</p>
 
           </td>
           <td class="code leading">
@@ -101,9 +101,10 @@ use a <em>wait group</em>.</p>
         
         <tr>
           <td class="docs">
-            <p>This WaitGroup is used to wait for all the
-goroutines launched here to finish. Note: if a WaitGroup is
-explicitly passed into functions, it should be done <em>by pointer</em>.</p>
+            <p>Bu WaitGroup shu yerda ishga tushirilgan barcha
+goroutinalarning tugashini kutish uchun ishlatiladi.
+Eslatma: agar WaitGroup funksiyalarga aniq uzatilsa,
+bu <em>ko&rsquo;rsatkich orqali</em> amalga oshirilishi kerak.</p>
 
           </td>
           <td class="code leading">
@@ -114,7 +115,7 @@ explicitly passed into functions, it should be done <em>by pointer</em>.</p>
         
         <tr>
           <td class="docs">
-            <p>Launch several goroutines using <code>WaitGroup.Go</code></p>
+            <p><code>WaitGroup.Go</code> yordamida bir nechta goroutina ishga tushiramiz</p>
 
           </td>
           <td class="code leading">
@@ -129,9 +130,9 @@ explicitly passed into functions, it should be done <em>by pointer</em>.</p>
         
         <tr>
           <td class="docs">
-            <p>Block until all the goroutines started by <code>wg</code> are
-done. A goroutine is done when the function it invokes
-returns.</p>
+            <p><code>wg</code> tomonidan boshlangan barcha goroutinalar
+tugaguncha bloklaymiz. Goroutina o&rsquo;zi chaqirgan
+funksiya qaytarganda tugagan hisoblanadi.</p>
 
           </td>
           <td class="code leading">
@@ -142,10 +143,11 @@ returns.</p>
         
         <tr>
           <td class="docs">
-            <p>Note that this approach has no straightforward way
-to propagate errors from workers. For more
-advanced use cases, consider using the
-<a href="https://pkg.go.dev/golang.org/x/sync/errgroup">errgroup package</a>.</p>
+            <p>E&rsquo;tibor bering, bu yondashuvda ishchilardan
+xatolarni tarqatishning oddiy usuli yo&rsquo;q. Yanada
+murakkab holatlar uchun
+<a href="https://pkg.go.dev/golang.org/x/sync/errgroup">errgroup paketidan</a>
+foydalanishni ko&rsquo;rib chiqing.</p>
 
           </td>
           <td class="code">
@@ -180,8 +182,8 @@ advanced use cases, consider using the
         
         <tr>
           <td class="docs">
-            <p>The order of workers starting up and finishing
-is likely to be different for each invocation.</p>
+            <p>Ishchilarning ishga tushish va tugash tartibi har bir
+chaqiruvda boshqacha bo&rsquo;lishi ehtimoli yuqori.</p>
 
           </td>
           <td class="code empty">
@@ -194,12 +196,12 @@ is likely to be different for each invocation.</p>
       
       
       <p class="next">
-        Next example: <a href="rate-limiting" rel="next">Rate Limiting</a>.
+        Keyingi misol: <a href="rate-limiting" rel="next">Rate Limiting</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>
