@@ -25,6 +25,11 @@ import (
 // program.
 var siteDir = "./public"
 
+// siteURL is the public base URL where this site is hosted. It is used to
+// generate absolute URLs for the sitemap so search engines can index every
+// page.
+var siteURL = "https://elchintoyirov.github.io/gobyexample"
+
 func verbose() bool {
 	return len(os.Getenv("VERBOSE")) > 0
 }
@@ -329,6 +334,21 @@ func renderExamples(examples []*Example) {
 	}
 }
 
+func renderSitemap(examples []*Example) {
+	if verbose() {
+		fmt.Println("Rendering sitemap")
+	}
+	var b strings.Builder
+	b.WriteString("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
+	b.WriteString("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n")
+	b.WriteString("  <url><loc>" + siteURL + "/</loc></url>\n")
+	for _, example := range examples {
+		b.WriteString("  <url><loc>" + siteURL + "/" + example.ID + ".html</loc></url>\n")
+	}
+	b.WriteString("</urlset>\n")
+	check(os.WriteFile(siteDir+"/sitemap.xml", []byte(b.String()), 0644))
+}
+
 func render404() {
 	if verbose() {
 		fmt.Println("Rendering 404")
@@ -356,6 +376,7 @@ func main() {
 	examples := parseExamples()
 	renderIndex(examples)
 	renderExamples(examples)
+	renderSitemap(examples)
 	render404()
 }
 
