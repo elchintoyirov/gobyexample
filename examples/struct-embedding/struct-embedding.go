@@ -1,8 +1,9 @@
-// Go supports _embedding_ of structs and interfaces
-// to express a more seamless _composition_ of types.
-// This is not to be confused with [`//go:embed`](embed-directive) which is
-// a go directive introduced in Go version 1.16+ to embed
-// files and folders into the application binary.
+// Go tiplarning yanada uzluksiz _kompozitsiyasini_ ifodalash
+// uchun struct va interfeyslarni _ichiga joylash_ni
+// qo'llab-quvvatlaydi. Buni fayl va papkalarni dastur
+// binariga joylash uchun Go 1.16+ versiyasida kiritilgan go
+// direktivasi bo'lgan [`//go:embed`](embed-directive) bilan
+// adashtirmaslik kerak.
 
 package main
 
@@ -16,8 +17,8 @@ func (b base) describe() string {
 	return fmt.Sprintf("base with num=%v", b.num)
 }
 
-// A `container` _embeds_ a `base`. An embedding looks
-// like a field without a name.
+// `container` o'z ichiga `base` ni _joylaydi_. Ichiga joylash
+// nomsiz maydonga o'xshaydi.
 type container struct {
 	base
 	str string
@@ -25,9 +26,9 @@ type container struct {
 
 func main() {
 
-	// When creating structs with literals, we have to
-	// initialize the embedding explicitly; here the
-	// embedded type serves as the field name.
+	// Literallar bilan struct yaratishda biz ichiga joylashni
+	// oshkora ishga tushirishimiz kerak; bu yerda ichiga
+	// joylangan tip maydon nomi vazifasini bajaradi.
 	co := container{
 		base: base{
 			num: 1,
@@ -35,28 +36,29 @@ func main() {
 		str: "some name",
 	}
 
-	// We can access the base's fields directly on `co`,
-	// e.g. `co.num`.
+	// Biz base'ning maydonlariga to'g'ridan-to'g'ri `co` orqali
+	// murojaat qila olamiz, masalan `co.num`.
 	fmt.Printf("co={num: %v, str: %v}\n", co.num, co.str)
 
-	// Alternatively, we can spell out the full path using
-	// the embedded type name.
+	// Muqobil ravishda, biz ichiga joylangan tip nomidan
+	// foydalanib to'liq yo'lni yozishimiz mumkin.
 	fmt.Println("also num:", co.base.num)
 
-	// Since `container` embeds `base`, the methods of
-	// `base` also become methods of a `container`. Here
-	// we invoke a method that was embedded from `base`
-	// directly on `co`.
+	// `container` o'z ichiga `base` ni joylagani uchun, `base`
+	// ning metodlari ham `container` ning metodlariga aylanadi.
+	// Bu yerda biz `base` dan ichiga joylangan metodni
+	// to'g'ridan-to'g'ri `co` orqali chaqiramiz.
 	fmt.Println("describe:", co.describe())
 
 	type describer interface {
 		describe() string
 	}
 
-	// Embedding structs with methods may be used to bestow
-	// interface implementations onto other structs. Here
-	// we see that a `container` now implements the
-	// `describer` interface because it embeds `base`.
+	// Metodli struct'larni ichiga joylash boshqa struct'larga
+	// interfeys implementatsiyalarini berish uchun ishlatilishi
+	// mumkin. Bu yerda biz `container` endi `describer`
+	// interfeysini amalga oshirishini ko'ramiz, chunki u o'z
+	// ichiga `base` ni joylaydi.
 	var d describer = co
 	fmt.Println("describer:", d.describe())
 }

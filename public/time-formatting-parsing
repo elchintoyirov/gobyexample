@@ -30,8 +30,8 @@
         
         <tr>
           <td class="docs">
-            <p>Go supports time formatting and parsing via
-pattern-based layouts.</p>
+            <p>Go shablonga asoslangan layoutlar orqali vaqtni
+formatlash va tahlil qilishni qo&rsquo;llab-quvvatlaydi.</p>
 
           </td>
           <td class="code empty leading">
@@ -45,7 +45,7 @@ pattern-based layouts.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/0dgIUsTgEYs"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/EK23vqQ3dBO"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -76,9 +76,9 @@ pattern-based layouts.</p>
         
         <tr>
           <td class="docs">
-            <p>Here&rsquo;s a basic example of formatting a time
-according to RFC3339, using the corresponding layout
-constant.</p>
+            <p>Quyida vaqtni RFC3339 ga muvofiq, mos keladigan
+layout konstantasidan foydalanib formatlashning
+oddiy misoli keltirilgan.</p>
 
           </td>
           <td class="code leading">
@@ -90,7 +90,8 @@ constant.</p>
         
         <tr>
           <td class="docs">
-            <p>Time parsing uses the same layout values as <code>Format</code>.</p>
+            <p>Vaqtni tahlil qilish <code>Format</code> bilan bir xil layout
+qiymatlaridan foydalanadi.</p>
 
           </td>
           <td class="code leading">
@@ -102,13 +103,15 @@ constant.</p>
         
         <tr>
           <td class="docs">
-            <p><code>Format</code> and <code>Parse</code> use example-based layouts. Usually
-you&rsquo;ll use a constant from <code>time</code> for these layouts, but
-you can also supply custom layouts. Layouts must use the
-reference time <code>Mon Jan 2 15:04:05 MST 2006</code> to show the
-pattern with which to format/parse a given time/string.
-The example time must be exactly as shown: the year 2006,
-15 for the hour, Monday for the day of the week, etc.</p>
+            <p><code>Format</code> va <code>Parse</code> misolga asoslangan layoutlardan
+foydalanadi. Odatda bu layoutlar uchun <code>time</code> paketidan
+konstanta ishlatasiz, lekin o&rsquo;zingiz xohlagan layoutlarni
+ham berishingiz mumkin. Layoutlar berilgan vaqt/satrni
+formatlash/tahlil qilish shablonini ko&rsquo;rsatish uchun
+<code>Mon Jan 2 15:04:05 MST 2006</code> etalon vaqtidan foydalanishi
+kerak. Misol vaqti aynan ko&rsquo;rsatilganidek bo&rsquo;lishi shart:
+2006-yil, soat uchun 15, haftaning kuni uchun Monday va
+hokazo.</p>
 
           </td>
           <td class="code leading">
@@ -124,9 +127,9 @@ The example time must be exactly as shown: the year 2006,
         
         <tr>
           <td class="docs">
-            <p>For purely numeric representations you can also
-use standard string formatting with the extracted
-components of the time value.</p>
+            <p>Faqat raqamli ko&rsquo;rinishlar uchun vaqt qiymatining
+ajratib olingan tarkibiy qismlari bilan standart satr
+formatlashdan ham foydalanishingiz mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -139,8 +142,8 @@ components of the time value.</p>
         
         <tr>
           <td class="docs">
-            <p><code>Parse</code> will return an error on malformed input
-explaining the parsing problem.</p>
+            <p>Noto&rsquo;g&rsquo;ri kiritilgan ma&rsquo;lumotda <code>Parse</code> tahlil qilish
+muammosini tushuntiruvchi xato qaytaradi.</p>
 
           </td>
           <td class="code">
@@ -177,12 +180,12 @@ explaining the parsing problem.</p>
       
       
       <p class="next">
-        Next example: <a href="random-numbers" rel="next">Random Numbers</a>.
+        Keyingi misol: <a href="random-numbers" rel="next">Random Numbers</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

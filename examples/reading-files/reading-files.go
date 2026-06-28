@@ -1,6 +1,6 @@
-// Reading and writing files are basic tasks needed for
-// many Go programs. First we'll look at some examples of
-// reading files.
+// Fayllarni o'qish va yozish ko'plab Go dasturlari uchun
+// kerak bo'ladigan asosiy vazifalardir. Avval fayllarni
+// o'qishning ba'zi misollarini ko'rib chiqamiz.
 
 package main
 
@@ -12,8 +12,9 @@ import (
 	"path/filepath"
 )
 
-// Reading files requires checking most calls for errors.
-// This helper will streamline our error checks below.
+// Fayllarni o'qish ko'pchilik chaqiruvlarni xatolarga
+// tekshirishni talab qiladi. Bu yordamchi funksiya quyidagi
+// xatolarni tekshirishimizni soddalashtiradi.
 func check(e error) {
 	if e != nil {
 		panic(e)
@@ -22,29 +23,30 @@ func check(e error) {
 
 func main() {
 
-	// Perhaps the most basic file reading task is
-	// slurping a file's entire contents into memory.
+	// Ehtimol, eng asosiy fayl o'qish vazifasi faylning butun
+	// mazmunini xotiraga yuklashdir.
 	path := filepath.Join(os.TempDir(), "dat")
 	dat, err := os.ReadFile(path)
 	check(err)
 	fmt.Print(string(dat))
 
-	// You'll often want more control over how and what
-	// parts of a file are read. For these tasks, start
-	// by `Open`ing a file to obtain an `os.File` value.
+	// Ko'pincha faylning qaysi qismlari va qanday o'qilishi
+	// ustidan ko'proq nazorat xohlaysiz. Bu vazifalar uchun
+	// `os.File` qiymatini olish maqsadida faylni `Open` qilishdan
+	// boshlang.
 	f, err := os.Open(path)
 	check(err)
 
-	// Read some bytes from the beginning of the file.
-	// Allow up to 5 to be read but also note how many
-	// actually were read.
+	// Faylning boshidan bir nechta bayt o'qiymiz. 5 tagacha
+	// o'qishga ruxsat beramiz, lekin amalda nechtasi o'qilganini
+	// ham qayd qilamiz.
 	b1 := make([]byte, 5)
 	n1, err := f.Read(b1)
 	check(err)
 	fmt.Printf("%d bytes: %s\n", n1, string(b1[:n1]))
 
-	// You can also `Seek` to a known location in the file
-	// and `Read` from there.
+	// Shuningdek, fayldagi ma'lum bir joyga `Seek` qilib, o'sha
+	// yerdan `Read` qilishingiz mumkin.
 	o2, err := f.Seek(6, io.SeekStart)
 	check(err)
 	b2 := make([]byte, 2)
@@ -53,19 +55,19 @@ func main() {
 	fmt.Printf("%d bytes @ %d: ", n2, o2)
 	fmt.Printf("%v\n", string(b2[:n2]))
 
-	// Other methods of seeking are relative to the
-	// current cursor position,
+	// Boshqa seek qilish usullari joriy kursor pozitsiyasiga
+	// nisbatan,
 	_, err = f.Seek(2, io.SeekCurrent)
 	check(err)
 
-	// and relative to the end of the file.
+	// va faylning oxiriga nisbatan amalga oshiriladi.
 	_, err = f.Seek(-4, io.SeekEnd)
 	check(err)
 
-	// The `io` package provides some functions that may
-	// be helpful for file reading. For example, reads
-	// like the ones above can be more robustly
-	// implemented with `ReadAtLeast`.
+	// `io` paketi fayl o'qish uchun foydali bo'lishi mumkin
+	// bo'lgan ba'zi funksiyalarni taqdim etadi. Masalan,
+	// yuqoridagiga o'xshash o'qishlar `ReadAtLeast` bilan
+	// yanada ishonchli amalga oshirilishi mumkin.
 	o3, err := f.Seek(6, io.SeekStart)
 	check(err)
 	b3 := make([]byte, 2)
@@ -73,22 +75,21 @@ func main() {
 	check(err)
 	fmt.Printf("%d bytes @ %d: %s\n", n3, o3, string(b3))
 
-	// There is no built-in rewind, but
-	// `Seek(0, io.SeekStart)` accomplishes this.
+	// O'rnatilgan rewind yo'q, lekin `Seek(0, io.SeekStart)`
+	// buni amalga oshiradi.
 	_, err = f.Seek(0, io.SeekStart)
 	check(err)
 
-	// The `bufio` package implements a buffered
-	// reader that may be useful both for its efficiency
-	// with many small reads and because of the additional
-	// reading methods it provides.
+	// `bufio` paketi buferlangan o'quvchini amalga oshiradi,
+	// bu ko'plab kichik o'qishlardagi samaradorligi uchun ham,
+	// taqdim etadigan qo'shimcha o'qish metodlari tufayli ham
+	// foydali bo'lishi mumkin.
 	r4 := bufio.NewReader(f)
 	b4, err := r4.Peek(5)
 	check(err)
 	fmt.Printf("5 bytes: %s\n", string(b4))
 
-	// Close the file when you're done (usually this would
-	// be scheduled immediately after `Open`ing with
-	// `defer`).
+	// Ishingiz tugagach, faylni yoping (odatda bu `Open`
+	// qilingandan so'ng darhol `defer` bilan rejalashtiriladi).
 	f.Close()
 }

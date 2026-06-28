@@ -1,7 +1,7 @@
-// [Environment variables](https://en.wikipedia.org/wiki/Environment_variable)
-// are a universal mechanism for [conveying configuration
-// information to Unix programs](https://www.12factor.net/config).
-// Let's look at how to set, get, and list environment variables.
+// [Muhit o'zgaruvchilari](https://en.wikipedia.org/wiki/Environment_variable)
+// [Unix dasturlariga konfiguratsiya ma'lumotlarini
+// yetkazish](https://www.12factor.net/config) uchun universal mexanizmdir.
+// Keling, muhit o'zgaruvchilarini qanday o'rnatish, olish va ro'yxatlashni ko'rib chiqaylik.
 
 package main
 
@@ -13,18 +13,18 @@ import (
 
 func main() {
 
-	// To set a key/value pair, use `os.Setenv`. To get a
-	// value for a key, use `os.Getenv`. This will return
-	// an empty string if the key isn't present in the
-	// environment.
+	// Kalit/qiymat juftligini o'rnatish uchun `os.Setenv` dan
+	// foydalaning. Kalit uchun qiymatni olish uchun `os.Getenv` dan
+	// foydalaning. Agar kalit muhitda mavjud bo'lmasa, bu bo'sh satrni
+	// qaytaradi.
 	os.Setenv("FOO", "1")
 	fmt.Println("FOO:", os.Getenv("FOO"))
 	fmt.Println("BAR:", os.Getenv("BAR"))
 
-	// Use `os.Environ` to list all key/value pairs in the
-	// environment. This returns a slice of strings in the
-	// form `KEY=value`. You can `strings.SplitN` them to
-	// get the key and value. Here we print all the keys.
+	// Muhitdagi barcha kalit/qiymat juftliklarini ro'yxatlash uchun
+	// `os.Environ` dan foydalaning. Bu `KEY=value` ko'rinishidagi satrlar
+	// slice'ini qaytaradi. Kalit va qiymatni olish uchun ularni
+	// `strings.SplitN` qilishingiz mumkin. Bu yerda biz barcha kalitlarni chop etamiz.
 	fmt.Println()
 	for _, e := range os.Environ() {
 		pair := strings.SplitN(e, "=", 2)

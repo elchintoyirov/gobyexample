@@ -30,14 +30,14 @@
         
         <tr>
           <td class="docs">
-            <p>The Go standard library comes with excellent support
-for HTTP clients and servers in the <code>net/http</code>
-package. In this example we&rsquo;ll use it to issue simple
-HTTP requests.</p>
+            <p>Go standart kutubxonasi <code>net/http</code> paketida HTTP
+mijozlari va serverlari uchun ajoyib qo&rsquo;llab-quvvatlash
+bilan birga keladi. Ushbu misolda biz undan oddiy HTTP
+so&rsquo;rovlarini yuborish uchun foydalanamiz.</p>
 
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/vFW_el7oHMk"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/lM0y-HGt9-_A"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -68,11 +68,11 @@ HTTP requests.</p>
         
         <tr>
           <td class="docs">
-            <p>Issue an HTTP GET request to a server. <code>http.Get</code> is a
-convenient shortcut around creating an <code>http.Client</code>
-object and calling its <code>Get</code> method; it uses the
-<code>http.DefaultClient</code> object which has useful default
-settings.</p>
+            <p>Serverga HTTP GET so&rsquo;rovini yuboring. <code>http.Get</code>
+<code>http.Client</code> obyektini yaratish va uning <code>Get</code>
+metodini chaqirish atrofidagi qulay qisqartmadir; u
+foydali standart sozlamalarga ega <code>http.DefaultClient</code>
+obyektidan foydalanadi.</p>
 
           </td>
           <td class="code leading">
@@ -87,7 +87,7 @@ settings.</p>
         
         <tr>
           <td class="docs">
-            <p>Print the HTTP response status.</p>
+            <p>HTTP javob statusini chop eting.</p>
 
           </td>
           <td class="code leading">
@@ -98,7 +98,7 @@ settings.</p>
         
         <tr>
           <td class="docs">
-            <p>Print the first 5 lines of the response body.</p>
+            <p>Javob tanasining dastlabki 5 qatorini chop eting.</p>
 
           </td>
           <td class="code leading">
@@ -147,12 +147,12 @@ settings.</p>
       
       
       <p class="next">
-        Next example: <a href="http-server" rel="next">HTTP Server</a>.
+        Keyingi misol: <a href="http-server" rel="next">HTTP Server</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

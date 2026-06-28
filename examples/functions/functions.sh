@@ -2,5 +2,6 @@ $ go run functions.go
 1+2 = 3
 1+2+3 = 6
 
-# There are several other features to Go functions. One is
-# multiple return values, which we'll look at next.
+# Go funksiyalarining yana bir nechta xususiyatlari bor.
+# Ulardan biri bir nechta qaytuvchi qiymatlar bo'lib, biz
+# uni keyingi misolda ko'rib chiqamiz.

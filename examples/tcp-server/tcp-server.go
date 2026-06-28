@@ -1,5 +1,5 @@
-// The `net` package provides the tools we need to easily build
-// TCP socket servers.
+// `net` paketi TCP soket serverlarini oson qurish uchun bizga
+// kerakli vositalarni taqdim etadi.
 package main
 
 import (
@@ -12,42 +12,42 @@ import (
 
 func main() {
 
-	// `net.Listen` starts the server on the given network
-	// (TCP) and address (port 8090 on all interfaces).
+	// `net.Listen` serverni berilgan tarmoq (TCP) va manzilda
+	// (barcha interfeyslardagi 8090 port) ishga tushiradi.
 	listener, err := net.Listen("tcp", ":8090")
 	if err != nil {
 		log.Fatal("Error listening:", err)
 	}
 
-	// Close the listener to free the port
-	// when the application exits.
+	// Dastur chiqib ketganda portni bo'shatish uchun listenerni
+	// yoping.
 	defer listener.Close()
 
-	// Loop indefinitely to accept new client connections.
+	// Yangi mijoz ulanishlarini qabul qilish uchun cheksiz sikl.
 	for {
-		// Wait for a connection.
+		// Ulanishni kuting.
 		conn, err := listener.Accept()
 		if err != nil {
 			log.Println("Error accepting conn:", err)
 			continue
 		}
 
-		// We use a goroutine here to handle the connection
-		// so that the main loop can continue accepting more
-		// connections.
+		// Bu yerda biz ulanishni boshqarish uchun goroutinadan
+		// foydalanamiz, shunda asosiy sikl yana ko'proq
+		// ulanishlarni qabul qilishni davom ettira oladi.
 		go handleConnection(conn)
 	}
 }
 
-// `handleConnection` handles a single client connection,
-// reading one line of text from the client and returning a response.
+// `handleConnection` bitta mijoz ulanishini boshqaradi, mijozdan
+// bir qator matnni o'qiydi va javob qaytaradi.
 func handleConnection(conn net.Conn) {
-	// Closing the connection releases resources when
-	// we are finished interacting with the client.
+	// Mijoz bilan o'zaro aloqani tugatganimizda ulanishni yopish
+	// resurslarni bo'shatadi.
 	defer conn.Close()
 
-	// Use `bufio.NewReader` to read one line of data
-	// from the client (terminated by a newline).
+	// Mijozdan bir qator ma'lumotni (yangi qator bilan
+	// tugaydigan) o'qish uchun `bufio.NewReader` dan foydalaning.
 	reader := bufio.NewReader(conn)
 	message, err := reader.ReadString('\n')
 	if err != nil {
@@ -55,8 +55,8 @@ func handleConnection(conn net.Conn) {
 		return
 	}
 
-	// Create and send a response back to the client,
-	// demonstrating two-way communication.
+	// Ikki tomonlama aloqani namoyish etib, mijozga javob
+	// yaratib qaytarib yuboring.
 	ackMsg := strings.ToUpper(strings.TrimSpace(message))
 	response := fmt.Sprintf("ACK: %s\n", ackMsg)
 	_, err = conn.Write([]byte(response))

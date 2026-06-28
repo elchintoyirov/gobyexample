@@ -30,10 +30,11 @@
         
         <tr>
           <td class="docs">
-            <p>In a <a href="range-over-built-in-types">previous</a> example we saw how <code>for</code> and
-<code>range</code> provide iteration over basic data structures.
-We can also use this syntax to iterate over
-values received from a channel.</p>
+            <p><a href="range-over-built-in-types">Oldingi</a> misolda biz <code>for</code> va
+<code>range</code> asosiy ma&rsquo;lumotlar strukturalari bo&rsquo;ylab takrorlashni
+qanday ta&rsquo;minlashini ko&rsquo;rdik. Biz bu sintaksisdan kanaldan
+qabul qilingan qiymatlar bo&rsquo;ylab takrorlash uchun ham
+foydalanishimiz mumkin.</p>
 
           </td>
           <td class="code empty leading">
@@ -47,7 +48,7 @@ values received from a channel.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/8vAhX6eX1wy"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/d7pOT5w_kBK"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -74,7 +75,7 @@ values received from a channel.</p>
         
         <tr>
           <td class="docs">
-            <p>We&rsquo;ll iterate over 2 values in the <code>queue</code> channel.</p>
+            <p>Biz <code>queue</code> kanalidagi 2 ta qiymat bo&rsquo;ylab takrorlanamiz.</p>
 
           </td>
           <td class="code leading">
@@ -88,10 +89,10 @@ values received from a channel.</p>
         
         <tr>
           <td class="docs">
-            <p>This <code>range</code> iterates over each element as it&rsquo;s
-received from <code>queue</code>. Because we <code>close</code>d the
-channel above, the iteration terminates after
-receiving the 2 elements.</p>
+            <p>Bu <code>range</code> <code>queue</code> dan qabul qilingani sari har bir
+element bo&rsquo;ylab takrorlanadi. Biz yuqorida kanalni
+<code>close</code> qilganimiz uchun, takrorlash 2 ta elementni
+qabul qilgandan keyin to&rsquo;xtaydi.</p>
 
           </td>
           <td class="code">
@@ -121,9 +122,9 @@ receiving the 2 elements.</p>
         
         <tr>
           <td class="docs">
-            <p>This example also showed that it&rsquo;s possible to close
-a non-empty channel but still have the remaining
-values be received.</p>
+            <p>Bu misol shuni ham ko&rsquo;rsatdiki, bo&rsquo;sh bo&rsquo;lmagan kanalni
+yopish va shunga qaramay qolgan qiymatlarni qabul qilish
+mumkin.</p>
 
           </td>
           <td class="code empty">
@@ -136,12 +137,12 @@ values be received.</p>
       
       
       <p class="next">
-        Next example: <a href="timers" rel="next">Timers</a>.
+        Keyingi misol: <a href="timers" rel="next">Timers</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

@@ -30,9 +30,10 @@
         
         <tr>
           <td class="docs">
-            <p>Starting with version 1.23, Go has added support for
-<a href="https://go.dev/blog/range-functions">iterators</a>,
-which lets us range over pretty much anything!</p>
+            <p>1.23 versiyasidan boshlab, Go
+<a href="https://go.dev/blog/range-functions">iteratorlar</a> uchun
+qo&rsquo;llab-quvvatlash qo&rsquo;shdi, bu bizga deyarli har qanday
+narsa bo&rsquo;ylab range qilish imkonini beradi!</p>
 
           </td>
           <td class="code empty leading">
@@ -46,7 +47,7 @@ which lets us range over pretty much anything!</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/lHX3uDqdfUB"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/gTs5NaTu7aJ"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -68,11 +69,11 @@ which lets us range over pretty much anything!</p>
         
         <tr>
           <td class="docs">
-            <p>Let&rsquo;s look at the <code>List</code> type from the
-<a href="generics">previous example</a> again. In that example
-we had an <code>AllElements</code> method that returned a slice
-of all elements in the list. With Go iterators, we
-can do it better - as shown below.</p>
+            <p>Keling, <a href="generics">oldingi misol</a> dagi <code>List</code> tipini yana
+ko&rsquo;rib chiqaylik. O&rsquo;sha misolda ro&rsquo;yxatdagi barcha
+elementlarning slice ini qaytaradigan <code>AllElements</code>
+metodimiz bor edi. Go iteratorlari bilan buni yaxshiroq
+bajarishimiz mumkin - quyida ko&rsquo;rsatilganidek.</p>
 
           </td>
           <td class="code leading">
@@ -116,8 +117,8 @@ can do it better - as shown below.</p>
         
         <tr>
           <td class="docs">
-            <p>All returns an <em>iterator</em>, which in Go is a function
-with a <a href="https://pkg.go.dev/iter#Seq">special signature</a>.</p>
+            <p>All <em>iterator</em> ni qaytaradi, bu Go da
+<a href="https://pkg.go.dev/iter#Seq">maxsus imzoga</a> ega funksiyadir.</p>
 
           </td>
           <td class="code leading">
@@ -129,11 +130,12 @@ with a <a href="https://pkg.go.dev/iter#Seq">special signature</a>.</p>
         
         <tr>
           <td class="docs">
-            <p>The iterator function takes another function as
-a parameter, called <code>yield</code> by convention (but
-the name can be arbitrary). It will call <code>yield</code> for
-every element we want to iterate over, and note <code>yield</code>&rsquo;s
-return value for a potential early termination.</p>
+            <p>Iterator funksiyasi parametr sifatida boshqa
+funksiyani qabul qiladi, kelishuvga ko&rsquo;ra <code>yield</code> deb
+ataladi (lekin nom ixtiyoriy bo&rsquo;lishi mumkin). U biz
+takrorlamoqchi bo&rsquo;lgan har bir element uchun <code>yield</code>
+ni chaqiradi va ehtimoliy erta to&rsquo;xtatish uchun
+<code>yield</code> ning qaytariladigan qiymatini hisobga oladi.</p>
 
           </td>
           <td class="code leading">
@@ -150,10 +152,11 @@ return value for a potential early termination.</p>
         
         <tr>
           <td class="docs">
-            <p>Iteration doesn&rsquo;t require an underlying data structure,
-and doesn&rsquo;t even have to be finite! Here&rsquo;s a function
-returning an iterator over Fibonacci numbers: it keeps
-running as long as <code>yield</code> keeps returning <code>true</code>.</p>
+            <p>Takrorlash uchun asosiy ma&rsquo;lumotlar strukturasi talab
+etilmaydi va hatto chekli bo&rsquo;lishi ham shart emas! Mana
+Fibonachchi sonlari bo&rsquo;ylab iterator qaytaradigan funksiya:
+u <code>yield</code> <code>true</code> qaytarishda davom etgan ekan, ishlashda
+davom etadi.</p>
 
           </td>
           <td class="code leading">
@@ -197,8 +200,8 @@ running as long as <code>yield</code> keeps returning <code>true</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>Since <code>List.All</code> returns an iterator, we can use it
-in a regular <code>range</code> loop.</p>
+            <p><code>List.All</code> iterator qaytargani uchun, biz undan oddiy
+<code>range</code> siklida foydalanishimiz mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -211,10 +214,11 @@ in a regular <code>range</code> loop.</p>
         
         <tr>
           <td class="docs">
-            <p>Packages like <a href="https://pkg.go.dev/slices">slices</a> have
-a number of useful functions to work with iterators.
-For example, <code>Collect</code> takes any iterator and collects
-all its values into a slice.</p>
+            <p><a href="https://pkg.go.dev/slices">slices</a> kabi paketlarda
+iteratorlar bilan ishlash uchun bir qancha foydali
+funksiyalar mavjud. Masalan, <code>Collect</code> istalgan
+iteratorni qabul qiladi va uning barcha qiymatlarini
+slice ga to&rsquo;playdi.</p>
 
           </td>
           <td class="code leading">
@@ -226,9 +230,10 @@ all its values into a slice.</p>
         
         <tr>
           <td class="docs">
-            <p>Standard library packages now expose iterator helpers
-too. For example, <code>strings.SplitSeq</code> iterates over parts
-of a byte slice without first building a result slice.</p>
+            <p>Standart kutubxona paketlari endi iterator yordamchilarini
+ham taqdim etadi. Masalan, <code>strings.SplitSeq</code> avval
+natija slice ini qurmasdan bayt slice ining qismlari
+bo&rsquo;ylab takrorlanadi.</p>
 
           </td>
           <td class="code leading">
@@ -251,8 +256,9 @@ of a byte slice without first building a result slice.</p>
         
         <tr>
           <td class="docs">
-            <p>Once the loop hits <code>break</code> or an early return, the <code>yield</code> function
-passed to the iterator will return <code>false</code>.</p>
+            <p>Sikl <code>break</code> ga yoki erta qaytishga duch kelishi
+bilan, iteratorga uzatilgan <code>yield</code> funksiyasi
+<code>false</code> qaytaradi.</p>
 
           </td>
           <td class="code">
@@ -298,12 +304,12 @@ passed to the iterator will return <code>false</code>.</p>
       
       
       <p class="next">
-        Next example: <a href="errors" rel="next">Errors</a>.
+        Keyingi misol: <a href="errors" rel="next">Errors</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

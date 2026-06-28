@@ -1,26 +1,26 @@
-// Go supports <em><a href="https://en.wikipedia.org/wiki/Pointer_(computer_programming)">pointers</a></em>,
-// allowing you to pass references to values and records
-// within your program.
+// Go <em><a href="https://en.wikipedia.org/wiki/Pointer_(computer_programming)">ko'rsatkichlar</a></em> ni qo'llab-quvvatlaydi,
+// bu dasturingiz ichidagi qiymatlar va yozuvlarga havolalarni
+// uzatish imkonini beradi.
 
 package main
 
 import "fmt"
 
-// We'll show how pointers work in contrast to values with
-// 2 functions: `zeroval` and `zeroptr`. `zeroval` has an
-// `int` parameter, so arguments will be passed to it by
-// value. `zeroval` will get a copy of `ival` distinct
-// from the one in the calling function.
+// Biz ko'rsatkichlar qiymatlarga nisbatan qanday ishlashini
+// 2 ta funksiya bilan ko'rsatamiz: `zeroval` va `zeroptr`.
+// `zeroval` `int` parametriga ega, shuning uchun argumentlar
+// unga qiymat bo'yicha uzatiladi. `zeroval` chaqiruvchi
+// funksiyadagidan farqli `ival` ning nusxasini oladi.
 func zeroval(ival int) {
 	ival = 0
 }
 
-// `zeroptr` in contrast has an `*int` parameter, meaning
-// that it takes an `int` pointer. The `*iptr` code in the
-// function body then _dereferences_ the pointer from its
-// memory address to the current value at that address.
-// Assigning a value to a dereferenced pointer changes the
-// value at the referenced address.
+// `zeroptr` esa aksincha `*int` parametriga ega, ya'ni u
+// `int` ko'rsatkichini qabul qiladi. Funksiya tanasidagi
+// `*iptr` kodi keyin ko'rsatkichni uning xotira manzilidan
+// o'sha manzildagi joriy qiymatga _dereferensiya qiladi_.
+// Dereferensiya qilingan ko'rsatkichga qiymat o'zlashtirish
+// havola qilingan manzildagi qiymatni o'zgartiradi.
 func zeroptr(iptr *int) {
 	*iptr = 0
 }
@@ -32,11 +32,11 @@ func main() {
 	zeroval(i)
 	fmt.Println("zeroval:", i)
 
-	// The `&i` syntax gives the memory address of `i`,
-	// i.e. a pointer to `i`.
+	// `&i` sintaksisi `i` ning xotira manzilini, ya'ni `i` ga
+	// ko'rsatkichni beradi.
 	zeroptr(&i)
 	fmt.Println("zeroptr:", i)
 
-	// Pointers can be printed too.
+	// Ko'rsatkichlarni ham chop etish mumkin.
 	fmt.Println("pointer:", &i)
 }

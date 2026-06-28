@@ -1,5 +1,5 @@
-// To wait for multiple goroutines to finish, we can
-// use a *wait group*.
+// Bir nechta goroutinaning tugashini kutish uchun biz
+// *wait group* (kutish guruhi) dan foydalanishimiz mumkin.
 
 package main
 
@@ -9,36 +9,38 @@ import (
 	"time"
 )
 
-// This is the function we'll run in every goroutine.
+// Bu har bir goroutinada ishga tushiradigan funksiyamiz.
 func worker(id int) {
 	fmt.Printf("Worker %d starting\n", id)
 
-	// Sleep to simulate an expensive task.
+	// Resurs talab qiladigan vazifani simulyatsiya qilish uchun uxlaymiz.
 	time.Sleep(time.Second)
 	fmt.Printf("Worker %d done\n", id)
 }
 
 func main() {
 
-	// This WaitGroup is used to wait for all the
-	// goroutines launched here to finish. Note: if a WaitGroup is
-	// explicitly passed into functions, it should be done *by pointer*.
+	// Bu WaitGroup shu yerda ishga tushirilgan barcha
+	// goroutinalarning tugashini kutish uchun ishlatiladi.
+	// Eslatma: agar WaitGroup funksiyalarga aniq uzatilsa,
+	// bu *ko'rsatkich orqali* amalga oshirilishi kerak.
 	var wg sync.WaitGroup
 
-	// Launch several goroutines using `WaitGroup.Go`
+	// `WaitGroup.Go` yordamida bir nechta goroutina ishga tushiramiz
 	for i := 1; i <= 5; i++ {
 		wg.Go(func() {
 			worker(i)
 		})
 	}
 
-	// Block until all the goroutines started by `wg` are
-	// done. A goroutine is done when the function it invokes
-	// returns.
+	// `wg` tomonidan boshlangan barcha goroutinalar
+	// tugaguncha bloklaymiz. Goroutina o'zi chaqirgan
+	// funksiya qaytarganda tugagan hisoblanadi.
 	wg.Wait()
 
-	// Note that this approach has no straightforward way
-	// to propagate errors from workers. For more
-	// advanced use cases, consider using the
-	// [errgroup package](https://pkg.go.dev/golang.org/x/sync/errgroup).
+	// E'tibor bering, bu yondashuvda ishchilardan
+	// xatolarni tarqatishning oddiy usuli yo'q. Yanada
+	// murakkab holatlar uchun
+	// [errgroup paketidan](https://pkg.go.dev/golang.org/x/sync/errgroup)
+	// foydalanishni ko'rib chiqing.
 }

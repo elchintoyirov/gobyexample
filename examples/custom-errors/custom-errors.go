@@ -1,7 +1,7 @@
-// It's possible to define custom error types by
-// implementing the `Error()` method on them. Here's a
-// variant on the example above that uses a custom type
-// to explicitly represent an argument error.
+// Maxsus xato tiplarini ularda `Error()` metodini
+// amalga oshirish orqali aniqlash mumkin. Quyida argument
+// xatosini oshkora ifodalash uchun maxsus tipdan foydalanadigan
+// yuqoridagi misolning bir variantini ko'rasiz.
 
 package main
 
@@ -10,14 +10,14 @@ import (
 	"fmt"
 )
 
-// A custom error type usually has the suffix "Error".
+// Maxsus xato tipi odatda "Error" qo'shimchasiga ega bo'ladi.
 type argError struct {
 	arg     int
 	message string
 }
 
-// Adding this `Error` method makes `argError` implement
-// the `error` interface.
+// Ushbu `Error` metodini qo'shish `argError` ni `error`
+// interfeysini amalga oshiradigan qiladi.
 func (e *argError) Error() string {
 	return fmt.Sprintf("%d - %s", e.arg, e.message)
 }
@@ -25,7 +25,7 @@ func (e *argError) Error() string {
 func f(arg int) (int, error) {
 	if arg == 42 {
 
-		// Return our custom error.
+		// Maxsus xatomizni qaytaramiz.
 		return -1, &argError{arg, "can't work with it"}
 	}
 	return arg + 3, nil
@@ -33,11 +33,11 @@ func f(arg int) (int, error) {
 
 func main() {
 
-	// `errors.AsType` is a more advanced version of `errors.Is`.
-	// It checks that a given error (or any error in its chain)
-	// matches a specific error type and converts to a value
-	// of that type, also returning `true`. If there's no match, the
-	// second return value is `false`.
+	// `errors.AsType` `errors.Is` ning yanada ilg'or versiyasidir.
+	// U berilgan xato (yoki uning zanjiridagi har qanday xato)
+	// muayyan xato tipiga mos kelishini tekshiradi va uni o'sha tipdagi
+	// qiymatga aylantiradi hamda `true` ni qaytaradi. Agar moslik bo'lmasa,
+	// ikkinchi qaytariladigan qiymat `false` bo'ladi.
 	_, err := f(42)
 	if ae, ok := errors.AsType[*argError](err); ok {
 		fmt.Println(ae.arg)

@@ -30,11 +30,10 @@
         
         <tr>
           <td class="docs">
-            <p>Sometimes we&rsquo;ll want to sort a collection by something
-other than its natural order. For example, suppose we
-wanted to sort strings by their length instead of
-alphabetically. Here&rsquo;s an example of custom sorts
-in Go.</p>
+            <p>Ba&rsquo;zan to&rsquo;plamni uning tabiiy tartibidan boshqa narsa
+bo&rsquo;yicha saralashni xohlaymiz. Masalan, faraz qilaylik,
+satrlarni alifbo tartibida emas, balki uzunligi bo&rsquo;yicha
+saralashni xohladik. Mana Go&rsquo;da maxsus saralashga misol.</p>
 
           </td>
           <td class="code empty leading">
@@ -48,7 +47,7 @@ in Go.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/3EaTknAZHMu"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/OVN5uBSk2ap"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -80,8 +79,8 @@ in Go.</p>
         
         <tr>
           <td class="docs">
-            <p>We implement a comparison function for string
-lengths. <code>cmp.Compare</code> is helpful for this.</p>
+            <p>Satr uzunliklari uchun taqqoslash funksiyasini amalga
+oshiramiz. <code>cmp.Compare</code> bunga yordam beradi.</p>
 
           </td>
           <td class="code leading">
@@ -94,8 +93,9 @@ lengths. <code>cmp.Compare</code> is helpful for this.</p>
         
         <tr>
           <td class="docs">
-            <p>Now we can call <code>slices.SortFunc</code> with this custom
-comparison function to sort <code>fruits</code> by name length.</p>
+            <p>Endi <code>fruits</code>ni nom uzunligi bo&rsquo;yicha saralash uchun bu
+maxsus taqqoslash funksiyasi bilan <code>slices.SortFunc</code>ni
+chaqira olamiz.</p>
 
           </td>
           <td class="code leading">
@@ -107,8 +107,8 @@ comparison function to sort <code>fruits</code> by name length.</p>
         
         <tr>
           <td class="docs">
-            <p>We can use the same technique to sort a slice of
-values that aren&rsquo;t built-in types.</p>
+            <p>O&rsquo;rnatilgan tip bo&rsquo;lmagan qiymatlar slice&rsquo;ini saralash
+uchun xuddi shu usuldan foydalanishimiz mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -136,12 +136,14 @@ values that aren&rsquo;t built-in types.</p>
         
         <tr>
           <td class="docs">
-            <p>Sort <code>people</code> by age using <code>slices.SortFunc</code>.</p>
+            <p><code>people</code>ni yoshi bo&rsquo;yicha <code>slices.SortFunc</code> yordamida
+saralang.</p>
 
-<p>Note: if the <code>Person</code> struct is large,
-you may want the slice to contain <code>*Person</code> instead
-and adjust the sorting function accordingly. If in
-doubt, <a href="testing-and-benchmarking">benchmark</a>!</p>
+<p>Eslatma: agar <code>Person</code> struct katta bo&rsquo;lsa, slice
+o&rsquo;rniga <code>*Person</code>ni o&rsquo;z ichiga olishini xohlashingiz va
+saralash funksiyasini shunga moslab sozlashingiz mumkin.
+Shubhangiz bo&rsquo;lsa, <a href="testing-and-benchmarking">benchmark</a>
+qiling!</p>
 
           </td>
           <td class="code">
@@ -175,12 +177,12 @@ doubt, <a href="testing-and-benchmarking">benchmark</a>!</p>
       
       
       <p class="next">
-        Next example: <a href="panic" rel="next">Panic</a>.
+        Keyingi misol: <a href="panic" rel="next">Panic</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

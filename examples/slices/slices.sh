@@ -1,5 +1,6 @@
-# Note that while slices are different types than arrays,
-# they are rendered similarly by `fmt.Println`.
+# E'tibor bering, slice'lar massivlardan boshqa tip
+# bo'lsa-da, ular `fmt.Println` tomonidan o'xshash tarzda
+# tasvirlanadi.
 $ go run slices.go
 uninit: [] true true
 emp: [  ] len: 3 cap: 3
@@ -15,9 +16,10 @@ dcl: [g h i]
 t == t2
 2d:  [[0] [1 2] [2 3 4]]
 
-# Check out this [great blog post](https://go.dev/blog/slices-intro)
-# by the Go team for more details on the design and
-# implementation of slices in Go.
+# Go'da slice'larning dizayni va amalga oshirilishi haqida
+# batafsil ma'lumot uchun Go jamoasining bu [ajoyib blog
+# postini](https://go.dev/blog/slices-intro) ko'rib chiqing.
 
-# Now that we've seen arrays and slices we'll look at
-# Go's other key builtin data structure: maps.
+# Endi massivlar va slice'larni ko'rganimizdan so'ng, Go'ning
+# yana bir asosiy o'rnatilgan ma'lumotlar tuzilmasi: maplarni
+# ko'rib chiqamiz.

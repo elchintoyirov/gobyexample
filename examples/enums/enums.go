@@ -1,21 +1,21 @@
-// _Enumerated types_ (enums) are a special case of
-// [sum types](https://en.wikipedia.org/wiki/Algebraic_data_type).
-// An enum is a type that has a fixed number of possible
-// values, each with a distinct name. Go doesn't have an
-// enum type as a distinct language feature, but enums
-// are simple to implement using existing language idioms.
+// _Sanab o'tilgan tiplar_ (enumlar) [sum
+// tiplar](https://en.wikipedia.org/wiki/Algebraic_data_type)ning maxsus holatidir.
+// Enum bu cheklangan miqdordagi mumkin bo'lgan qiymatlarga ega tip bo'lib,
+// ularning har biri alohida nomga ega. Go'da enum tipi alohida til
+// xususiyati sifatida mavjud emas, biroq enumlarni mavjud til
+// idiomalaridan foydalanib amalga oshirish oson.
 
 package main
 
 import "fmt"
 
-// Our enum type `ServerState` has an underlying `int` type.
+// Bizning `ServerState` enum tipimiz asosida `int` tipiga ega.
 type ServerState int
 
-// The possible values for `ServerState` are defined as
-// constants. The special keyword [iota](https://go.dev/ref/spec#Iota)
-// generates successive constant values automatically; in this
-// case 0, 1, 2 and so on.
+// `ServerState` uchun mumkin bo'lgan qiymatlar konstantalar
+// sifatida aniqlanadi. Maxsus kalit so'z [iota](https://go.dev/ref/spec#Iota)
+// ketma-ket konstanta qiymatlarni avtomatik ravishda hosil qiladi; bu
+// holatda 0, 1, 2 va hokazo.
 const (
 	StateIdle ServerState = iota
 	StateConnected
@@ -23,15 +23,15 @@ const (
 	StateRetrying
 )
 
-// By implementing the [fmt.Stringer](https://pkg.go.dev/fmt#Stringer)
-// interface, values of `ServerState` can be printed out or converted
-// to strings.
+// [fmt.Stringer](https://pkg.go.dev/fmt#Stringer) interfeysini amalga
+// oshirish orqali `ServerState` qiymatlarini chop etish yoki satrlarga
+// aylantirish mumkin.
 //
-// This can get cumbersome if there are many possible values. In such
-// cases the [stringer tool](https://pkg.go.dev/golang.org/x/tools/cmd/stringer)
-// can be used in conjunction with `go:generate` to automate the
-// process. See [this post](https://eli.thegreenplace.net/2021/a-comprehensive-guide-to-go-generate)
-// for a longer explanation.
+// Agar mumkin bo'lgan qiymatlar ko'p bo'lsa, bu noqulay bo'lib qolishi
+// mumkin. Bunday holatlarda jarayonni avtomatlashtirish uchun [stringer
+// vositasi](https://pkg.go.dev/golang.org/x/tools/cmd/stringer) `go:generate`
+// bilan birgalikda ishlatilishi mumkin. Batafsil tushuntirish uchun [bu
+// post](https://eli.thegreenplace.net/2021/a-comprehensive-guide-to-go-generate)ni ko'ring.
 var stateName = map[ServerState]string{
 	StateIdle:      "idle",
 	StateConnected: "connected",
@@ -46,24 +46,23 @@ func (ss ServerState) String() string {
 func main() {
 	ns := transition(StateIdle)
 	fmt.Println(ns)
-	// If we have a value of type `int`, we cannot pass it to `transition` - the
-	// compiler will complain about type mismatch. This provides some degree of
-	// compile-time type safety for enums.
+	// Agar bizda `int` tipidagi qiymat bo'lsa, uni `transition` ga uzata
+	// olmaymiz - kompilyator tip mosligi yo'qligidan shikoyat qiladi. Bu
+	// enumlar uchun ma'lum darajada kompilyatsiya vaqtidagi tip xavfsizligini ta'minlaydi.
 
 	ns2 := transition(ns)
 	fmt.Println(ns2)
 }
 
-// transition emulates a state transition for a
-// server; it takes the existing state and returns
-// a new state.
+// transition server uchun holat o'tishini emulyatsiya qiladi;
+// u mavjud holatni qabul qiladi va yangi holatni qaytaradi.
 func transition(s ServerState) ServerState {
 	switch s {
 	case StateIdle:
 		return StateConnected
 	case StateConnected, StateRetrying:
-		// Suppose we check some predicates here to
-		// determine the next state...
+		// Faraz qilaylik, keyingi holatni aniqlash uchun bu yerda
+		// biror predikatlarni tekshiramiz...
 		return StateIdle
 	case StateError:
 		return StateError

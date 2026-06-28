@@ -1,9 +1,10 @@
-// The primary mechanism for managing state in Go is
-// communication over channels. We saw this for example
-// with [worker pools](worker-pools). There are a few other
-// options for managing state though. Here we'll
-// look at using the `sync/atomic` package for _atomic
-// counters_ accessed by multiple goroutines.
+// Go'da holatni boshqarishning asosiy mexanizmi kanallar
+// orqali aloqa qilishdir. Buni biz, masalan,
+// [worker pools](worker-pools) misolida ko'rgan edik. Ammo
+// holatni boshqarishning yana bir nechta usullari mavjud.
+// Bu yerda biz bir nechta goroutinalar tomonidan
+// foydalaniladigan _atomik hisoblagichlar_ uchun
+// `sync/atomic` paketidan foydalanishni ko'rib chiqamiz.
 
 package main
 
@@ -15,30 +16,31 @@ import (
 
 func main() {
 
-	// We'll use an atomic integer type to represent our
-	// (always-positive) counter.
+	// (Har doim musbat bo'lgan) hisoblagichimizni ifodalash
+	// uchun atomik butun son tipidan foydalanamiz.
 	var ops atomic.Uint64
 
-	// A WaitGroup will help us wait for all goroutines
-	// to finish their work.
+	// WaitGroup barcha goroutinalar o'z ishlarini
+	// tugatishini kutishimizga yordam beradi.
 	var wg sync.WaitGroup
 
-	// We'll start 50 goroutines that each increment the
-	// counter exactly 1000 times.
+	// Biz 50 ta goroutina ishga tushiramiz, ularning har biri
+	// hisoblagichni aniq 1000 marta oshiradi.
 	for range 50 {
 		wg.Go(func() {
 			for range 1000 {
-				// To atomically increment the counter we use `Add`.
+				// Hisoblagichni atomik tarzda oshirish uchun `Add`dan foydalanamiz.
 				ops.Add(1)
 			}
 		})
 	}
 
-	// Wait until all the goroutines are done.
+	// Barcha goroutinalar tugaguncha kutamiz.
 	wg.Wait()
 
-	// Here no goroutines are writing to 'ops', but using
-	// `Load` it's safe to atomically read a value even while
-	// other goroutines are (atomically) updating it.
+	// Bu yerda hech qaysi goroutina 'ops'ga yozmayapti, lekin
+	// `Load` yordamida boshqa goroutinalar uni (atomik tarzda)
+	// yangilab turgan paytda ham qiymatni atomik tarzda
+	// xavfsiz o'qish mumkin.
 	fmt.Println("ops:", ops.Load())
 }

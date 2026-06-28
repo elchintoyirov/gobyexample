@@ -30,8 +30,7 @@
         
         <tr>
           <td class="docs">
-            <p>Branching with <code>if</code> and <code>else</code> in Go is
-straight-forward.</p>
+            <p>Go&rsquo;da <code>if</code> va <code>else</code> bilan tarmoqlanish oddiy.</p>
 
           </td>
           <td class="code empty leading">
@@ -45,7 +44,7 @@ straight-forward.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/RKgKzCe7qcF"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/CIwZbr6IQoD"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -72,7 +71,7 @@ straight-forward.</p>
         
         <tr>
           <td class="docs">
-            <p>Here&rsquo;s a basic example.</p>
+            <p>Mana oddiy misol.</p>
 
           </td>
           <td class="code leading">
@@ -87,7 +86,7 @@ straight-forward.</p>
         
         <tr>
           <td class="docs">
-            <p>You can have an <code>if</code> statement without an else.</p>
+            <p>Else&rsquo;siz <code>if</code> operatoriga ega bo&rsquo;lishingiz mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -100,8 +99,8 @@ straight-forward.</p>
         
         <tr>
           <td class="docs">
-            <p>Logical operators like <code>&amp;&amp;</code> and <code>||</code> are often
-useful in conditions.</p>
+            <p><code>&amp;&amp;</code> va <code>||</code> kabi mantiqiy operatorlar ko&rsquo;pincha
+shartlarda foydali bo&rsquo;ladi.</p>
 
           </td>
           <td class="code leading">
@@ -114,9 +113,9 @@ useful in conditions.</p>
         
         <tr>
           <td class="docs">
-            <p>A statement can precede conditionals; any variables
-declared in this statement are available in the current
-and all subsequent branches.</p>
+            <p>Operator shartlardan oldin kelishi mumkin; ushbu
+operatorda e&rsquo;lon qilingan har qanday o&rsquo;zgaruvchilar
+joriy va keyingi barcha tarmoqlarda mavjud bo&rsquo;ladi.</p>
 
           </td>
           <td class="code leading">
@@ -134,8 +133,8 @@ and all subsequent branches.</p>
         
         <tr>
           <td class="docs">
-            <p>Note that you don&rsquo;t need parentheses around conditions
-in Go, but that the braces are required.</p>
+            <p>E&rsquo;tibor bering, Go&rsquo;da shartlar atrofida qavslar kerak
+emas, lekin jingalak qavslar talab qilinadi.</p>
 
           </td>
           <td class="code empty">
@@ -164,9 +163,9 @@ in Go, but that the braces are required.</p>
         
         <tr>
           <td class="docs">
-            <p>There is no <a href="https://en.wikipedia.org/wiki/%3F:">ternary if</a>
-in Go, so you&rsquo;ll need to use a full <code>if</code> statement even
-for basic conditions.</p>
+            <p>Go&rsquo;da <a href="https://en.wikipedia.org/wiki/%3F:">uchlik if</a>
+yo&rsquo;q, shuning uchun oddiy shartlar uchun ham to&rsquo;liq <code>if</code>
+operatoridan foydalanishingiz kerak bo&rsquo;ladi.</p>
 
           </td>
           <td class="code empty">
@@ -179,12 +178,12 @@ for basic conditions.</p>
       
       
       <p class="next">
-        Next example: <a href="switch" rel="next">Switch</a>.
+        Keyingi misol: <a href="switch" rel="next">Switch</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

@@ -30,8 +30,9 @@
         
         <tr>
           <td class="docs">
-            <p><em>Slices</em> are an important data type in Go, giving
-a more powerful interface to sequences than arrays.</p>
+            <p>_Slice_lar Go&rsquo;da muhim ma&rsquo;lumotlar tipi bo&rsquo;lib,
+ketma-ketliklarga massivlardan ko&rsquo;ra kuchliroq interfeys
+beradi.</p>
 
           </td>
           <td class="code empty leading">
@@ -45,7 +46,7 @@ a more powerful interface to sequences than arrays.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/9-U3-8sKQun"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/SYdy-hCqiy7"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -75,10 +76,10 @@ a more powerful interface to sequences than arrays.</p>
         
         <tr>
           <td class="docs">
-            <p>Unlike arrays, slices are typed only by the
-elements they contain (not the number of elements).
-An uninitialized slice equals to nil and has
-length 0.</p>
+            <p>Massivlardan farqli o&rsquo;laroq, slice&rsquo;lar faqat o&rsquo;zlari
+saqlaydigan elementlar bilan tiplanadi (elementlar soni
+bilan emas). Initsializatsiya qilinmagan slice nilga teng
+va uzunligi 0.</p>
 
           </td>
           <td class="code leading">
@@ -90,13 +91,13 @@ length 0.</p>
         
         <tr>
           <td class="docs">
-            <p>To create a slice with non-zero length, use
-the builtin <code>make</code>. Here we make a slice of
-<code>string</code>s of length <code>3</code> (initially zero-valued).
-By default a new slice&rsquo;s capacity is equal to its
-length; if we know the slice is going to grow ahead
-of time, it&rsquo;s possible to pass a capacity explicitly
-as an additional parameter to <code>make</code>.</p>
+            <p>Nolga teng bo&rsquo;lmagan uzunlikdagi slice yaratish uchun
+o&rsquo;rnatilgan <code>make</code>dan foydalaning. Bu yerda biz uzunligi
+<code>3</code> bo&rsquo;lgan <code>string</code>lar slice&rsquo;ini yaratamiz (dastlab nol
+qiymatli). Standart holatda yangi slice&rsquo;ning sig&rsquo;imi uning
+uzunligiga teng; agar slice oldindan o&rsquo;sishini bilsak,
+<code>make</code>ga qo&rsquo;shimcha parametr sifatida sig&rsquo;imni oshkora
+berish mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -108,7 +109,7 @@ as an additional parameter to <code>make</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>We can set and get just like with arrays.</p>
+            <p>Massivlardagi kabi qiymatlarni o&rsquo;rnatish va olishimiz mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -123,7 +124,7 @@ as an additional parameter to <code>make</code>.</p>
         
         <tr>
           <td class="docs">
-            <p><code>len</code> returns the length of the slice as expected.</p>
+            <p><code>len</code> kutilganidek slice uzunligini qaytaradi.</p>
 
           </td>
           <td class="code leading">
@@ -134,12 +135,13 @@ as an additional parameter to <code>make</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>In addition to these basic operations, slices
-support several more that make them richer than
-arrays. One is the builtin <code>append</code>, which
-returns a slice containing one or more new values.
-Note that we need to accept a return value from
-<code>append</code> as we may get a new slice value.</p>
+            <p>Bu asosiy operatsiyalardan tashqari, slice&rsquo;lar ularni
+massivlardan boyroq qiladigan yana bir nechtasini
+qo&rsquo;llab-quvvatlaydi. Ulardan biri o&rsquo;rnatilgan <code>append</code>
+bo&rsquo;lib, u bir yoki bir nechta yangi qiymatni o&rsquo;z ichiga
+olgan slice qaytaradi. E&rsquo;tibor bering, yangi slice qiymati
+olishimiz mumkinligi sababli <code>append</code>dan qaytadigan
+qiymatni qabul qilishimiz kerak.</p>
 
           </td>
           <td class="code leading">
@@ -152,9 +154,9 @@ Note that we need to accept a return value from
         
         <tr>
           <td class="docs">
-            <p>Slices can also be <code>copy</code>&rsquo;d. Here we create an
-empty slice <code>c</code> of the same length as <code>s</code> and copy
-into <code>c</code> from <code>s</code>.</p>
+            <p>Slice&rsquo;lar <code>copy</code> ham qilinishi mumkin. Bu yerda biz <code>s</code>
+bilan bir xil uzunlikdagi bo&rsquo;sh <code>c</code> slice&rsquo;ini yaratamiz va
+<code>s</code>dan <code>c</code>ga nusxalaymiz.</p>
 
           </td>
           <td class="code leading">
@@ -167,9 +169,9 @@ into <code>c</code> from <code>s</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>Slices support a &ldquo;slice&rdquo; operator with the syntax
-<code>slice[low:high]</code>. For example, this gets a slice
-of the elements <code>s[2]</code>, <code>s[3]</code>, and <code>s[4]</code>.</p>
+            <p>Slice&rsquo;lar <code>slice[low:high]</code> sintaksisi bilan &ldquo;slice&rdquo;
+operatorini qo&rsquo;llab-quvvatlaydi. Masalan, bu <code>s[2]</code>,
+<code>s[3]</code> va <code>s[4]</code> elementlarining slice&rsquo;ini oladi.</p>
 
           </td>
           <td class="code leading">
@@ -181,7 +183,7 @@ of the elements <code>s[2]</code>, <code>s[3]</code>, and <code>s[4]</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>This slices up to (but excluding) <code>s[5]</code>.</p>
+            <p>Bu <code>s[5]</code>gacha (lekin uni o&rsquo;z ichiga olmagan holda) slice qiladi.</p>
 
           </td>
           <td class="code leading">
@@ -193,7 +195,7 @@ of the elements <code>s[2]</code>, <code>s[3]</code>, and <code>s[4]</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>And this slices up from (and including) <code>s[2]</code>.</p>
+            <p>Va bu <code>s[2]</code>dan (uni o&rsquo;z ichiga olgan holda) slice qiladi.</p>
 
           </td>
           <td class="code leading">
@@ -205,8 +207,8 @@ of the elements <code>s[2]</code>, <code>s[3]</code>, and <code>s[4]</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>We can declare and initialize a variable for slice
-in a single line as well.</p>
+            <p>Slice uchun o&rsquo;zgaruvchini bir qatorda e&rsquo;lon qilib,
+initsializatsiya ham qila olamiz.</p>
 
           </td>
           <td class="code leading">
@@ -218,8 +220,8 @@ in a single line as well.</p>
         
         <tr>
           <td class="docs">
-            <p>The <code>slices</code> package contains a number of useful
-utility functions for slices.</p>
+            <p><code>slices</code> paketi slice&rsquo;lar uchun bir qancha foydali
+yordamchi funksiyalarni o&rsquo;z ichiga oladi.</p>
 
           </td>
           <td class="code leading">
@@ -233,9 +235,10 @@ utility functions for slices.</p>
         
         <tr>
           <td class="docs">
-            <p>Slices can be composed into multi-dimensional data
-structures. The length of the inner slices can
-vary, unlike with multi-dimensional arrays.</p>
+            <p>Slice&rsquo;lar ko&rsquo;p o&rsquo;lchovli ma&rsquo;lumotlar tuzilmalariga
+birlashtirilishi mumkin. Ko&rsquo;p o&rsquo;lchovli massivlardan
+farqli o&rsquo;laroq, ichki slice&rsquo;larning uzunligi har xil
+bo&rsquo;lishi mumkin.</p>
 
           </td>
           <td class="code">
@@ -259,8 +262,9 @@ vary, unlike with multi-dimensional arrays.</p>
         
         <tr>
           <td class="docs">
-            <p>Note that while slices are different types than arrays,
-they are rendered similarly by <code>fmt.Println</code>.</p>
+            <p>E&rsquo;tibor bering, slice&rsquo;lar massivlardan boshqa tip
+bo&rsquo;lsa-da, ular <code>fmt.Println</code> tomonidan o&rsquo;xshash tarzda
+tasvirlanadi.</p>
 
           </td>
           <td class="code leading">
@@ -284,9 +288,9 @@ they are rendered similarly by <code>fmt.Println</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>Check out this <a href="https://go.dev/blog/slices-intro">great blog post</a>
-by the Go team for more details on the design and
-implementation of slices in Go.</p>
+            <p>Go&rsquo;da slice&rsquo;larning dizayni va amalga oshirilishi haqida
+batafsil ma&rsquo;lumot uchun Go jamoasining bu <a href="https://go.dev/blog/slices-intro">ajoyib blog
+postini</a> ko&rsquo;rib chiqing.</p>
 
           </td>
           <td class="code empty leading">
@@ -297,8 +301,9 @@ implementation of slices in Go.</p>
         
         <tr>
           <td class="docs">
-            <p>Now that we&rsquo;ve seen arrays and slices we&rsquo;ll look at
-Go&rsquo;s other key builtin data structure: maps.</p>
+            <p>Endi massivlar va slice&rsquo;larni ko&rsquo;rganimizdan so&rsquo;ng, Go&rsquo;ning
+yana bir asosiy o&rsquo;rnatilgan ma&rsquo;lumotlar tuzilmasi: maplarni
+ko&rsquo;rib chiqamiz.</p>
 
           </td>
           <td class="code empty">
@@ -311,12 +316,12 @@ Go&rsquo;s other key builtin data structure: maps.</p>
       
       
       <p class="next">
-        Next example: <a href="maps" rel="next">Maps</a>.
+        Keyingi misol: <a href="maps" rel="next">Maps</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

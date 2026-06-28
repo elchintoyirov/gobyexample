@@ -1,5 +1,5 @@
-// Sometimes our Go programs need to spawn other
-// processes.
+// Ba'zan Go dasturlarimiz boshqa jarayonlarni ishga
+// tushirishi kerak bo'ladi.
 
 package main
 
@@ -12,16 +12,16 @@ import (
 
 func main() {
 
-	// We'll start with a simple command that takes no
-	// arguments or input and just prints something to
-	// stdout. The `exec.Command` helper creates an object
-	// to represent this external process.
+	// Hech qanday argument yoki kirish olmaydigan va shunchaki
+	// stdoutga biror narsa chop etadigan oddiy buyruq bilan
+	// boshlaymiz. `exec.Command` yordamchisi bu tashqi
+	// jarayonni ifodalash uchun obyekt yaratadi.
 	dateCmd := exec.Command("date")
 
-	// The `Output` method runs the command, waits for it
-	// to finish and collects its standard output.
-	//  If there were no errors, `dateOut` will hold bytes
-	// with the date info.
+	// `Output` metodi buyruqni ishga tushiradi, uning tugashini
+	// kutadi va uning standart chiqishini to'playdi. Agar
+	// xatolar bo'lmasa, `dateOut` sana ma'lumotini o'z ichiga
+	// olgan baytlarni saqlaydi.
 	dateOut, err := dateCmd.Output()
 	if err != nil {
 		panic(err)
@@ -29,11 +29,11 @@ func main() {
 	fmt.Println("> date")
 	fmt.Println(string(dateOut))
 
-	// `Output` and other methods of `Command` will return
-	// `*exec.Error` if there was a problem executing the
-	// command (e.g. wrong path), and `*exec.ExitError`
-	// if the command ran but exited with a non-zero return
-	// code.
+	// `Output` va `Command`ning boshqa metodlari buyruqni
+	// bajarishda muammo bo'lsa (masalan, noto'g'ri yo'l)
+	// `*exec.Error`ni, va buyruq ishlagan, lekin nolga teng
+	// bo'lmagan qaytarish kodi bilan chiqqan bo'lsa
+	// `*exec.ExitError`ni qaytaradi.
 	_, err = exec.Command("date", "-x").Output()
 	if err != nil {
 		if e, ok := errors.AsType[*exec.Error](err); ok {
@@ -46,15 +46,15 @@ func main() {
 		}
 	}
 
-	// Next we'll look at a slightly more involved case
-	// where we pipe data to the external process on its
-	// `stdin` and collect the results from its `stdout`.
+	// Keyin biz tashqi jarayonning `stdin`iga ma'lumotlarni
+	// uzatadigan va uning `stdout`idan natijalarni
+	// yig'adigan biroz murakkabroq holatni ko'rib chiqamiz.
 	grepCmd := exec.Command("grep", "hello")
 
-	// Here we explicitly grab input/output pipes, start
-	// the process, write some input to it, read the
-	// resulting output, and finally wait for the process
-	// to exit.
+	// Bu yerda kirish/chiqish pipe'larini oshkora olamiz,
+	// jarayonni ishga tushiramiz, unga biroz kirish yozamiz,
+	// natijaviy chiqishni o'qiymiz va nihoyat jarayonning
+	// chiqishini kutamiz.
 	grepIn, _ := grepCmd.StdinPipe()
 	grepOut, _ := grepCmd.StdoutPipe()
 	grepCmd.Start()
@@ -63,20 +63,21 @@ func main() {
 	grepBytes, _ := io.ReadAll(grepOut)
 	grepCmd.Wait()
 
-	// We omitted error checks in the above example, but
-	// you could use the usual `if err != nil` pattern for
-	// all of them. We also only collect the `StdoutPipe`
-	// results, but you could collect the `StderrPipe` in
-	// exactly the same way.
+	// Yuqoridagi misolda xatolarni tekshirishni tashlab
+	// ketdik, lekin ularning barchasi uchun odatdagi
+	// `if err != nil` patternidan foydalanishingiz mumkin.
+	// Shuningdek, biz faqat `StdoutPipe` natijalarini yig'amiz,
+	// lekin `StderrPipe`ni ham xuddi shunday yig'ishingiz
+	// mumkin.
 	fmt.Println("> grep hello")
 	fmt.Println(string(grepBytes))
 
-	// Note that when spawning commands we need to
-	// provide an explicitly delineated command and
-	// argument array, vs. being able to just pass in one
-	// command-line string. If you want to spawn a full
-	// command with a string, you can use `bash`'s `-c`
-	// option:
+	// E'tibor bering, buyruqlarni ishga tushirganda bitta
+	// buyruq qatori satrini berishimiz emas, balki oshkora
+	// ajratilgan buyruq va argument massivini berishimiz
+	// kerak. Agar satr bilan to'liq buyruqni ishga tushirishni
+	// xohlasangiz, `bash`ning `-c` opsiyasidan foydalanishingiz
+	// mumkin:
 	lsCmd := exec.Command("bash", "-c", "ls -a -l -h")
 	lsOut, err := lsCmd.Output()
 	if err != nil {

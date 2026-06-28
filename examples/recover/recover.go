@@ -1,41 +1,41 @@
-// Go makes it possible to _recover_ from a panic, by
-// using the `recover` built-in function. A `recover` can
-// stop a `panic` from aborting the program and let it
-// continue with execution instead.
+// Go `recover` o'rnatilgan funksiyasidan foydalanib,
+// panikadan _tiklash_ imkonini beradi. `recover` `panic`ning
+// dasturni to'xtatishidan saqlab, uning o'rniga bajarilishni
+// davom ettirishga imkon beradi.
 
-// An example of where this can be useful: a server
-// wouldn't want to crash if one of the client connections
-// exhibits a critical error. Instead, the server would
-// want to close that connection and continue serving
-// other clients. In fact, this is what Go's `net/http`
-// does by default for HTTP servers.
+// Bu qayerda foydali bo'lishiga misol: server mijoz
+// ulanishlaridan biri kritik xato chiqarsa, ishdan chiqishni
+// xohlamaydi. Buning o'rniga, server o'sha ulanishni yopib,
+// boshqa mijozlarga xizmat ko'rsatishni davom ettirishni
+// xohlaydi. Aslida, Go'ning `net/http`si HTTP serverlar uchun
+// standart holatda shunday qiladi.
 
 package main
 
 import "fmt"
 
-// This function panics.
+// Bu funksiya panika qiladi.
 func mayPanic() {
 	panic("a problem")
 }
 
 func main() {
-	// `recover` must be called within a deferred function.
-	// When the enclosing function panics, the defer will
-	// activate and a `recover` call within it will catch
-	// the panic.
+	// `recover` kechiktirilgan funksiya ichida chaqirilishi
+	// kerak. O'rab turuvchi funksiya panika qilganda, defer
+	// faollashadi va uning ichidagi `recover` chaqiruvi
+	// panikani ushlaydi.
 	defer func() {
 		if r := recover(); r != nil {
-			// The return value of `recover` is the error raised in
-			// the call to `panic`.
+			// `recover`ning qaytaradigan qiymati `panic`
+			// chaqiruvida ko'tarilgan xatodir.
 			fmt.Println("Recovered. Error:\n", r)
 		}
 	}()
 
 	mayPanic()
 
-	// This code will not run, because `mayPanic` panics.
-	// The execution of `main` stops at the point of the
-	// panic and resumes in the deferred closure.
+	// Bu kod ishlamaydi, chunki `mayPanic` panika qiladi.
+	// `main`ning bajarilishi panika nuqtasida to'xtaydi va
+	// kechiktirilgan closure ichida qayta tiklanadi.
 	fmt.Println("After mayPanic()")
 }

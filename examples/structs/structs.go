@@ -1,23 +1,23 @@
-// Go's _structs_ are typed collections of fields.
-// They're useful for grouping data together to form
-// records.
+// Go'ning _struct_'lari maydonlarning tiplangan to'plamidir.
+// Ular yozuvlarni hosil qilish uchun ma'lumotlarni birga
+// guruhlashda foydalidir.
 
 package main
 
 import "fmt"
 
-// This `person` struct type has `name` and `age` fields.
+// Bu `person` struct tipi `name` va `age` maydonlariga ega.
 type person struct {
 	name string
 	age  int
 }
 
-// `newPerson` constructs a new person struct with the given name.
+// `newPerson` berilgan nom bilan yangi person struct'ini tuzadi.
 func newPerson(name string) *person {
-	// Go is a garbage collected language; you can safely
-	// return a pointer to a local variable - it will only
-	// be cleaned up by the garbage collector when there
-	// are no active references to it.
+	// Go axlatni yig'uvchili (garbage collected) til; siz lokal
+	// o'zgaruvchiga ko'rsatkichni xavfsiz qaytarishingiz mumkin -
+	// u faqat unga faol murojaatlar qolmaganda axlat yig'uvchi
+	// tomonidan tozalanadi.
 	p := person{name: name}
 	p.age = 42
 	return &p
@@ -25,38 +25,40 @@ func newPerson(name string) *person {
 
 func main() {
 
-	// This syntax creates a new struct.
+	// Bu sintaksis yangi struct yaratadi.
 	fmt.Println(person{"Bob", 20})
 
-	// You can name the fields when initializing a struct.
+	// Struct'ni ishga tushirishda maydonlarni nomlashingiz mumkin.
 	fmt.Println(person{name: "Alice", age: 30})
 
-	// Omitted fields will be zero-valued.
+	// Tashlab ketilgan maydonlar nol qiymatga ega bo'ladi.
 	fmt.Println(person{name: "Fred"})
 
-	// An `&` prefix yields a pointer to the struct.
+	// `&` prefiksi struct'ga ko'rsatkichni beradi.
 	fmt.Println(&person{name: "Ann", age: 40})
 
-	// It's idiomatic to encapsulate new struct creation in constructor functions
+	// Yangi struct yaratishni konstruktor funksiyalarda qamrab olish odatiy holdir
 	fmt.Println(newPerson("Jon"))
 
-	// Access struct fields with a dot.
+	// Struct maydonlariga nuqta orqali murojaat qiling.
 	s := person{name: "Sean", age: 50}
 	fmt.Println(s.name)
 
-	// You can also use dots with struct pointers - the
-	// pointers are automatically dereferenced.
+	// Siz nuqtalardan struct ko'rsatkichlari bilan ham
+	// foydalanishingiz mumkin - ko'rsatkichlar avtomatik ravishda
+	// dereferens qilinadi.
 	sp := &s
 	fmt.Println(sp.age)
 
-	// Structs are mutable.
+	// Struct'lar o'zgaruvchan (mutable).
 	sp.age = 51
 	fmt.Println(sp.age)
 
-	// If a struct type is only used for a single value, we don't
-	// have to give it a name. The value can have an anonymous
-	// struct type. This technique is commonly used for
-	// [table-driven tests](testing-and-benchmarking).
+	// Agar struct tipi faqat bitta qiymat uchun ishlatilsa, biz
+	// unga nom berishimiz shart emas. Qiymat anonim struct tipiga
+	// ega bo'lishi mumkin. Bu uslub ko'pincha
+	// [jadvalga asoslangan testlar](testing-and-benchmarking)
+	// uchun ishlatiladi.
 	dog := struct {
 		name   string
 		isGood bool

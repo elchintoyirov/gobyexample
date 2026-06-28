@@ -30,9 +30,9 @@
         
         <tr>
           <td class="docs">
-            <p>Go&rsquo;s <em>structs</em> are typed collections of fields.
-They&rsquo;re useful for grouping data together to form
-records.</p>
+            <p>Go&rsquo;ning <em>struct</em>&lsquo;lari maydonlarning tiplangan to&rsquo;plamidir.
+Ular yozuvlarni hosil qilish uchun ma&rsquo;lumotlarni birga
+guruhlashda foydalidir.</p>
 
           </td>
           <td class="code empty leading">
@@ -46,7 +46,7 @@ records.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/56SPo-L2nMN"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/iI9Jt_TRqA1"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -63,7 +63,7 @@ records.</p>
         
         <tr>
           <td class="docs">
-            <p>This <code>person</code> struct type has <code>name</code> and <code>age</code> fields.</p>
+            <p>Bu <code>person</code> struct tipi <code>name</code> va <code>age</code> maydonlariga ega.</p>
 
           </td>
           <td class="code leading">
@@ -77,7 +77,7 @@ records.</p>
         
         <tr>
           <td class="docs">
-            <p><code>newPerson</code> constructs a new person struct with the given name.</p>
+            <p><code>newPerson</code> berilgan nom bilan yangi person struct&rsquo;ini tuzadi.</p>
 
           </td>
           <td class="code leading">
@@ -88,10 +88,10 @@ records.</p>
         
         <tr>
           <td class="docs">
-            <p>Go is a garbage collected language; you can safely
-return a pointer to a local variable - it will only
-be cleaned up by the garbage collector when there
-are no active references to it.</p>
+            <p>Go axlatni yig&rsquo;uvchili (garbage collected) til; siz lokal
+o&rsquo;zgaruvchiga ko&rsquo;rsatkichni xavfsiz qaytarishingiz mumkin -
+u faqat unga faol murojaatlar qolmaganda axlat yig&rsquo;uvchi
+tomonidan tozalanadi.</p>
 
           </td>
           <td class="code leading">
@@ -115,7 +115,7 @@ are no active references to it.</p>
         
         <tr>
           <td class="docs">
-            <p>This syntax creates a new struct.</p>
+            <p>Bu sintaksis yangi struct yaratadi.</p>
 
           </td>
           <td class="code leading">
@@ -126,7 +126,7 @@ are no active references to it.</p>
         
         <tr>
           <td class="docs">
-            <p>You can name the fields when initializing a struct.</p>
+            <p>Struct&rsquo;ni ishga tushirishda maydonlarni nomlashingiz mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -137,7 +137,7 @@ are no active references to it.</p>
         
         <tr>
           <td class="docs">
-            <p>Omitted fields will be zero-valued.</p>
+            <p>Tashlab ketilgan maydonlar nol qiymatga ega bo&rsquo;ladi.</p>
 
           </td>
           <td class="code leading">
@@ -148,7 +148,7 @@ are no active references to it.</p>
         
         <tr>
           <td class="docs">
-            <p>An <code>&amp;</code> prefix yields a pointer to the struct.</p>
+            <p><code>&amp;</code> prefiksi struct&rsquo;ga ko&rsquo;rsatkichni beradi.</p>
 
           </td>
           <td class="code leading">
@@ -159,7 +159,7 @@ are no active references to it.</p>
         
         <tr>
           <td class="docs">
-            <p>It&rsquo;s idiomatic to encapsulate new struct creation in constructor functions</p>
+            <p>Yangi struct yaratishni konstruktor funksiyalarda qamrab olish odatiy holdir</p>
 
           </td>
           <td class="code leading">
@@ -170,7 +170,7 @@ are no active references to it.</p>
         
         <tr>
           <td class="docs">
-            <p>Access struct fields with a dot.</p>
+            <p>Struct maydonlariga nuqta orqali murojaat qiling.</p>
 
           </td>
           <td class="code leading">
@@ -182,8 +182,9 @@ are no active references to it.</p>
         
         <tr>
           <td class="docs">
-            <p>You can also use dots with struct pointers - the
-pointers are automatically dereferenced.</p>
+            <p>Siz nuqtalardan struct ko&rsquo;rsatkichlari bilan ham
+foydalanishingiz mumkin - ko&rsquo;rsatkichlar avtomatik ravishda
+dereferens qilinadi.</p>
 
           </td>
           <td class="code leading">
@@ -195,7 +196,7 @@ pointers are automatically dereferenced.</p>
         
         <tr>
           <td class="docs">
-            <p>Structs are mutable.</p>
+            <p>Struct&rsquo;lar o&rsquo;zgaruvchan (mutable).</p>
 
           </td>
           <td class="code leading">
@@ -207,10 +208,11 @@ pointers are automatically dereferenced.</p>
         
         <tr>
           <td class="docs">
-            <p>If a struct type is only used for a single value, we don&rsquo;t
-have to give it a name. The value can have an anonymous
-struct type. This technique is commonly used for
-<a href="testing-and-benchmarking">table-driven tests</a>.</p>
+            <p>Agar struct tipi faqat bitta qiymat uchun ishlatilsa, biz
+unga nom berishimiz shart emas. Qiymat anonim struct tipiga
+ega bo&rsquo;lishi mumkin. Bu uslub ko&rsquo;pincha
+<a href="testing-and-benchmarking">jadvalga asoslangan testlar</a>
+uchun ishlatiladi.</p>
 
           </td>
           <td class="code">
@@ -254,12 +256,12 @@ struct type. This technique is commonly used for
       
       
       <p class="next">
-        Next example: <a href="methods" rel="next">Methods</a>.
+        Keyingi misol: <a href="methods" rel="next">Methods</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

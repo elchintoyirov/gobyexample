@@ -1,6 +1,6 @@
-// In Go, _variables_ are explicitly declared and used by
-// the compiler to e.g. check type-correctness of function
-// calls.
+// Go da _o'zgaruvchilar_ aniq e'lon qilinadi va kompilyator
+// tomonidan, masalan, funksiya chaqiruvlarining tip
+// to'g'riligini tekshirish uchun ishlatiladi.
 
 package main
 
@@ -8,28 +8,28 @@ import "fmt"
 
 func main() {
 
-	// `var` declares 1 or more variables.
+	// `var` 1 yoki undan ortiq o'zgaruvchilarni e'lon qiladi.
 	var a = "initial"
 	fmt.Println(a)
 
-	// You can declare multiple variables at once.
+	// Bir nechta o'zgaruvchini bir vaqtda e'lon qilishingiz mumkin.
 	var b, c int = 1, 2
 	fmt.Println(b, c)
 
-	// Go will infer the type of initialized variables.
+	// Go ishga tushirilgan o'zgaruvchilarning tipini aniqlaydi.
 	var d = true
 	fmt.Println(d)
 
-	// Variables declared without a corresponding
-	// initialization are _zero-valued_. For example, the
-	// zero value for an `int` is `0`.
+	// Mos keladigan ishga tushirishsiz e'lon qilingan
+	// o'zgaruvchilar _nol qiymatli_ bo'ladi. Masalan, `int`
+	// uchun nol qiymat `0` dir.
 	var e int
 	fmt.Println(e)
 
-	// The `:=` syntax is shorthand for declaring and
-	// initializing a variable, e.g. for
-	// `var f string = "apple"` in this case.
-	// This syntax is only available inside functions.
+	// `:=` sintaksisi o'zgaruvchini e'lon qilish va ishga
+	// tushirishning qisqartirilgan shaklidir, masalan bu
+	// holatda `var f string = "apple"` uchun. Bu sintaksis
+	// faqat funksiyalar ichida mavjud.
 	f := "apple"
 	fmt.Println(f)
 }

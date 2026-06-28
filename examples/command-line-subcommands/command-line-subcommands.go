@@ -1,9 +1,9 @@
-// Some command-line tools, like the `go` tool or `git`
-// have many *subcommands*, each with its own set of
-// flags. For example, `go build` and `go get` are two
-// different subcommands of the `go` tool.
-// The `flag` package lets us easily define simple
-// subcommands that have their own flags.
+// `go` vositasi yoki `git` kabi ba'zi buyruq qatori
+// vositalari ko'plab *subbuyruqlar*ga ega bo'ladi, ularning
+// har biri o'z bayroqlari to'plamiga ega. Masalan,
+// `go build` va `go get` `go` vositasining ikkita turli
+// subbuyrug'idir. `flag` paketi bizga o'z bayroqlariga ega
+// oddiy subbuyruqlarni osongina aniqlash imkonini beradi.
 
 package main
 
@@ -15,30 +15,31 @@ import (
 
 func main() {
 
-	// We declare a subcommand using the `NewFlagSet`
-	// function, and proceed to define new flags specific
-	// for this subcommand.
+	// Biz `NewFlagSet` funksiyasi yordamida subbuyruqni e'lon
+	// qilamiz va ushbu subbuyruqqa xos yangi bayroqlarni
+	// aniqlashga o'tamiz.
 	fooCmd := flag.NewFlagSet("foo", flag.ExitOnError)
 	fooEnable := fooCmd.Bool("enable", false, "enable")
 	fooName := fooCmd.String("name", "", "name")
 
-	// For a different subcommand we can define different
-	// supported flags.
+	// Boshqa subbuyruq uchun biz turli qo'llab-quvvatlanadigan
+	// bayroqlarni aniqlashimiz mumkin.
 	barCmd := flag.NewFlagSet("bar", flag.ExitOnError)
 	barLevel := barCmd.Int("level", 0, "level")
 
-	// The subcommand is expected as the first argument
-	// to the program.
+	// Subbuyruq dasturning birinchi argumenti sifatida
+	// kutiladi.
 	if len(os.Args) < 2 {
 		fmt.Println("expected 'foo' or 'bar' subcommands")
 		os.Exit(1)
 	}
 
-	// Check which subcommand is invoked.
+	// Qaysi subbuyruq chaqirilganini tekshiramiz.
 	switch os.Args[1] {
 
-	// For every subcommand, we parse its own flags and
-	// have access to trailing positional arguments.
+	// Har bir subbuyruq uchun biz uning o'z bayroqlarini
+	// tahlil qilamiz va oxiridagi pozitsion argumentlarga
+	// kirish imkoniga ega bo'lamiz.
 	case "foo":
 		fooCmd.Parse(os.Args[2:])
 		fmt.Println("subcommand 'foo'")

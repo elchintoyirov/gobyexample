@@ -1,7 +1,9 @@
-// Go offers built-in support for creating dynamic content or showing customized
-// output to the user with the `text/template` package. A sibling package
-// named `html/template` provides the same API but has additional security
-// features and should be used for generating HTML.
+// Go `text/template` paketi yordamida dinamik kontent yaratish
+// yoki foydalanuvchiga moslashtirilgan chiqishni ko'rsatish uchun
+// o'rnatilgan qo'llab-quvvatlashni taklif qiladi. `html/template`
+// deb nomlangan qarindosh paket xuddi shu API'ni taqdim etadi,
+// lekin qo'shimcha xavfsizlik imkoniyatlariga ega va HTML
+// generatsiya qilish uchun ishlatilishi kerak.
 
 package main
 
@@ -12,24 +14,27 @@ import (
 
 func main() {
 
-	// We can create a new template and parse its body from
-	// a string.
-	// Templates are a mix of static text and "actions" enclosed in
-	// `{{...}}` that are used to dynamically insert content.
+	// Biz yangi shablon yaratishimiz va uning tanasini satrdan
+	// tahlil qilishimiz mumkin.
+	// Shablonlar statik matn va kontentni dinamik tarzda
+	// kiritish uchun ishlatiladigan `{{...}}` ichiga olingan
+	// "amal"larning aralashmasidir.
 	t1 := template.New("t1")
 	t1, err := t1.Parse("Value is {{.}}\n")
 	if err != nil {
 		panic(err)
 	}
 
-	// Alternatively, we can use the `template.Must` function to
-	// panic in case `Parse` returns an error. This is especially
-	// useful for templates initialized in the global scope.
+	// Muqobil ravishda, biz `Parse` xato qaytargan holda panika
+	// qilish uchun `template.Must` funksiyasidan foydalanishimiz
+	// mumkin. Bu ayniqsa global qamrovda ishga tushirilgan
+	// shablonlar uchun foydalidir.
 	t1 = template.Must(t1.Parse("Value: {{.}}\n"))
 
-	// By "executing" the template we generate its text with
-	// specific values for its actions. The `{{.}}` action is
-	// replaced by the value passed as a parameter to `Execute`.
+	// Shablonni "bajarish" orqali biz uning matnini amallari
+	// uchun aniq qiymatlar bilan hosil qilamiz. `{{.}}` amali
+	// `Execute` ga parametr sifatida uzatilgan qiymat bilan
+	// almashtiriladi.
 	t1.Execute(os.Stdout, "some text")
 	t1.Execute(os.Stdout, 5)
 	t1.Execute(os.Stdout, []string{
@@ -39,38 +44,42 @@ func main() {
 		"C#",
 	})
 
-	// Helper function we'll use below.
+	// Biz quyida ishlatadigan yordamchi funksiya.
 	Create := func(name, t string) *template.Template {
 		return template.Must(template.New(name).Parse(t))
 	}
 
-	// If the data is a struct we can use the `{{.FieldName}}` action to access
-	// its fields. The fields should be exported to be accessible when a
-	// template is executing.
+	// Agar ma'lumot struct bo'lsa, biz uning maydonlariga
+	// murojaat qilish uchun `{{.FieldName}}` amalidan
+	// foydalanishimiz mumkin. Shablon bajarilayotganda murojaat
+	// qilish mumkin bo'lishi uchun maydonlar eksport qilingan
+	// bo'lishi kerak.
 	t2 := Create("t2", "Name: {{.Name}}\n")
 
 	t2.Execute(os.Stdout, struct {
 		Name string
 	}{"Jane Doe"})
 
-	// The same applies to maps; with maps there is no restriction on the
-	// case of key names.
+	// Xuddi shu narsa map'larga ham tegishli; map'larda kalit
+	// nomlarining harf registriga cheklov yo'q.
 	t2.Execute(os.Stdout, map[string]string{
 		"Name": "Mickey Mouse",
 	})
 
-	// if/else provide conditional execution for templates. A value is considered
-	// false if it's the default value of a type, such as 0, an empty string,
-	// nil pointer, etc.
-	// This sample demonstrates another
-	// feature of templates: using `-` in actions to trim whitespace.
+	// if/else shablonlar uchun shartli bajarishni ta'minlaydi.
+	// Qiymat tipning sukut qiymati bo'lsa, masalan 0, bo'sh satr,
+	// nil ko'rsatkich va hokazo, u false deb hisoblanadi.
+	// Bu namuna shablonlarning yana bir imkoniyatini namoyish
+	// etadi: bo'sh joyni kesish uchun amallarda `-` dan
+	// foydalanish.
 	t3 := Create("t3",
 		"{{if . -}} yes {{else -}} no {{end}}\n")
 	t3.Execute(os.Stdout, "not empty")
 	t3.Execute(os.Stdout, "")
 
-	// range blocks let us loop through slices, arrays, maps or channels. Inside
-	// the range block `{{.}}` is set to the current item of the iteration.
+	// range bloklari bizga slice'lar, massivlar, map'lar yoki
+	// kanallar bo'ylab aylanish imkonini beradi. range bloki
+	// ichida `{{.}}` iteratsiyaning joriy elementiga o'rnatiladi.
 	t4 := Create("t4",
 		"Range: {{range .}}{{.}} {{end}}\n")
 	t4.Execute(os.Stdout,

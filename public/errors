@@ -30,18 +30,16 @@
         
         <tr>
           <td class="docs">
-            <p>In Go it&rsquo;s idiomatic to communicate errors via an
-explicit, separate return value. This contrasts with
-the exceptions used in languages like Java, Python and
-Ruby and the overloaded single result / error value
-sometimes used in C. Go&rsquo;s approach makes it easy to
-see which functions return errors and to handle them
-using the same language constructs employed for other,
-non-error tasks.</p>
+            <p>Go&rsquo;da xatolarni oshkora, alohida qaytariladigan qiymat orqali
+uzatish idiomatik hisoblanadi. Bu Java, Python va Ruby kabi
+tillarda ishlatiladigan istisnolardan (exceptions) va C&rsquo;da ba&rsquo;zan
+ishlatiladigan ortiqcha yuklatilgan yagona natija / xato qiymatidan
+farq qiladi. Go&rsquo;ning yondashuvi qaysi funksiyalar xato qaytarishini
+ko&rsquo;rishni va ularni boshqa, xato bo&rsquo;lmagan vazifalar uchun
+qo&rsquo;llaniladigan til konstruksiyalari bilan qayta ishlashni osonlashtiradi.</p>
 
-<p>See the documentation of the <a href="https://pkg.go.dev/errors">errors package</a>
-and <a href="https://go.dev/blog/go1.13-errors">this blog post</a> for additional
-details.</p>
+<p>Qo&rsquo;shimcha tafsilotlar uchun <a href="https://pkg.go.dev/errors">errors paketi</a>
+hujjatlarini va <a href="https://go.dev/blog/go1.13-errors">ushbu blog postni</a> ko&rsquo;ring.</p>
 
           </td>
           <td class="code empty leading">
@@ -55,7 +53,7 @@ details.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/xWXAMmcrbTs"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/RcNPXTcT1fn"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -75,8 +73,8 @@ details.</p>
         
         <tr>
           <td class="docs">
-            <p>By convention, errors are the last return value and
-have type <code>error</code>, a built-in interface.</p>
+            <p>Kelishuvga ko&rsquo;ra, xatolar oxirgi qaytariladigan qiymat bo&rsquo;lib,
+o&rsquo;rnatilgan interfeys bo&rsquo;lgan <code>error</code> tipiga ega.</p>
 
           </td>
           <td class="code leading">
@@ -88,8 +86,8 @@ have type <code>error</code>, a built-in interface.</p>
         
         <tr>
           <td class="docs">
-            <p><code>errors.New</code> constructs a basic <code>error</code> value
-with the given error message.</p>
+            <p><code>errors.New</code> berilgan xato xabari bilan oddiy <code>error</code>
+qiymatini quradi.</p>
 
           </td>
           <td class="code leading">
@@ -101,8 +99,8 @@ with the given error message.</p>
         
         <tr>
           <td class="docs">
-            <p>A <code>nil</code> value in the error position indicates that
-there was no error.</p>
+            <p>Xato pozitsiyasidagi <code>nil</code> qiymat hech qanday xato
+bo&rsquo;lmaganligini bildiradi.</p>
 
           </td>
           <td class="code leading">
@@ -114,8 +112,8 @@ there was no error.</p>
         
         <tr>
           <td class="docs">
-            <p>A sentinel error is a predeclared variable that is used to
-signify a specific error condition.</p>
+            <p>Sentinel xato oldindan e&rsquo;lon qilingan o&rsquo;zgaruvchi bo&rsquo;lib,
+muayyan xato holatini bildirish uchun ishlatiladi.</p>
 
           </td>
           <td class="code leading">
@@ -140,12 +138,12 @@ signify a specific error condition.</p>
         
         <tr>
           <td class="docs">
-            <p>We can wrap errors with higher-level errors to add
-context. The simplest way to do this is with the
-<code>%w</code> verb in <code>fmt.Errorf</code>. Wrapped errors
-create a logical chain (A wraps B, which wraps C, etc.)
-that can be queried with functions like <code>errors.Is</code>
-and <code>errors.AsType</code>.</p>
+            <p>Kontekst qo&rsquo;shish uchun xatolarni yuqori darajadagi xatolar
+bilan o&rsquo;rashimiz mumkin. Buni qilishning eng oddiy usuli
+<code>fmt.Errorf</code> dagi <code>%w</code> verbidir. O&rsquo;ralgan xatolar mantiqiy
+zanjir hosil qiladi (A B&rsquo;ni o&rsquo;raydi, u esa C&rsquo;ni o&rsquo;raydi va hokazo)
+va bu zanjirni <code>errors.Is</code> hamda <code>errors.AsType</code> kabi funksiyalar
+bilan so&rsquo;rab olish mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -170,8 +168,8 @@ and <code>errors.AsType</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>It&rsquo;s idiomatic to use an inline error check in the <code>if</code>
-line.</p>
+            <p><code>if</code> qatorida ichki (inline) xato tekshiruvidan foydalanish
+idiomatik hisoblanadi.</p>
 
           </td>
           <td class="code leading">
@@ -198,10 +196,10 @@ line.</p>
         
         <tr>
           <td class="docs">
-            <p><code>errors.Is</code> checks that a given error (or any error in its chain)
-matches a specific error value. This is especially useful with wrapped or
-nested errors, allowing you to identify specific error types or sentinel
-errors in a chain of errors.</p>
+            <p><code>errors.Is</code> berilgan xato (yoki uning zanjiridagi har qanday xato)
+muayyan xato qiymatiga mos kelishini tekshiradi. Bu, ayniqsa, o&rsquo;ralgan
+yoki ichma-ich joylashgan xatolar bilan foydalidir va sizga xatolar
+zanjiridagi muayyan xato tiplari yoki sentinel xatolarni aniqlash imkonini beradi.</p>
 
           </td>
           <td class="code leading">
@@ -255,12 +253,12 @@ errors in a chain of errors.</p>
       
       
       <p class="next">
-        Next example: <a href="custom-errors" rel="next">Custom Errors</a>.
+        Keyingi misol: <a href="custom-errors" rel="next">Custom Errors</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

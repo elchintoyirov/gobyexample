@@ -13,6 +13,6 @@ loop
 3
 5
 
-# We'll see some other `for` forms later when we look at
-# `range` statements, channels, and other data
-# structures.
+# `range` operatorlari, kanallar va boshqa ma'lumotlar
+# tuzilmalarini ko'rib chiqqanimizda boshqa `for`
+# shakllarini keyinroq ko'ramiz.

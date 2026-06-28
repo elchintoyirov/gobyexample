@@ -1,7 +1,7 @@
-// _range_ iterates over elements in a variety of
-// built-in data structures. Let's see how to
-// use `range` with some of the data structures
-// we've already learned.
+// _range_ turli ichki o'rnatilgan ma'lumotlar
+// strukturalaridagi elementlar bo'ylab takrorlanadi. Keling,
+// `range` ni biz allaqachon o'rgangan ba'zi ma'lumotlar
+// strukturalari bilan qanday ishlatishni ko'rib chiqamiz.
 
 package main
 
@@ -9,8 +9,8 @@ import "fmt"
 
 func main() {
 
-	// Here we use `range` to sum the numbers in a slice.
-	// Arrays work like this too.
+	// Bu yerda biz `range` dan slice dagi sonlarni yig'ish uchun
+	// foydalanamiz. Massivlar ham xuddi shunday ishlaydi.
 	nums := []int{2, 3, 4}
 	sum := 0
 	for _, num := range nums {
@@ -18,33 +18,32 @@ func main() {
 	}
 	fmt.Println("sum:", sum)
 
-	// `range` on arrays and slices provides both the
-	// index and value for each entry. Above we didn't
-	// need the index, so we ignored it with the
-	// blank identifier `_`. Sometimes we actually want
-	// the indexes though.
+	// Massivlar va slice lardagi `range` har bir element uchun
+	// ham indeks ham qiymatni beradi. Yuqorida bizga indeks
+	// kerak emas edi, shuning uchun uni bo'sh identifikator
+	// `_` bilan e'tiborsiz qoldirdik. Biroq, ba'zan bizga
+	// indekslar haqiqatan kerak bo'ladi.
 	for i, num := range nums {
 		if num == 3 {
 			fmt.Println("index:", i)
 		}
 	}
 
-	// `range` on map iterates over key/value pairs.
+	// Map dagi `range` kalit/qiymat juftliklari bo'ylab takrorlanadi.
 	kvs := map[string]string{"a": "apple", "b": "banana"}
 	for k, v := range kvs {
 		fmt.Printf("%s -> %s\n", k, v)
 	}
 
-	// `range` can also iterate over just the keys of a map.
+	// `range` shuningdek map ning faqat kalitlari bo'ylab takrorlanishi mumkin.
 	for k := range kvs {
 		fmt.Println("key:", k)
 	}
 
-	// `range` on strings iterates over Unicode code
-	// points. The first value is the starting byte index
-	// of the `rune` and the second the `rune` itself.
-	// See [Strings and Runes](strings-and-runes) for more
-	// details.
+	// Satrlardagi `range` Unicode kod nuqtalari bo'ylab
+	// takrorlanadi. Birinchi qiymat `rune` ning boshlang'ich
+	// bayt indeksi, ikkinchisi esa `rune` ning o'zi. Batafsil
+	// ma'lumot uchun [Strings and Runes](strings-and-runes) ga qarang.
 	for i, c := range "go" {
 		fmt.Println(i, c)
 	}

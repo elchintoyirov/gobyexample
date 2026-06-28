@@ -1,8 +1,8 @@
-// We often want to execute Go code at some point in the
-// future, or repeatedly at some interval. Go's built-in
-// _timer_ and _ticker_ features make both of these tasks
-// easy. We'll look first at timers and then
-// at [tickers](tickers).
+// Biz ko'pincha Go kodini kelajakda biror nuqtada yoki
+// biror oraliqda takror-takror bajarishni xohlaymiz. Go ning
+// o'rnatilgan _taymer_ va _ticker_ imkoniyatlari bu
+// vazifalarning ikkalasini ham osonlashtiradi. Avval
+// taymerlarni, so'ngra [tickerlarni](tickers) ko'rib chiqamiz.
 
 package main
 
@@ -13,22 +13,23 @@ import (
 
 func main() {
 
-	// Timers represent a single event in the future. You
-	// tell the timer how long you want to wait, and it
-	// provides a channel that will be notified at that
-	// time. This timer will wait 2 seconds.
+	// Taymerlar kelajakdagi bitta hodisani ifodalaydi. Siz
+	// taymerga qancha kutmoqchi ekanligingizni aytasiz va u
+	// o'sha vaqtda xabar beriladigan kanalni taqdim etadi.
+	// Bu taymer 2 soniya kutadi.
 	timer1 := time.NewTimer(2 * time.Second)
 
-	// The `<-timer1.C` blocks on the timer's channel `C`
-	// until it sends a value indicating that the timer
-	// fired.
+	// `<-timer1.C` taymerning `C` kanalida taymer
+	// ishga tushganini bildiruvchi qiymat yuborilguncha
+	// bloklaydi.
 	<-timer1.C
 	fmt.Println("Timer 1 fired")
 
-	// If you just wanted to wait, you could have used
-	// `time.Sleep`. One reason a timer may be useful is
-	// that you can cancel the timer before it fires.
-	// Here's an example of that.
+	// Agar shunchaki kutmoqchi bo'lsangiz, `time.Sleep`
+	// dan foydalanishingiz mumkin edi. Taymer foydali
+	// bo'lishining bir sababi shundaki, uni ishga
+	// tushishidan oldin bekor qilishingiz mumkin.
+	// Quyida shunga misol keltirilgan.
 	timer2 := time.NewTimer(time.Second)
 	go func() {
 		<-timer2.C
@@ -39,7 +40,8 @@ func main() {
 		fmt.Println("Timer 2 stopped")
 	}
 
-	// Give the `timer2` enough time to fire, if it ever
-	// was going to, to show it is in fact stopped.
+	// `timer2` aslida to'xtatilganini ko'rsatish uchun,
+	// agar u umuman ishga tushadigan bo'lsa, unga ishga
+	// tushishga yetarli vaqt beramiz.
 	time.Sleep(2 * time.Second)
 }

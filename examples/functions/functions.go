@@ -1,32 +1,31 @@
-// _Functions_ are central in Go. We'll learn about
-// functions with a few different examples.
+// _Funksiyalar_ Go'da markaziy o'rin tutadi. Biz
+// funksiyalarni bir nechta turli misollar bilan o'rganamiz.
 
 package main
 
 import "fmt"
 
-// Here's a function that takes two `int`s and returns
-// their sum as an `int`.
+// Mana ikkita `int` qabul qilib, ularning yig'indisini
+// `int` sifatida qaytaradigan funksiya.
 func plus(a int, b int) int {
 
-	// Go requires explicit returns, i.e. it won't
-	// automatically return the value of the last
-	// expression.
+	// Go aniq `return` talab qiladi, ya'ni u oxirgi
+	// ifodaning qiymatini avtomatik ravishda qaytarmaydi.
 	return a + b
 }
 
-// When you have multiple consecutive parameters of
-// the same type, you may omit the type name for the
-// like-typed parameters up to the final parameter that
-// declares the type.
+// Bir xil tipdagi bir nechta ketma-ket parametringiz
+// bo'lsa, tipni e'lon qiladigan oxirgi parametrgacha bir
+// xil tipdagi parametrlar uchun tip nomini tushirib
+// qoldirishingiz mumkin.
 func plusPlus(a, b, c int) int {
 	return a + b + c
 }
 
 func main() {
 
-	// Call a function just as you'd expect, with
-	// `name(args)`.
+	// Funksiyani kutganingizdek, `name(args)` bilan
+	// chaqiring.
 	res := plus(1, 2)
 	fmt.Println("1+2 =", res)
 

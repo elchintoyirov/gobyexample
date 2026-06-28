@@ -30,14 +30,14 @@
         
         <tr>
           <td class="docs">
-            <p>A Go string is a read-only slice of bytes. The language
-and the standard library treat strings specially - as
-containers of text encoded in <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a>.
-In other languages, strings are made of &ldquo;characters&rdquo;.
-In Go, the concept of a character is called a <code>rune</code> - it&rsquo;s
-an integer that represents a Unicode code point.
-<a href="https://go.dev/blog/strings">This Go blog post</a> is a good
-introduction to the topic.</p>
+            <p>Go satri faqat o&rsquo;qish uchun mo&rsquo;ljallangan baytlar slice&rsquo;idir.
+Til va standart kutubxona satrlarni alohida tarzda -
+<a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a> da kodlangan
+matn konteynerlari sifatida ko&rsquo;rib chiqadi. Boshqa tillarda
+satrlar &ldquo;belgilar&rdquo;dan tashkil topadi. Go&rsquo;da belgi tushunchasi
+<code>rune</code> deb ataladi - bu Unicode kod nuqtasini ifodalovchi
+butun son. <a href="https://go.dev/blog/strings">Ushbu Go blog posti</a>
+mavzuga yaxshi kirish bo&rsquo;ladi.</p>
 
           </td>
           <td class="code empty leading">
@@ -51,7 +51,7 @@ introduction to the topic.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/-iNDXZ9IM3s"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/T2r57tBQ8kR"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -81,10 +81,9 @@ introduction to the topic.</p>
         
         <tr>
           <td class="docs">
-            <p><code>s</code> is a <code>string</code> assigned a literal value
-representing the word &ldquo;hello&rdquo; in the Thai
-language. Go string literals are UTF-8
-encoded text.</p>
+            <p><code>s</code> - bu tay tilida &ldquo;salom&rdquo; so&rsquo;zini ifodalovchi literal
+qiymat berilgan <code>string</code>. Go satr literallari UTF-8 da
+kodlangan matndir.</p>
 
           </td>
           <td class="code leading">
@@ -95,8 +94,8 @@ encoded text.</p>
         
         <tr>
           <td class="docs">
-            <p>Since strings are equivalent to <code>[]byte</code>, this
-will produce the length of the raw bytes stored within.</p>
+            <p>Satrlar <code>[]byte</code> ga ekvivalent bo&rsquo;lgani uchun, bu uning
+ichida saqlangan xom baytlar uzunligini beradi.</p>
 
           </td>
           <td class="code leading">
@@ -107,9 +106,9 @@ will produce the length of the raw bytes stored within.</p>
         
         <tr>
           <td class="docs">
-            <p>Indexing into a string produces the raw byte values at
-each index. This loop generates the hex values of all
-the bytes that constitute the code points in <code>s</code>.</p>
+            <p>Satrni indekslash har bir indeksdagi xom bayt qiymatlarini
+beradi. Bu sikl <code>s</code> dagi kod nuqtalarini tashkil etuvchi
+barcha baytlarning o&rsquo;n oltilik qiymatlarini hosil qiladi.</p>
 
           </td>
           <td class="code leading">
@@ -123,13 +122,14 @@ the bytes that constitute the code points in <code>s</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>To count how many <em>runes</em> are in a string, we can use
-the <code>utf8</code> package. Note that the run-time of
-<code>RuneCountInString</code> depends on the size of the string,
-because it has to decode each UTF-8 rune sequentially.
-Some Thai characters are represented by UTF-8 code points
-that can span multiple bytes, so the result of this count
-may be surprising.</p>
+            <p>Satrda nechta <em>runa</em> borligini sanash uchun biz <code>utf8</code>
+paketidan foydalanishimiz mumkin. E&rsquo;tibor bering,
+<code>RuneCountInString</code> ning ishlash vaqti satr o&rsquo;lchamiga
+bog&rsquo;liq, chunki u har bir UTF-8 runani ketma-ket
+dekodlashi kerak. Ba&rsquo;zi tay belgilari bir nechta baytga
+cho&rsquo;zilishi mumkin bo&rsquo;lgan UTF-8 kod nuqtalari bilan
+ifodalanadi, shuning uchun bu sanoq natijasi kutilmagan
+bo&rsquo;lishi mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -140,8 +140,8 @@ may be surprising.</p>
         
         <tr>
           <td class="docs">
-            <p>A <code>range</code> loop handles strings specially and decodes
-each <code>rune</code> along with its offset in the string.</p>
+            <p><code>range</code> sikli satrlarni alohida tarzda ishlaydi va har bir
+<code>rune</code> ni uning satrdagi siljishi bilan birga dekodlaydi.</p>
 
           </td>
           <td class="code leading">
@@ -154,8 +154,8 @@ each <code>rune</code> along with its offset in the string.</p>
         
         <tr>
           <td class="docs">
-            <p>We can achieve the same iteration by using the
-<code>utf8.DecodeRuneInString</code> function explicitly.</p>
+            <p>Biz <code>utf8.DecodeRuneInString</code> funksiyasidan oshkora
+foydalanib xuddi shu iteratsiyaga erishishimiz mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -170,7 +170,7 @@ each <code>rune</code> along with its offset in the string.</p>
         
         <tr>
           <td class="docs">
-            <p>This demonstrates passing a <code>rune</code> value to a function.</p>
+            <p>Bu funksiyaga <code>rune</code> qiymatini uzatishni namoyish etadi.</p>
 
           </td>
           <td class="code leading">
@@ -193,8 +193,9 @@ each <code>rune</code> along with its offset in the string.</p>
         
         <tr>
           <td class="docs">
-            <p>Values enclosed in single quotes are <em>rune literals</em>. We
-can compare a <code>rune</code> value to a rune literal directly.</p>
+            <p>Bittalik tirnoq ichiga olingan qiymatlar <em>runa literallari</em>
+hisoblanadi. Biz <code>rune</code> qiymatini runa literali bilan
+to&rsquo;g&rsquo;ridan-to&rsquo;g&rsquo;ri solishtirishimiz mumkin.</p>
 
           </td>
           <td class="code">
@@ -253,12 +254,12 @@ can compare a <code>rune</code> value to a rune literal directly.</p>
       
       
       <p class="next">
-        Next example: <a href="structs" rel="next">Structs</a>.
+        Keyingi misol: <a href="structs" rel="next">Structs</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

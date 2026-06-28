@@ -1,7 +1,7 @@
-// In Go, an _array_ is a numbered sequence of elements of a
-// specific length. In typical Go code, [slices](slices) are
-// much more common; arrays are useful in some special
-// scenarios.
+// Go'da _massiv_ — bu aniq uzunlikka ega bo'lgan,
+// raqamlangan elementlar ketma-ketligidir. Odatdagi Go
+// kodida [slices](slices) ancha keng tarqalgan; massivlar
+// esa ba'zi maxsus holatlarda foydali bo'ladi.
 
 package main
 
@@ -9,41 +9,44 @@ import "fmt"
 
 func main() {
 
-	// Here we create an array `a` that will hold exactly
-	// 5 `int`s. The type of elements and length are both
-	// part of the array's type. By default an array is
-	// zero-valued, which for `int`s means `0`s.
+	// Bu yerda biz aniq 5 ta `int` saqlaydigan `a` massivini
+	// yaratamiz. Elementlarning tipi ham, uzunligi ham
+	// massiv tipining bir qismidir. Standart holatda massiv
+	// nol qiymatga ega bo'ladi, bu `int`lar uchun `0`larni
+	// bildiradi.
 	var a [5]int
 	fmt.Println("emp:", a)
 
-	// We can set a value at an index using the
-	// `array[index] = value` syntax, and get a value with
-	// `array[index]`.
+	// `array[index] = value` sintaksisi yordamida indeksdagi
+	// qiymatni o'rnatishimiz, `array[index]` orqali esa
+	// qiymatni olishimiz mumkin.
 	a[4] = 100
 	fmt.Println("set:", a)
 	fmt.Println("get:", a[4])
 
-	// The builtin `len` returns the length of an array.
+	// O'rnatilgan `len` funksiyasi massivning uzunligini
+	// qaytaradi.
 	fmt.Println("len:", len(a))
 
-	// Use this syntax to declare and initialize an array
-	// in one line.
+	// Massivni bitta qatorda e'lon qilish va initsializatsiya
+	// qilish uchun ushbu sintaksisdan foydalaning.
 	b := [5]int{1, 2, 3, 4, 5}
 	fmt.Println("dcl:", b)
 
-	// You can also have the compiler count the number of
-	// elements for you with `...`
+	// Shuningdek, `...` yordamida elementlar sonini
+	// kompilyatorning o'zi hisoblashiga ham yo'l qo'yishingiz
+	// mumkin.
 	b = [...]int{1, 2, 3, 4, 5}
 	fmt.Println("dcl:", b)
 
-	// If you specify the index with `:`, the elements in
-	// between will be zeroed.
+	// Agar indeksni `:` bilan ko'rsatsangiz, oradagi
+	// elementlar nolga tenglashtiriladi.
 	b = [...]int{100, 3: 400, 500}
 	fmt.Println("idx:", b)
 
-	// Array types are one-dimensional, but you can
-	// compose types to build multi-dimensional data
-	// structures.
+	// Massiv tiplari bir o'lchamlidir, lekin tiplarni
+	// birlashtirib, ko'p o'lchamli ma'lumotlar tuzilmalarini
+	// qurishingiz mumkin.
 	var twoD [2][3]int
 	for i := range 2 {
 		for j := range 3 {
@@ -52,8 +55,8 @@ func main() {
 	}
 	fmt.Println("2d: ", twoD)
 
-	// You can create and initialize multi-dimensional
-	// arrays at once too.
+	// Ko'p o'lchamli massivlarni bir vaqtning o'zida yaratish
+	// va initsializatsiya qilish ham mumkin.
 	twoD = [2][3]int{
 		{1, 2, 3},
 		{1, 2, 3},

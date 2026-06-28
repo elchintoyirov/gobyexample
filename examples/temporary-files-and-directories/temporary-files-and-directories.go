@@ -1,8 +1,8 @@
-// Throughout program execution, we often want to create
-// data that isn't needed after the program exits.
-// *Temporary files and directories* are useful for this
-// purpose since they don't pollute the file system over
-// time.
+// Dastur bajarilishi davomida biz ko'pincha dastur chiqib
+// ketgandan keyin kerak bo'lmaydigan ma'lumotlarni yaratishni
+// xohlaymiz. *Vaqtinchalik fayllar va kataloglar* shu maqsadda
+// foydalidir, chunki ular vaqt o'tishi bilan fayl tizimini
+// ifloslantirmaydi.
 
 package main
 
@@ -20,45 +20,43 @@ func check(e error) {
 
 func main() {
 
-	// The easiest way to create a temporary file is by
-	// calling `os.CreateTemp`. It creates a file *and*
-	// opens it for reading and writing. We provide `""`
-	// as the first argument, so `os.CreateTemp` will
-	// create the file in the default location for our OS.
+	// Vaqtinchalik fayl yaratishning eng oson yo'li
+	// `os.CreateTemp` ni chaqirishdir. U fayl yaratadi *va* uni
+	// o'qish va yozish uchun ochadi. Biz birinchi argument
+	// sifatida `""` beramiz, shuning uchun `os.CreateTemp` faylni
+	// OS'imiz uchun sukut bo'yicha joyda yaratadi.
 	f, err := os.CreateTemp("", "sample")
 	check(err)
 
-	// Display the name of the temporary file. On
-	// Unix-based OSes the directory will likely be `/tmp`.
-	// The file name starts with the prefix given as the
-	// second argument to `os.CreateTemp` and the rest
-	// is chosen automatically to ensure that concurrent
-	// calls will always create different file names.
+	// Vaqtinchalik faylning nomini ko'rsating. Unix asosidagi
+	// OS'larda katalog ehtimol `/tmp` bo'ladi. Fayl nomi
+	// `os.CreateTemp` ga ikkinchi argument sifatida berilgan
+	// prefiks bilan boshlanadi, qolgan qismi esa bir vaqtning
+	// o'zidagi chaqiruvlar har doim turli xil fayl nomlarini
+	// yaratishini ta'minlash uchun avtomatik tanlanadi.
 	fmt.Println("Temp file name:", f.Name())
 
-	// Clean up the file after we're done. The OS is
-	// likely to clean up temporary files by itself after
-	// some time, but it's good practice to do this
-	// explicitly.
+	// Ishimiz tugagandan keyin faylni tozalang. OS ehtimol bir
+	// muncha vaqtdan keyin vaqtinchalik fayllarni o'zi tozalaydi,
+	// lekin buni oshkora bajarish yaxshi amaliyotdir.
 	defer os.Remove(f.Name())
 
-	// We can write some data to the file.
+	// Biz faylga bir oz ma'lumot yozishimiz mumkin.
 	_, err = f.Write([]byte{1, 2, 3, 4})
 	check(err)
 
-	// If we intend to write many temporary files, we may
-	// prefer to create a temporary *directory*.
-	// `os.MkdirTemp`'s arguments are the same as
-	// `CreateTemp`'s, but it returns a directory *name*
-	// rather than an open file.
+	// Agar biz ko'plab vaqtinchalik fayllar yozmoqchi bo'lsak,
+	// vaqtinchalik *katalog* yaratishni afzal ko'rishimiz mumkin.
+	// `os.MkdirTemp` ning argumentlari `CreateTemp` ningidek, lekin
+	// u ochiq fayl o'rniga katalog *nomini* qaytaradi.
 	dname, err := os.MkdirTemp("", "sampledir")
 	check(err)
 	fmt.Println("Temp dir name:", dname)
 
 	defer os.RemoveAll(dname)
 
-	// Now we can synthesize temporary file names by
-	// prefixing them with our temporary directory.
+	// Endi biz vaqtinchalik fayl nomlarini ularning oldiga
+	// vaqtinchalik katalogimizni qo'shib hosil qilishimiz mumkin.
 	fname := filepath.Join(dname, "file1")
 	err = os.WriteFile(fname, []byte{1, 2}, 0666)
 	check(err)

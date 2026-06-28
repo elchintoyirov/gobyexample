@@ -1,8 +1,7 @@
-// Sometimes we'll want to sort a collection by something
-// other than its natural order. For example, suppose we
-// wanted to sort strings by their length instead of
-// alphabetically. Here's an example of custom sorts
-// in Go.
+// Ba'zan to'plamni uning tabiiy tartibidan boshqa narsa
+// bo'yicha saralashni xohlaymiz. Masalan, faraz qilaylik,
+// satrlarni alifbo tartibida emas, balki uzunligi bo'yicha
+// saralashni xohladik. Mana Go'da maxsus saralashga misol.
 
 package main
 
@@ -15,19 +14,20 @@ import (
 func main() {
 	fruits := []string{"peach", "banana", "kiwi"}
 
-	// We implement a comparison function for string
-	// lengths. `cmp.Compare` is helpful for this.
+	// Satr uzunliklari uchun taqqoslash funksiyasini amalga
+	// oshiramiz. `cmp.Compare` bunga yordam beradi.
 	lenCmp := func(a, b string) int {
 		return cmp.Compare(len(a), len(b))
 	}
 
-	// Now we can call `slices.SortFunc` with this custom
-	// comparison function to sort `fruits` by name length.
+	// Endi `fruits`ni nom uzunligi bo'yicha saralash uchun bu
+	// maxsus taqqoslash funksiyasi bilan `slices.SortFunc`ni
+	// chaqira olamiz.
 	slices.SortFunc(fruits, lenCmp)
 	fmt.Println(fruits)
 
-	// We can use the same technique to sort a slice of
-	// values that aren't built-in types.
+	// O'rnatilgan tip bo'lmagan qiymatlar slice'ini saralash
+	// uchun xuddi shu usuldan foydalanishimiz mumkin.
 	type Person struct {
 		name string
 		age  int
@@ -39,12 +39,14 @@ func main() {
 		Person{name: "Alex", age: 72},
 	}
 
-	// Sort `people` by age using `slices.SortFunc`.
+	// `people`ni yoshi bo'yicha `slices.SortFunc` yordamida
+	// saralang.
 	//
-	// Note: if the `Person` struct is large,
-	// you may want the slice to contain `*Person` instead
-	// and adjust the sorting function accordingly. If in
-	// doubt, [benchmark](testing-and-benchmarking)!
+	// Eslatma: agar `Person` struct katta bo'lsa, slice
+	// o'rniga `*Person`ni o'z ichiga olishini xohlashingiz va
+	// saralash funksiyasini shunga moslab sozlashingiz mumkin.
+	// Shubhangiz bo'lsa, [benchmark](testing-and-benchmarking)
+	// qiling!
 	slices.SortFunc(people,
 		func(a, b Person) int {
 			return cmp.Compare(a.age, b.age)

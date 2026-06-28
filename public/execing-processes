@@ -30,15 +30,14 @@
         
         <tr>
           <td class="docs">
-            <p>In the previous example we looked at
-<a href="spawning-processes">spawning external processes</a>. We
-do this when we need an external process accessible to
-a running Go process. Sometimes we just want to
-completely replace the current Go process with another
-(perhaps non-Go) one. To do this we&rsquo;ll use Go&rsquo;s
-implementation of the classic
+            <p>Oldingi misolda biz <a href="spawning-processes">tashqi jarayonlarni ishga
+tushirishni</a> ko&rsquo;rib chiqdik. Buni biz
+ishlayotgan Go jarayoniga tashqi jarayon kerak bo&rsquo;lganda qilamiz.
+Ba&rsquo;zan biz joriy Go jarayonini butunlay boshqa (balki Go bo&rsquo;lmagan)
+jarayon bilan almashtirmoqchi bo&rsquo;lamiz. Buni qilish uchun biz Go&rsquo;ning
+klassik
 <a href="https://en.wikipedia.org/wiki/Exec_(operating_system)"><code>exec</code></a>
-function.</p>
+funksiyasi amalga oshirilishidan foydalanamiz.</p>
 
           </td>
           <td class="code empty leading">
@@ -52,7 +51,7 @@ function.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/s9qg7olf1dM"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/i3eeaUwG5h3"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -83,9 +82,9 @@ function.</p>
         
         <tr>
           <td class="docs">
-            <p>For our example we&rsquo;ll exec <code>ls</code>. Go requires an
-absolute path to the binary we want to execute, so
-we&rsquo;ll use <code>exec.LookPath</code> to find it (probably
+            <p>Misolimiz uchun biz <code>ls</code> ni exec qilamiz. Go biz bajarmoqchi
+bo&rsquo;lgan binar faylga absolyut yo&rsquo;lni talab qiladi, shuning uchun
+biz uni topish uchun <code>exec.LookPath</code> dan foydalanamiz (ehtimol
 <code>/bin/ls</code>).</p>
 
           </td>
@@ -100,10 +99,10 @@ we&rsquo;ll use <code>exec.LookPath</code> to find it (probably
         
         <tr>
           <td class="docs">
-            <p><code>Exec</code> requires arguments in slice form (as
-opposed to one big string). We&rsquo;ll give <code>ls</code> a few
-common arguments. Note that the first argument should
-be the program name.</p>
+            <p><code>Exec</code> argumentlarni slice ko&rsquo;rinishida talab qiladi (bitta
+katta satr emas). Biz <code>ls</code> ga bir nechta keng tarqalgan
+argumentlarni beramiz. E&rsquo;tibor bering, birinchi argument dastur
+nomi bo&rsquo;lishi kerak.</p>
 
           </td>
           <td class="code leading">
@@ -114,9 +113,9 @@ be the program name.</p>
         
         <tr>
           <td class="docs">
-            <p><code>Exec</code> also needs a set of <a href="environment-variables">environment variables</a>
-to use. Here we just provide our current
-environment.</p>
+            <p><code>Exec</code> shuningdek foydalanish uchun <a href="environment-variables">muhit
+o&rsquo;zgaruvchilari</a> to&rsquo;plamiga muhtoj. Bu yerda
+biz shunchaki joriy muhitimizni taqdim etamiz.</p>
 
           </td>
           <td class="code leading">
@@ -127,11 +126,10 @@ environment.</p>
         
         <tr>
           <td class="docs">
-            <p>Here&rsquo;s the actual <code>syscall.Exec</code> call. If this call is
-successful, the execution of our process will end
-here and be replaced by the <code>/bin/ls -a -l -h</code>
-process. If there is an error we&rsquo;ll get a return
-value.</p>
+            <p>Bu yerda haqiqiy <code>syscall.Exec</code> chaqiruvi. Agar bu chaqiruv
+muvaffaqiyatli bo&rsquo;lsa, jarayonimizning bajarilishi shu yerda
+tugaydi va <code>/bin/ls -a -l -h</code> jarayoni bilan almashtiriladi.
+Agar xato bo&rsquo;lsa, biz qaytariladigan qiymatni olamiz.</p>
 
           </td>
           <td class="code">
@@ -150,7 +148,7 @@ value.</p>
         
         <tr>
           <td class="docs">
-            <p>When we run our program it is replaced by <code>ls</code>.</p>
+            <p>Dasturimizni ishga tushirganimizda u <code>ls</code> bilan almashtiriladi.</p>
 
           </td>
           <td class="code leading">
@@ -165,10 +163,11 @@ value.</p>
         
         <tr>
           <td class="docs">
-            <p>Note that Go does not offer a classic Unix <code>fork</code>
-function. Usually this isn&rsquo;t an issue though, since
-starting goroutines, spawning processes, and exec&rsquo;ing
-processes covers most use cases for <code>fork</code>.</p>
+            <p>E&rsquo;tibor bering, Go klassik Unix <code>fork</code> funksiyasini
+taklif qilmaydi. Biroq odatda bu muammo emas, chunki
+goroutinalarni ishga tushirish, jarayonlarni yaratish
+va jarayonlarni exec qilish <code>fork</code> ning ko&rsquo;pchilik
+foydalanish holatlarini qamrab oladi.</p>
 
           </td>
           <td class="code empty">
@@ -181,12 +180,12 @@ processes covers most use cases for <code>fork</code>.</p>
       
       
       <p class="next">
-        Next example: <a href="signals" rel="next">Signals</a>.
+        Keyingi misol: <a href="signals" rel="next">Signals</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

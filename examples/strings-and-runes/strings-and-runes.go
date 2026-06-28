@@ -1,11 +1,11 @@
-// A Go string is a read-only slice of bytes. The language
-// and the standard library treat strings specially - as
-// containers of text encoded in [UTF-8](https://en.wikipedia.org/wiki/UTF-8).
-// In other languages, strings are made of "characters".
-// In Go, the concept of a character is called a `rune` - it's
-// an integer that represents a Unicode code point.
-// [This Go blog post](https://go.dev/blog/strings) is a good
-// introduction to the topic.
+// Go satri faqat o'qish uchun mo'ljallangan baytlar slice'idir.
+// Til va standart kutubxona satrlarni alohida tarzda -
+// [UTF-8](https://en.wikipedia.org/wiki/UTF-8) da kodlangan
+// matn konteynerlari sifatida ko'rib chiqadi. Boshqa tillarda
+// satrlar "belgilar"dan tashkil topadi. Go'da belgi tushunchasi
+// `rune` deb ataladi - bu Unicode kod nuqtasini ifodalovchi
+// butun son. [Ushbu Go blog posti](https://go.dev/blog/strings)
+// mavzuga yaxshi kirish bo'ladi.
 
 package main
 
@@ -16,56 +16,57 @@ import (
 
 func main() {
 
-	// `s` is a `string` assigned a literal value
-	// representing the word "hello" in the Thai
-	// language. Go string literals are UTF-8
-	// encoded text.
+	// `s` - bu tay tilida "salom" so'zini ifodalovchi literal
+	// qiymat berilgan `string`. Go satr literallari UTF-8 da
+	// kodlangan matndir.
 	const s = "สวัสดี"
 
-	// Since strings are equivalent to `[]byte`, this
-	// will produce the length of the raw bytes stored within.
+	// Satrlar `[]byte` ga ekvivalent bo'lgani uchun, bu uning
+	// ichida saqlangan xom baytlar uzunligini beradi.
 	fmt.Println("Len:", len(s))
 
-	// Indexing into a string produces the raw byte values at
-	// each index. This loop generates the hex values of all
-	// the bytes that constitute the code points in `s`.
+	// Satrni indekslash har bir indeksdagi xom bayt qiymatlarini
+	// beradi. Bu sikl `s` dagi kod nuqtalarini tashkil etuvchi
+	// barcha baytlarning o'n oltilik qiymatlarini hosil qiladi.
 	for i := 0; i < len(s); i++ {
 		fmt.Printf("%x ", s[i])
 	}
 	fmt.Println()
 
-	// To count how many _runes_ are in a string, we can use
-	// the `utf8` package. Note that the run-time of
-	// `RuneCountInString` depends on the size of the string,
-	// because it has to decode each UTF-8 rune sequentially.
-	// Some Thai characters are represented by UTF-8 code points
-	// that can span multiple bytes, so the result of this count
-	// may be surprising.
+	// Satrda nechta _runa_ borligini sanash uchun biz `utf8`
+	// paketidan foydalanishimiz mumkin. E'tibor bering,
+	// `RuneCountInString` ning ishlash vaqti satr o'lchamiga
+	// bog'liq, chunki u har bir UTF-8 runani ketma-ket
+	// dekodlashi kerak. Ba'zi tay belgilari bir nechta baytga
+	// cho'zilishi mumkin bo'lgan UTF-8 kod nuqtalari bilan
+	// ifodalanadi, shuning uchun bu sanoq natijasi kutilmagan
+	// bo'lishi mumkin.
 	fmt.Println("Rune count:", utf8.RuneCountInString(s))
 
-	// A `range` loop handles strings specially and decodes
-	// each `rune` along with its offset in the string.
+	// `range` sikli satrlarni alohida tarzda ishlaydi va har bir
+	// `rune` ni uning satrdagi siljishi bilan birga dekodlaydi.
 	for idx, runeValue := range s {
 		fmt.Printf("%#U starts at %d\n", runeValue, idx)
 	}
 
-	// We can achieve the same iteration by using the
-	// `utf8.DecodeRuneInString` function explicitly.
+	// Biz `utf8.DecodeRuneInString` funksiyasidan oshkora
+	// foydalanib xuddi shu iteratsiyaga erishishimiz mumkin.
 	fmt.Println("\nUsing DecodeRuneInString")
 	for i, w := 0, 0; i < len(s); i += w {
 		runeValue, width := utf8.DecodeRuneInString(s[i:])
 		fmt.Printf("%#U starts at %d\n", runeValue, i)
 		w = width
 
-		// This demonstrates passing a `rune` value to a function.
+		// Bu funksiyaga `rune` qiymatini uzatishni namoyish etadi.
 		examineRune(runeValue)
 	}
 }
 
 func examineRune(r rune) {
 
-	// Values enclosed in single quotes are _rune literals_. We
-	// can compare a `rune` value to a rune literal directly.
+	// Bittalik tirnoq ichiga olingan qiymatlar _runa literallari_
+	// hisoblanadi. Biz `rune` qiymatini runa literali bilan
+	// to'g'ridan-to'g'ri solishtirishimiz mumkin.
 	if r == 't' {
 		fmt.Println("found tee")
 	} else if r == 'ส' {

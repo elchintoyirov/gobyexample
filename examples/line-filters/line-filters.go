@@ -1,11 +1,13 @@
-// A _line filter_ is a common type of program that reads
-// input on stdin, processes it, and then prints some
-// derived result to stdout. `grep` and `sed` are common
-// line filters.
+// _Qator filtri_ - bu stdin'dan kiritishni o'qiydigan,
+// uni qayta ishlaydigan va so'ngra ba'zi olingan natijani
+// stdout'ga chiqaradigan dasturlarning keng tarqalgan
+// turidir. `grep` va `sed` keng tarqalgan qator
+// filtrlaridir.
 
-// Here's an example line filter in Go that writes a
-// capitalized version of all input text. You can use this
-// pattern to write your own Go line filters.
+// Mana Go'da barcha kiritilgan matnning bosh harfli
+// versiyasini yozadigan qator filtri misoli. Siz ushbu
+// shablondan o'zingizning Go qator filtrlaringizni yozish
+// uchun foydalanishingiz mumkin.
 package main
 
 import (
@@ -17,23 +19,24 @@ import (
 
 func main() {
 
-	// Wrapping the unbuffered `os.Stdin` with a buffered
-	// scanner gives us a convenient `Scan` method that
-	// advances the scanner to the next token; which is
-	// the next line in the default scanner.
+	// Buferlanmagan `os.Stdin` ni buferlangan skaner bilan
+	// o'rash bizga skanerni keyingi tokenga o'tkazadigan
+	// qulay `Scan` metodini beradi; bu standart skanerda
+	// keyingi qatordir.
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for scanner.Scan() {
-		// `Text` returns the current token, here the next line,
-		// from the input.
+		// `Text` kiritishdan joriy tokenni, bu yerda keyingi
+		// qatorni qaytaradi.
 		ucl := strings.ToUpper(scanner.Text())
 
-		// Write out the uppercased line.
+		// Bosh harfli qatorni chiqarish.
 		fmt.Println(ucl)
 	}
 
-	// Check for errors during `Scan`. End of file is
-	// expected and not reported by `Scan` as an error.
+	// `Scan` davomida xatolarni tekshirish. Fayl oxiri
+	// kutiladi va `Scan` tomonidan xato sifatida xabar
+	// qilinmaydi.
 	if err := scanner.Err(); err != nil {
 		fmt.Fprintln(os.Stderr, "error:", err)
 		os.Exit(1)

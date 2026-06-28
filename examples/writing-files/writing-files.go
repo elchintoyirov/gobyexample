@@ -1,5 +1,5 @@
-// Writing files in Go follows similar patterns to the
-// ones we saw earlier for reading.
+// Go da fayllarga yozish biz oldin o'qish uchun
+// ko'rganlarimizga o'xshash usullarga amal qiladi.
 
 package main
 
@@ -18,45 +18,45 @@ func check(e error) {
 
 func main() {
 
-	// To start, here's how to dump a string (or just
-	// bytes) into a file.
+	// Boshlash uchun, satrni (yoki shunchaki baytlarni)
+	// faylga qanday yozish quyida keltirilgan.
 	d1 := []byte("hello\ngo\n")
 	path1 := filepath.Join(os.TempDir(), "dat1")
 	err := os.WriteFile(path1, d1, 0644)
 	check(err)
 
-	// For more granular writes, open a file for writing.
+	// Yanada batafsil yozishlar uchun faylni yozish uchun oching.
 	path2 := filepath.Join(os.TempDir(), "dat2")
 	f, err := os.Create(path2)
 	check(err)
 
-	// It's idiomatic to defer a `Close` immediately
-	// after opening a file.
+	// Faylni ochgandan so'ng darhol `Close` ni defer
+	// qilish odatiy (idiomatik) hisoblanadi.
 	defer f.Close()
 
-	// You can `Write` byte slices as you'd expect.
+	// Kutilganidek, bayt slice larini `Write` qila olasiz.
 	d2 := []byte{115, 111, 109, 101, 10}
 	n2, err := f.Write(d2)
 	check(err)
 	fmt.Printf("wrote %d bytes\n", n2)
 
-	// A `WriteString` is also available.
+	// `WriteString` ham mavjud.
 	n3, err := f.WriteString("writes\n")
 	check(err)
 	fmt.Printf("wrote %d bytes\n", n3)
 
-	// Issue a `Sync` to flush writes to stable storage.
+	// Yozishlarni barqaror xotiraga o'tkazish uchun `Sync` chaqiring.
 	f.Sync()
 
-	// `bufio` provides buffered writers in addition
-	// to the buffered readers we saw earlier.
+	// `bufio` biz oldin ko'rgan buferlangan o'quvchilarga
+	// qo'shimcha ravishda buferlangan yozuvchilarni ham taqdim etadi.
 	w := bufio.NewWriter(f)
 	n4, err := w.WriteString("buffered\n")
 	check(err)
 	fmt.Printf("wrote %d bytes\n", n4)
 
-	// Use `Flush` to ensure all buffered operations have
-	// been applied to the underlying writer.
+	// Barcha buferlangan operatsiyalar asosiy yozuvchiga
+	// qo'llanilganligiga ishonch hosil qilish uchun `Flush` dan foydalaning.
 	w.Flush()
 
 }

@@ -30,8 +30,8 @@
         
         <tr>
           <td class="docs">
-            <p>Writing files in Go follows similar patterns to the
-ones we saw earlier for reading.</p>
+            <p>Go da fayllarga yozish biz oldin o&rsquo;qish uchun
+ko&rsquo;rganlarimizga o&rsquo;xshash usullarga amal qiladi.</p>
 
           </td>
           <td class="code empty leading">
@@ -45,7 +45,7 @@ ones we saw earlier for reading.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/iuKQDnKfl2T"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/JPZT1-5j4IN"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -91,8 +91,8 @@ ones we saw earlier for reading.</p>
         
         <tr>
           <td class="docs">
-            <p>To start, here&rsquo;s how to dump a string (or just
-bytes) into a file.</p>
+            <p>Boshlash uchun, satrni (yoki shunchaki baytlarni)
+faylga qanday yozish quyida keltirilgan.</p>
 
           </td>
           <td class="code leading">
@@ -106,7 +106,7 @@ bytes) into a file.</p>
         
         <tr>
           <td class="docs">
-            <p>For more granular writes, open a file for writing.</p>
+            <p>Yanada batafsil yozishlar uchun faylni yozish uchun oching.</p>
 
           </td>
           <td class="code leading">
@@ -119,8 +119,8 @@ bytes) into a file.</p>
         
         <tr>
           <td class="docs">
-            <p>It&rsquo;s idiomatic to defer a <code>Close</code> immediately
-after opening a file.</p>
+            <p>Faylni ochgandan so&rsquo;ng darhol <code>Close</code> ni defer
+qilish odatiy (idiomatik) hisoblanadi.</p>
 
           </td>
           <td class="code leading">
@@ -131,7 +131,7 @@ after opening a file.</p>
         
         <tr>
           <td class="docs">
-            <p>You can <code>Write</code> byte slices as you&rsquo;d expect.</p>
+            <p>Kutilganidek, bayt slice larini <code>Write</code> qila olasiz.</p>
 
           </td>
           <td class="code leading">
@@ -145,7 +145,7 @@ after opening a file.</p>
         
         <tr>
           <td class="docs">
-            <p>A <code>WriteString</code> is also available.</p>
+            <p><code>WriteString</code> ham mavjud.</p>
 
           </td>
           <td class="code leading">
@@ -158,7 +158,7 @@ after opening a file.</p>
         
         <tr>
           <td class="docs">
-            <p>Issue a <code>Sync</code> to flush writes to stable storage.</p>
+            <p>Yozishlarni barqaror xotiraga o&rsquo;tkazish uchun <code>Sync</code> chaqiring.</p>
 
           </td>
           <td class="code leading">
@@ -169,8 +169,8 @@ after opening a file.</p>
         
         <tr>
           <td class="docs">
-            <p><code>bufio</code> provides buffered writers in addition
-to the buffered readers we saw earlier.</p>
+            <p><code>bufio</code> biz oldin ko&rsquo;rgan buferlangan o&rsquo;quvchilarga
+qo&rsquo;shimcha ravishda buferlangan yozuvchilarni ham taqdim etadi.</p>
 
           </td>
           <td class="code leading">
@@ -184,8 +184,8 @@ to the buffered readers we saw earlier.</p>
         
         <tr>
           <td class="docs">
-            <p>Use <code>Flush</code> to ensure all buffered operations have
-been applied to the underlying writer.</p>
+            <p>Barcha buferlangan operatsiyalar asosiy yozuvchiga
+qo&rsquo;llanilganligiga ishonch hosil qilish uchun <code>Flush</code> dan foydalaning.</p>
 
           </td>
           <td class="code leading">
@@ -210,7 +210,7 @@ been applied to the underlying writer.</p>
         
         <tr>
           <td class="docs">
-            <p>Try running the file-writing code.</p>
+            <p>Faylga yozish kodini ishga tushirib ko&rsquo;ring.</p>
 
           </td>
           <td class="code leading">
@@ -224,7 +224,7 @@ been applied to the underlying writer.</p>
         
         <tr>
           <td class="docs">
-            <p>Then check the contents of the written files.</p>
+            <p>Keyin yozilgan fayllar tarkibini tekshiring.</p>
 
           </td>
           <td class="code leading">
@@ -241,8 +241,9 @@ been applied to the underlying writer.</p>
         
         <tr>
           <td class="docs">
-            <p>Next we&rsquo;ll look at applying some of the file I/O ideas
-we&rsquo;ve just seen to the <code>stdin</code> and <code>stdout</code> streams.</p>
+            <p>Keyingi qadamda biz hozir ko&rsquo;rgan fayl I/O g&rsquo;oyalarining
+ba&rsquo;zilarini <code>stdin</code> va <code>stdout</code> oqimlariga qo&rsquo;llashni
+ko&rsquo;rib chiqamiz.</p>
 
           </td>
           <td class="code empty">
@@ -255,12 +256,12 @@ we&rsquo;ve just seen to the <code>stdin</code> and <code>stdout</code> streams.
       
       
       <p class="next">
-        Next example: <a href="line-filters" rel="next">Line Filters</a>.
+        Keyingi misol: <a href="line-filters" rel="next">Line Filters</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

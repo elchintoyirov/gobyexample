@@ -1,5 +1,5 @@
-// Go offers built-in support for XML and XML-like
-// formats with the `encoding/xml` package.
+// Go `encoding/xml` paketi orqali XML va XML ga o'xshash
+// formatlar uchun o'rnatilgan qo'llab-quvvatlashni taklif qiladi.
 
 package main
 
@@ -8,13 +8,13 @@ import (
 	"fmt"
 )
 
-// Plant will be mapped to XML. Similarly to the
-// JSON examples, field tags contain directives for the
-// encoder and decoder. Here we use some special features
-// of the XML package: the `XMLName` field name dictates
-// the name of the XML element representing this struct;
-// `id,attr` means that the `Id` field is an XML
-// _attribute_ rather than a nested element.
+// Plant XML ga moslashtiriladi. JSON misollariga o'xshab,
+// maydon teglari enkoder va dekoder uchun ko'rsatmalarni
+// o'z ichiga oladi. Bu yerda XML paketining ba'zi maxsus
+// xususiyatlaridan foydalanamiz: `XMLName` maydon nomi bu
+// struct ni ifodalovchi XML elementining nomini belgilaydi;
+// `id,attr` esa `Id` maydoni ichki element emas, balki XML
+// _atributi_ ekanligini bildiradi.
 type Plant struct {
 	XMLName xml.Name `xml:"plant"`
 	Id      int      `xml:"id,attr"`
@@ -31,20 +31,20 @@ func main() {
 	coffee := &Plant{Id: 27, Name: "Coffee"}
 	coffee.Origin = []string{"Ethiopia", "Brazil"}
 
-	// Emit XML representing our plant; using
-	// `MarshalIndent` to produce a more
-	// human-readable output.
+	// O'simligimizni ifodalovchi XML ni chiqaramiz;
+	// inson uchun o'qish osonroq bo'lgan natija hosil
+	// qilish uchun `MarshalIndent` dan foydalanamiz.
 	out, _ := xml.MarshalIndent(coffee, " ", "  ")
 	fmt.Println(string(out))
 
-	// To add a generic XML header to the output, append
-	// it explicitly.
+	// Natijaga umumiy XML sarlavhasini qo'shish uchun
+	// uni aniq tarzda qo'shing.
 	fmt.Println(xml.Header + string(out))
 
-	// Use `Unmarshal` to parse a stream of bytes with XML
-	// into a data structure. If the XML is malformed or
-	// cannot be mapped onto Plant, a descriptive error
-	// will be returned.
+	// XML li baytlar oqimini ma'lumotlar tuzilmasiga
+	// tahlil qilish uchun `Unmarshal` dan foydalaning.
+	// Agar XML noto'g'ri shakllangan bo'lsa yoki Plant ga
+	// moslashtirib bo'lmasa, tavsiflovchi xato qaytariladi.
 	var p Plant
 	if err := xml.Unmarshal(out, &p); err != nil {
 		panic(err)
@@ -54,8 +54,8 @@ func main() {
 	tomato := &Plant{Id: 81, Name: "Tomato"}
 	tomato.Origin = []string{"Mexico", "California"}
 
-	// The `parent>child>plant` field tag tells the encoder
-	// to nest all `plant`s under `<parent><child>...`
+	// `parent>child>plant` maydon tegi enkoderga barcha
+	// `plant` larni `<parent><child>...` ostida joylashtirishni aytadi
 	type Nesting struct {
 		XMLName xml.Name `xml:"nesting"`
 		Plants  []*Plant `xml:"parent>child>plant"`

@@ -1,15 +1,13 @@
-// In Go it's idiomatic to communicate errors via an
-// explicit, separate return value. This contrasts with
-// the exceptions used in languages like Java, Python and
-// Ruby and the overloaded single result / error value
-// sometimes used in C. Go's approach makes it easy to
-// see which functions return errors and to handle them
-// using the same language constructs employed for other,
-// non-error tasks.
+// Go'da xatolarni oshkora, alohida qaytariladigan qiymat orqali
+// uzatish idiomatik hisoblanadi. Bu Java, Python va Ruby kabi
+// tillarda ishlatiladigan istisnolardan (exceptions) va C'da ba'zan
+// ishlatiladigan ortiqcha yuklatilgan yagona natija / xato qiymatidan
+// farq qiladi. Go'ning yondashuvi qaysi funksiyalar xato qaytarishini
+// ko'rishni va ularni boshqa, xato bo'lmagan vazifalar uchun
+// qo'llaniladigan til konstruksiyalari bilan qayta ishlashni osonlashtiradi.
 //
-// See the documentation of the [errors package](https://pkg.go.dev/errors)
-// and [this blog post](https://go.dev/blog/go1.13-errors) for additional
-// details.
+// Qo'shimcha tafsilotlar uchun [errors paketi](https://pkg.go.dev/errors)
+// hujjatlarini va [ushbu blog postni](https://go.dev/blog/go1.13-errors) ko'ring.
 
 package main
 
@@ -18,22 +16,22 @@ import (
 	"fmt"
 )
 
-// By convention, errors are the last return value and
-// have type `error`, a built-in interface.
+// Kelishuvga ko'ra, xatolar oxirgi qaytariladigan qiymat bo'lib,
+// o'rnatilgan interfeys bo'lgan `error` tipiga ega.
 func f(arg int) (int, error) {
 	if arg == 42 {
-		// `errors.New` constructs a basic `error` value
-		// with the given error message.
+		// `errors.New` berilgan xato xabari bilan oddiy `error`
+		// qiymatini quradi.
 		return -1, errors.New("can't work with 42")
 	}
 
-	// A `nil` value in the error position indicates that
-	// there was no error.
+	// Xato pozitsiyasidagi `nil` qiymat hech qanday xato
+	// bo'lmaganligini bildiradi.
 	return arg + 3, nil
 }
 
-// A sentinel error is a predeclared variable that is used to
-// signify a specific error condition.
+// Sentinel xato oldindan e'lon qilingan o'zgaruvchi bo'lib,
+// muayyan xato holatini bildirish uchun ishlatiladi.
 var ErrOutOfTea = errors.New("no more tea available")
 var ErrPower = errors.New("can't boil water")
 
@@ -42,12 +40,12 @@ func makeTea(arg int) error {
 		return ErrOutOfTea
 	} else if arg == 4 {
 
-		// We can wrap errors with higher-level errors to add
-		// context. The simplest way to do this is with the
-		// `%w` verb in `fmt.Errorf`. Wrapped errors
-		// create a logical chain (A wraps B, which wraps C, etc.)
-		// that can be queried with functions like `errors.Is`
-		// and `errors.AsType`.
+		// Kontekst qo'shish uchun xatolarni yuqori darajadagi xatolar
+		// bilan o'rashimiz mumkin. Buni qilishning eng oddiy usuli
+		// `fmt.Errorf` dagi `%w` verbidir. O'ralgan xatolar mantiqiy
+		// zanjir hosil qiladi (A B'ni o'raydi, u esa C'ni o'raydi va hokazo)
+		// va bu zanjirni `errors.Is` hamda `errors.AsType` kabi funksiyalar
+		// bilan so'rab olish mumkin.
 		return fmt.Errorf("making tea: %w", ErrPower)
 	}
 	return nil
@@ -56,8 +54,8 @@ func makeTea(arg int) error {
 func main() {
 	for _, i := range []int{7, 42} {
 
-		// It's idiomatic to use an inline error check in the `if`
-		// line.
+		// `if` qatorida ichki (inline) xato tekshiruvidan foydalanish
+		// idiomatik hisoblanadi.
 		if r, e := f(i); e != nil {
 			fmt.Println("f failed:", e)
 		} else {
@@ -68,10 +66,10 @@ func main() {
 	for i := range 5 {
 		if err := makeTea(i); err != nil {
 
-			// `errors.Is` checks that a given error (or any error in its chain)
-			// matches a specific error value. This is especially useful with wrapped or
-			// nested errors, allowing you to identify specific error types or sentinel
-			// errors in a chain of errors.
+			// `errors.Is` berilgan xato (yoki uning zanjiridagi har qanday xato)
+			// muayyan xato qiymatiga mos kelishini tekshiradi. Bu, ayniqsa, o'ralgan
+			// yoki ichma-ich joylashgan xatolar bilan foydalidir va sizga xatolar
+			// zanjiridagi muayyan xato tiplari yoki sentinel xatolarni aniqlash imkonini beradi.
 			if errors.Is(err, ErrOutOfTea) {
 				fmt.Println("We should buy new tea!")
 			} else if errors.Is(err, ErrPower) {

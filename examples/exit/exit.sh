@@ -1,13 +1,13 @@
-#  If you run `exit.go` using `go run`, the exit
-# will be picked up by `go` and printed.
+#  Agar `exit.go` ni `go run` yordamida ishga tushirsangiz,
+# chiqish `go` tomonidan qabul qilinadi va chop etiladi.
 $ go run exit.go
 exit status 3
 
-# By building and executing a binary you can see
-# the status in the terminal.
+# Binar faylni build qilib bajarish orqali statusni
+# terminalda ko'rishingiz mumkin.
 $ go build exit.go
 $ ./exit
 $ echo $?
 3
 
-# Note that the `!` from our program never got printed.
+# E'tibor bering, dasturimizdagi `!` hech qachon chop etilmadi.

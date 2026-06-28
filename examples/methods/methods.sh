@@ -4,5 +4,6 @@ perim: 30
 area:  50
 perim: 30
 
-# Next we'll look at Go's mechanism for grouping and
-# naming related sets of methods: interfaces.
+# Keyingi navbatda Go'ning bir-biriga bog'liq metodlar
+# to'plamini guruhlash va nomlash mexanizmini ko'rib
+# chiqamiz: interfeyslar.

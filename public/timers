@@ -30,11 +30,11 @@
         
         <tr>
           <td class="docs">
-            <p>We often want to execute Go code at some point in the
-future, or repeatedly at some interval. Go&rsquo;s built-in
-<em>timer</em> and <em>ticker</em> features make both of these tasks
-easy. We&rsquo;ll look first at timers and then
-at <a href="tickers">tickers</a>.</p>
+            <p>Biz ko&rsquo;pincha Go kodini kelajakda biror nuqtada yoki
+biror oraliqda takror-takror bajarishni xohlaymiz. Go ning
+o&rsquo;rnatilgan <em>taymer</em> va <em>ticker</em> imkoniyatlari bu
+vazifalarning ikkalasini ham osonlashtiradi. Avval
+taymerlarni, so&rsquo;ngra <a href="tickers">tickerlarni</a> ko&rsquo;rib chiqamiz.</p>
 
           </td>
           <td class="code empty leading">
@@ -48,7 +48,7 @@ at <a href="tickers">tickers</a>.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/gF7VLRz3URM"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/eYJcEWiRy5o"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -78,10 +78,10 @@ at <a href="tickers">tickers</a>.</p>
         
         <tr>
           <td class="docs">
-            <p>Timers represent a single event in the future. You
-tell the timer how long you want to wait, and it
-provides a channel that will be notified at that
-time. This timer will wait 2 seconds.</p>
+            <p>Taymerlar kelajakdagi bitta hodisani ifodalaydi. Siz
+taymerga qancha kutmoqchi ekanligingizni aytasiz va u
+o&rsquo;sha vaqtda xabar beriladigan kanalni taqdim etadi.
+Bu taymer 2 soniya kutadi.</p>
 
           </td>
           <td class="code leading">
@@ -92,9 +92,9 @@ time. This timer will wait 2 seconds.</p>
         
         <tr>
           <td class="docs">
-            <p>The <code>&lt;-timer1.C</code> blocks on the timer&rsquo;s channel <code>C</code>
-until it sends a value indicating that the timer
-fired.</p>
+            <p><code>&lt;-timer1.C</code> taymerning <code>C</code> kanalida taymer
+ishga tushganini bildiruvchi qiymat yuborilguncha
+bloklaydi.</p>
 
           </td>
           <td class="code leading">
@@ -106,10 +106,11 @@ fired.</p>
         
         <tr>
           <td class="docs">
-            <p>If you just wanted to wait, you could have used
-<code>time.Sleep</code>. One reason a timer may be useful is
-that you can cancel the timer before it fires.
-Here&rsquo;s an example of that.</p>
+            <p>Agar shunchaki kutmoqchi bo&rsquo;lsangiz, <code>time.Sleep</code>
+dan foydalanishingiz mumkin edi. Taymer foydali
+bo&rsquo;lishining bir sababi shundaki, uni ishga
+tushishidan oldin bekor qilishingiz mumkin.
+Quyida shunga misol keltirilgan.</p>
 
           </td>
           <td class="code leading">
@@ -128,8 +129,9 @@ Here&rsquo;s an example of that.</p>
         
         <tr>
           <td class="docs">
-            <p>Give the <code>timer2</code> enough time to fire, if it ever
-was going to, to show it is in fact stopped.</p>
+            <p><code>timer2</code> aslida to&rsquo;xtatilganini ko&rsquo;rsatish uchun,
+agar u umuman ishga tushadigan bo&rsquo;lsa, unga ishga
+tushishga yetarli vaqt beramiz.</p>
 
           </td>
           <td class="code">
@@ -145,9 +147,9 @@ was going to, to show it is in fact stopped.</p>
         
         <tr>
           <td class="docs">
-            <p>The first timer will fire ~2s after we start the
-program, but the second should be stopped before it has
-a chance to fire.</p>
+            <p>Birinchi taymer biz dasturni ishga tushirganimizdan ~2s
+keyin ishga tushadi, lekin ikkinchisi ishga tushish
+imkoniyatiga ega bo&rsquo;lishidan oldin to&rsquo;xtatilishi kerak.</p>
 
           </td>
           <td class="code">
@@ -162,12 +164,12 @@ a chance to fire.</p>
       
       
       <p class="next">
-        Next example: <a href="tickers" rel="next">Tickers</a>.
+        Keyingi misol: <a href="tickers" rel="next">Tickers</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

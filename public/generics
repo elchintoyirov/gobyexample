@@ -30,8 +30,8 @@
         
         <tr>
           <td class="docs">
-            <p>Starting with version 1.18, Go has added support for
-<em>generics</em>, also known as <em>type parameters</em>.</p>
+            <p>1.18-versiyadan boshlab Go <em>generiklar</em> uchun qo&rsquo;llab-quvvatlash
+qo&rsquo;shdi, ular <em>tip parametrlari</em> deb ham ataladi.</p>
 
           </td>
           <td class="code empty leading">
@@ -45,7 +45,7 @@
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/7v7vElzhAeO"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/4tAgpWtB6en"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -62,15 +62,17 @@
         
         <tr>
           <td class="docs">
-            <p>As an example of a generic function, <code>SlicesIndex</code> takes
-a slice of any <code>comparable</code> type and an element of that
-type and returns the index of the first occurrence of
-v in s, or -1 if not present. The <code>comparable</code> constraint
-means that we can compare values of this type with the
-<code>==</code> and <code>!=</code> operators. For a more thorough explanation
-of this type signature, see <a href="https://go.dev/blog/deconstructing-type-parameters">this blog post</a>.
-Note that this function exists in the standard library
-as <a href="https://pkg.go.dev/slices#Index">slices.Index</a>.</p>
+            <p>Generik funksiyaga misol sifatida, <code>SlicesIndex</code> istalgan
+<code>comparable</code> tipdagi slice va o&rsquo;sha tipdagi elementni
+qabul qiladi hamda v ning s dagi birinchi uchrash indeksini,
+agar mavjud bo&rsquo;lmasa -1 ni qaytaradi. <code>comparable</code>
+cheklovi shuni anglatadiki, biz ushbu tipdagi qiymatlarni
+<code>==</code> va <code>!=</code> operatorlari bilan solishtira olamiz. Ushbu
+tip imzosining batafsilroq tushuntirishi uchun <a href="https://go.dev/blog/deconstructing-type-parameters">shu blog
+postiga</a>
+qarang. E&rsquo;tibor bering, bu funksiya standart kutubxonada
+<a href="https://pkg.go.dev/slices#Index">slices.Index</a> sifatida
+mavjud.</p>
 
           </td>
           <td class="code leading">
@@ -88,8 +90,8 @@ as <a href="https://pkg.go.dev/slices#Index">slices.Index</a>.</p>
         
         <tr>
           <td class="docs">
-            <p>As an example of a generic type, <code>List</code> is a
-singly-linked list with values of any type.</p>
+            <p>Generik tipga misol sifatida, <code>List</code> istalgan tipdagi
+qiymatlarga ega bir tomonlama bog&rsquo;langan ro&rsquo;yxatdir.</p>
 
           </td>
           <td class="code leading">
@@ -115,9 +117,10 @@ singly-linked list with values of any type.</p>
         
         <tr>
           <td class="docs">
-            <p>We can define methods on generic types just like we
-do on regular types, but we have to keep the type
-parameters in place. The type is <code>List[T]</code>, not <code>List</code>.</p>
+            <p>Biz generik tiplarda xuddi oddiy tiplardagi kabi
+metodlarni aniqlay olamiz, lekin tip parametrlarini
+joyida saqlab qolishimiz kerak. Tip <code>List</code> emas, balki
+<code>List[T]</code> dir.</p>
 
           </td>
           <td class="code leading">
@@ -136,9 +139,10 @@ parameters in place. The type is <code>List[T]</code>, not <code>List</code>.</p
         
         <tr>
           <td class="docs">
-            <p>AllElements returns all the List elements as a slice.
-In the next example we&rsquo;ll see a more idiomatic way
-of iterating over all elements of custom types.</p>
+            <p>AllElements barcha List elementlarini slice sifatida
+qaytaradi. Keyingi misolda biz maxsus tiplarning barcha
+elementlari ustidan iteratsiya qilishning yanada idiomatik
+usulini ko&rsquo;ramiz.</p>
 
           </td>
           <td class="code leading">
@@ -166,11 +170,11 @@ of iterating over all elements of custom types.</p>
         
         <tr>
           <td class="docs">
-            <p>When invoking generic functions, we can often rely
-on <em>type inference</em>. Note that we don&rsquo;t have to
-specify the types for <code>S</code> and <code>E</code> when
-calling <code>SlicesIndex</code> - the compiler infers them
-automatically.</p>
+            <p>Generik funksiyalarni chaqirganda biz ko&rsquo;pincha <em>tipni
+avtomatik aniqlash</em> ga tayanishimiz mumkin. E&rsquo;tibor
+bering, <code>SlicesIndex</code> ni chaqirganda <code>S</code> va <code>E</code> tiplarini
+ko&rsquo;rsatishimiz shart emas - kompilyator ularni avtomatik
+ravishda aniqlaydi.</p>
 
           </td>
           <td class="code leading">
@@ -181,7 +185,7 @@ automatically.</p>
         
         <tr>
           <td class="docs">
-            <p>&hellip; though we could also specify them explicitly.</p>
+            <p>&hellip; garchi biz ularni aniq ham ko&rsquo;rsatishimiz mumkin.</p>
 
           </td>
           <td class="code leading">
@@ -225,12 +229,12 @@ automatically.</p>
       
       
       <p class="next">
-        Next example: <a href="range-over-iterators" rel="next">Range over Iterators</a>.
+        Keyingi misol: <a href="range-over-iterators" rel="next">Range over Iterators</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

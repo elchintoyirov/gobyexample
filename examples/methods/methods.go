@@ -1,4 +1,4 @@
-// Go supports _methods_ defined on struct types.
+// Go struct tiplarida aniqlangan _metod_larni qo'llab-quvvatlaydi.
 
 package main
 
@@ -8,13 +8,13 @@ type rect struct {
 	width, height int
 }
 
-// This `area` method has a _receiver type_ of `*rect`.
+// Bu `area` metodi `*rect` _qabul qiluvchi tipiga_ ega.
 func (r *rect) area() int {
 	return r.width * r.height
 }
 
-// Methods can be defined for either pointer or value
-// receiver types. Here's an example of a value receiver.
+// Metodlar ko'rsatkichli yoki qiymatli qabul qiluvchi tiplari
+// uchun aniqlanishi mumkin. Mana qiymatli qabul qiluvchi misoli.
 func (r rect) perim() int {
 	return 2*r.width + 2*r.height
 }
@@ -22,15 +22,15 @@ func (r rect) perim() int {
 func main() {
 	r := rect{width: 10, height: 5}
 
-	// Here we call the 2 methods defined for our struct.
+	// Bu yerda biz struct imiz uchun aniqlangan 2 ta metodni chaqiramiz.
 	fmt.Println("area: ", r.area())
 	fmt.Println("perim:", r.perim())
 
-	// Go automatically handles conversion between values
-	// and pointers for method calls. You may want to use
-	// a pointer receiver type to avoid copying on method
-	// calls or to allow the method to mutate the
-	// receiving struct.
+	// Go metod chaqiruvlari uchun qiymatlar va ko'rsatkichlar
+	// o'rtasidagi o'tkazishni avtomatik boshqaradi. Metod
+	// chaqiruvlarida nusxa olishdan qochish yoki metodga qabul
+	// qiluvchi struct ni o'zgartirishga ruxsat berish uchun
+	// ko'rsatkichli qabul qiluvchi tipidan foydalanishingiz mumkin.
 	rp := &r
 	fmt.Println("area: ", rp.area())
 	fmt.Println("perim:", rp.perim())

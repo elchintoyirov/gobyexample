@@ -1,27 +1,28 @@
-// Go has built-in support for _multiple return values_.
-// This feature is used often in idiomatic Go, for example
-// to return both result and error values from a function.
+// Go _bir nechta qaytariladigan qiymatlar_ ni ichki o'rnatilgan
+// holda qo'llab-quvvatlaydi. Bu xususiyat idiomatik Go da tez-tez
+// ishlatiladi, masalan funksiyadan ham natija ham xato qiymatlarini
+// qaytarish uchun.
 
 package main
 
 import "fmt"
 
-// The `(int, int)` in this function signature shows that
-// the function returns 2 `int`s.
+// Ushbu funksiya imzosidagi `(int, int)` funksiya 2 ta `int`
+// qaytarishini ko'rsatadi.
 func vals() (int, int) {
 	return 3, 7
 }
 
 func main() {
 
-	// Here we use the 2 different return values from the
-	// call with _multiple assignment_.
+	// Bu yerda biz chaqiruvdan kelgan 2 ta turli qaytariladigan
+	// qiymatni _bir nechta o'zlashtirish_ bilan ishlatamiz.
 	a, b := vals()
 	fmt.Println(a)
 	fmt.Println(b)
 
-	// If you only want a subset of the returned values,
-	// use the blank identifier `_`.
+	// Agar sizga qaytarilgan qiymatlarning faqat bir qismi kerak
+	// bo'lsa, bo'sh identifikator `_` dan foydalaning.
 	_, c := vals()
 	fmt.Println(c)
 }

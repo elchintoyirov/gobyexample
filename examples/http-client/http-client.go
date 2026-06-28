@@ -1,7 +1,7 @@
-// The Go standard library comes with excellent support
-// for HTTP clients and servers in the `net/http`
-// package. In this example we'll use it to issue simple
-// HTTP requests.
+// Go standart kutubxonasi `net/http` paketida HTTP
+// mijozlari va serverlari uchun ajoyib qo'llab-quvvatlash
+// bilan birga keladi. Ushbu misolda biz undan oddiy HTTP
+// so'rovlarini yuborish uchun foydalanamiz.
 package main
 
 import (
@@ -12,21 +12,21 @@ import (
 
 func main() {
 
-	// Issue an HTTP GET request to a server. `http.Get` is a
-	// convenient shortcut around creating an `http.Client`
-	// object and calling its `Get` method; it uses the
-	// `http.DefaultClient` object which has useful default
-	// settings.
+	// Serverga HTTP GET so'rovini yuboring. `http.Get`
+	// `http.Client` obyektini yaratish va uning `Get`
+	// metodini chaqirish atrofidagi qulay qisqartmadir; u
+	// foydali standart sozlamalarga ega `http.DefaultClient`
+	// obyektidan foydalanadi.
 	resp, err := http.Get("https://gobyexample.com")
 	if err != nil {
 		panic(err)
 	}
 	defer resp.Body.Close()
 
-	// Print the HTTP response status.
+	// HTTP javob statusini chop eting.
 	fmt.Println("Response status:", resp.Status)
 
-	// Print the first 5 lines of the response body.
+	// Javob tanasining dastlabki 5 qatorini chop eting.
 	scanner := bufio.NewScanner(resp.Body)
 	for i := 0; scanner.Scan() && i < 5; i++ {
 		fmt.Println(scanner.Text())

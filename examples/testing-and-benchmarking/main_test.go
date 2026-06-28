@@ -1,11 +1,11 @@
-// Unit testing is an important part of writing
-// principled Go programs. The `testing` package
-// provides the tools we need to write unit tests
-// and the `go test` command runs tests.
+// Unit testlash printsipial Go dasturlarini yozishning muhim
+// qismidir. `testing` paketi bizga unit testlar yozish uchun
+// kerakli vositalarni taqdim etadi, `go test` buyrug'i esa
+// testlarni ishga tushiradi.
 
-// For the sake of demonstration, this code is in package
-// `main`, but it could be any package. Testing code
-// typically lives in the same package as the code it tests.
+// Namoyish maqsadida bu kod `main` paketida, lekin u istalgan
+// paket bo'lishi mumkin. Test kodi odatda u test qiladigan kod
+// bilan bir xil paketda joylashadi.
 package main
 
 import (
@@ -13,11 +13,10 @@ import (
 	"testing"
 )
 
-// We'll be testing this simple implementation of an
-// integer minimum. Typically, the code we're testing
-// would be in a source file named something like
-// `intutils.go`, and the test file for it would then
-// be named `intutils_test.go`.
+// Biz butun sonlar minimumining bu oddiy implementatsiyasini
+// test qilamiz. Odatda, biz test qilayotgan kod `intutils.go`
+// kabi nomlangan manba faylda bo'lar edi, va u uchun test fayli
+// esa `intutils_test.go` deb nomlangan bo'lardi.
 func IntMin(a, b int) int {
 	if a < b {
 		return a
@@ -25,22 +24,23 @@ func IntMin(a, b int) int {
 	return b
 }
 
-// A test is created by writing a function with a name
-// beginning with `Test`.
+// Test `Test` bilan boshlanadigan nomli funksiya yozish orqali
+// yaratiladi.
 func TestIntMinBasic(t *testing.T) {
 	ans := IntMin(2, -2)
 	if ans != -2 {
-		// `t.Error*` will report test failures but continue
-		// executing the test. `t.Fatal*` will report test
-		// failures and stop the test immediately.
+		// `t.Error*` test muvaffaqiyatsizliklarini xabar qiladi,
+		// lekin testni bajarishni davom ettiradi. `t.Fatal*` test
+		// muvaffaqiyatsizliklarini xabar qiladi va testni darhol
+		// to'xtatadi.
 		t.Errorf("IntMin(2, -2) = %d; want -2", ans)
 	}
 }
 
-// Writing tests can be repetitive, so it's idiomatic to
-// use a *table-driven style*, where test inputs and
-// expected outputs are listed in a table and a single loop
-// walks over them and performs the test logic.
+// Test yozish takrorlanuvchan bo'lishi mumkin, shuning uchun
+// *jadvalga asoslangan uslub*dan foydalanish odatiy holdir, unda
+// test kirishlari va kutilgan chiqishlar jadvalda keltiriladi va
+// bitta sikl ular bo'ylab yurib test mantiqini bajaradi.
 func TestIntMinTableDriven(t *testing.T) {
 	var tests = []struct {
 		a, b int
@@ -54,9 +54,9 @@ func TestIntMinTableDriven(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		// `t.Run` enables running "subtests", one for each
-		// table entry. These are shown separately
-		// when executing `go test -v`.
+		// `t.Run` "subtest"larni, har bir jadval yozuvi uchun
+		// bittadan, ishga tushirish imkonini beradi. Bular
+		// `go test -v` bajarilganda alohida ko'rsatiladi.
 		testname := fmt.Sprintf("%d,%d", tt.a, tt.b)
 		t.Run(testname, func(t *testing.T) {
 			ans := IntMin(tt.a, tt.b)
@@ -67,15 +67,15 @@ func TestIntMinTableDriven(t *testing.T) {
 	}
 }
 
-// Benchmark tests typically go in `_test.go` files and are
-// named beginning with `Benchmark`.
-// Any code that's required for the benchmark to run but should
-// not be measured goes before this loop.
+// Benchmark testlari odatda `_test.go` fayllarida bo'ladi va
+// `Benchmark` bilan boshlanadigan nom bilan nomlanadi.
+// Benchmark ishlashi uchun zarur, lekin o'lchanmasligi kerak
+// bo'lgan har qanday kod bu sikldan oldin keladi.
 func BenchmarkIntMin(b *testing.B) {
 	for b.Loop() {
-		// The benchmark runner will automatically execute this loop
-		// body many times to determine a reasonable estimate of the
-		// run-time of a single iteration.
+		// Benchmark ishga tushiruvchisi bitta iteratsiyaning
+		// ishlash vaqtini oqilona baholash uchun bu sikl tanasini
+		// avtomatik ravishda ko'p marta bajaradi.
 		IntMin(1, 2)
 	}
 }

@@ -1,6 +1,7 @@
-# The string encodes to slightly different values with the
-# standard and URL base64 encoders (trailing `+` vs `-`)
-# but they both decode to the original string as desired.
+# Satr standart va URL base64 enkoderlari bilan biroz
+# farqli qiymatlarga kodlanadi (oxiridagi `+` va `-`), lekin
+# ularning ikkalasi ham kerakli tarzda asl satrga
+# dekodlanadi.
 $ go run base64-encoding.go
 YWJjMTIzIT8kKiYoKSctPUB+
 abc123!?$*&()'-=@~

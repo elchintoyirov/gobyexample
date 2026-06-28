@@ -1,7 +1,7 @@
-// _Defer_ is used to ensure that a function call is
-// performed later in a program's execution, usually for
-// purposes of cleanup. `defer` is often used where e.g.
-// `ensure` and `finally` would be used in other languages.
+// _Defer_ funksiya chaqiruvi dasturning bajarilishida
+// keyinroq amalga oshirilishini ta'minlash uchun ishlatiladi,
+// odatda tozalash maqsadlarida. `defer` ko'pincha boshqa tillarda
+// masalan `ensure` va `finally` ishlatiladigan joylarda qo'llaniladi.
 
 package main
 
@@ -11,16 +11,15 @@ import (
 	"path/filepath"
 )
 
-// Suppose we wanted to create a file, write to it,
-// and then close when we're done. Here's how we could
-// do that with `defer`.
+// Faraz qilaylik, biz fayl yaratmoqchimiz, unga yozmoqchimiz
+// va ishimiz tugagach uni yopmoqchimiz. Buni `defer` bilan
+// qanday qilishimiz mumkinligi quyida ko'rsatilgan.
 func main() {
 
-	// Immediately after getting a file object with
-	// `createFile`, we defer the closing of that file
-	// with `closeFile`. This will be executed at the end
-	// of the enclosing function (`main`), after
-	// `writeFile` has finished.
+	// `createFile` bilan fayl obyektini olganimizdan so'ng
+	// darhol o'sha faylni yopishni `closeFile` bilan defer qilamiz.
+	// Bu o'rab turuvchi funksiya (`main`) oxirida, `writeFile`
+	// tugaganidan keyin bajariladi.
 	path := filepath.Join(os.TempDir(), "defer.txt")
 	f := createFile(path)
 	defer closeFile(f)
@@ -44,8 +43,8 @@ func writeFile(f *os.File) {
 func closeFile(f *os.File) {
 	fmt.Println("closing")
 	err := f.Close()
-	// It's important to check for errors when closing a
-	// file, even in a deferred function.
+	// Faylni yopishda xatolarni tekshirish muhim, hatto
+	// defer qilingan funksiyada ham.
 	if err != nil {
 		panic(err)
 	}

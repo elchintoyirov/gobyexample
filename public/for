@@ -30,8 +30,8 @@
         
         <tr>
           <td class="docs">
-            <p><code>for</code> is Go&rsquo;s only looping construct. Here are
-some basic types of <code>for</code> loops.</p>
+            <p><code>for</code> Go&rsquo;dagi yagona sikl konstruksiyasidir. Mana
+<code>for</code> sikllarining ba&rsquo;zi asosiy turlari.</p>
 
           </td>
           <td class="code empty leading">
@@ -45,7 +45,7 @@ some basic types of <code>for</code> loops.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/_F2rYHNilKa"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/UZtfPlwkR6a"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -72,7 +72,7 @@ some basic types of <code>for</code> loops.</p>
         
         <tr>
           <td class="docs">
-            <p>The most basic type, with a single condition.</p>
+            <p>Eng asosiy tur, bitta shart bilan.</p>
 
           </td>
           <td class="code leading">
@@ -87,7 +87,7 @@ some basic types of <code>for</code> loops.</p>
         
         <tr>
           <td class="docs">
-            <p>A classic initial/condition/after <code>for</code> loop.</p>
+            <p>Klassik boshlang&rsquo;ich/shart/keyingi <code>for</code> sikli.</p>
 
           </td>
           <td class="code leading">
@@ -100,8 +100,9 @@ some basic types of <code>for</code> loops.</p>
         
         <tr>
           <td class="docs">
-            <p>Another way of accomplishing the basic &ldquo;do this
-N times&rdquo; iteration is <code>range</code> over an integer.</p>
+            <p>&ldquo;Buni N marta bajar&rdquo; degan asosiy iteratsiyani amalga
+oshirishning yana bir usuli butun son ustidan <code>range</code>
+qilishdir.</p>
 
           </td>
           <td class="code leading">
@@ -114,9 +115,9 @@ N times&rdquo; iteration is <code>range</code> over an integer.</p>
         
         <tr>
           <td class="docs">
-            <p><code>for</code> without a condition will loop repeatedly
-until you <code>break</code> out of the loop or <code>return</code> from
-the enclosing function.</p>
+            <p>Shartsiz <code>for</code> sikldan <code>break</code> qilib chiqmaguningizcha
+yoki o&rsquo;rab turuvchi funksiyadan <code>return</code> qilmaguningizcha
+takror-takror takrorlanadi.</p>
 
           </td>
           <td class="code leading">
@@ -130,8 +131,8 @@ the enclosing function.</p>
         
         <tr>
           <td class="docs">
-            <p>You can also <code>continue</code> to the next iteration of
-the loop.</p>
+            <p>Shuningdek, siklning keyingi iteratsiyasiga <code>continue</code>
+qilishingiz mumkin.</p>
 
           </td>
           <td class="code">
@@ -175,9 +176,9 @@ the loop.</p>
         
         <tr>
           <td class="docs">
-            <p>We&rsquo;ll see some other <code>for</code> forms later when we look at
-<code>range</code> statements, channels, and other data
-structures.</p>
+            <p><code>range</code> operatorlari, kanallar va boshqa ma&rsquo;lumotlar
+tuzilmalarini ko&rsquo;rib chiqqanimizda boshqa <code>for</code>
+shakllarini keyinroq ko&rsquo;ramiz.</p>
 
           </td>
           <td class="code empty">
@@ -190,12 +191,12 @@ structures.</p>
       
       
       <p class="next">
-        Next example: <a href="if-else" rel="next">If/Else</a>.
+        Keyingi misol: <a href="if-else" rel="next">If/Else</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

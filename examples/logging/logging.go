@@ -1,9 +1,8 @@
-// The Go standard library provides straightforward
-// tools for outputting logs from Go programs, with
-// the [log](https://pkg.go.dev/log) package for
-// free-form output and the
-// [log/slog](https://pkg.go.dev/log/slog) package for
-// structured output.
+// Go standart kutubxonasi Go dasturlaridan loglarni
+// chiqarish uchun sodda vositalarni taqdim etadi: erkin
+// shakldagi chiqish uchun [log](https://pkg.go.dev/log)
+// paketi va tuzilmali chiqish uchun
+// [log/slog](https://pkg.go.dev/log/slog) paketi.
 package main
 
 import (
@@ -17,61 +16,57 @@ import (
 
 func main() {
 
-	// Simply invoking functions like `Println` from the
-	// `log` package uses the _standard_ logger, which
-	// is already pre-configured for reasonable logging
-	// output to `os.Stderr`. Additional methods like
-	// `Fatal*` or `Panic*` will exit the program after
-	// logging.
+	// `log` paketidan `Println` kabi funksiyalarni oddiy
+	// chaqirish _standart_ loggerdan foydalanadi, u allaqachon
+	// `os.Stderr` ga oqilona log chiqarish uchun oldindan
+	// sozlangan. `Fatal*` yoki `Panic*` kabi qo'shimcha
+	// metodlar logdan keyin dasturdan chiqadi.
 	log.Println("standard logger")
 
-	// Loggers can be configured with _flags_ to set
-	// their output format. By default, the standard
-	// logger has the `log.Ldate` and `log.Ltime` flags
-	// set, and these are collected in `log.LstdFlags`.
-	// We can change its flags to emit time with
-	// microsecond accuracy, for example.
+	// Loggerlar chiqish formatini belgilash uchun _bayroqlar_
+	// bilan sozlanishi mumkin. Standart holatda, standart
+	// loggerda `log.Ldate` va `log.Ltime` bayroqlari
+	// o'rnatilgan va ular `log.LstdFlags` da to'plangan.
+	// Masalan, biz uning bayroqlarini vaqtni mikrosekund
+	// aniqligida chiqarish uchun o'zgartirishimiz mumkin.
 	log.SetFlags(log.LstdFlags | log.Lmicroseconds)
 	log.Println("with micro")
 
-	// It also supports emitting the file name and
-	// line from which the `log` function is called.
+	// U, shuningdek, `log` funksiyasi chaqirilgan fayl nomi
+	// va qatorni chiqarishni qo'llab-quvvatlaydi.
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	log.Println("with file/line")
 
-	// It may be useful to create a custom logger and
-	// pass it around. When creating a new logger, we
-	// can set a _prefix_ to distinguish its output
-	// from other loggers.
+	// Maxsus logger yaratish va uni uzatish foydali bo'lishi
+	// mumkin. Yangi logger yaratganda, biz uning chiqishini
+	// boshqa loggerlardan ajratish uchun _prefiks_
+	// o'rnatishimiz mumkin.
 	mylog := log.New(os.Stdout, "my:", log.LstdFlags)
 	mylog.Println("from mylog")
 
-	// We can set the prefix
-	// on existing loggers (including the standard one)
-	// with the `SetPrefix` method.
+	// Biz mavjud loggerlarda (shu jumladan standart loggerda)
+	// prefiksni `SetPrefix` metodi bilan o'rnatishimiz mumkin.
 	mylog.SetPrefix("ohmy:")
 	mylog.Println("from mylog")
 
-	// Loggers can have custom output targets;
-	// any `io.Writer` works.
+	// Loggerlar maxsus chiqish maqsadlariga ega bo'lishi
+	// mumkin; istalgan `io.Writer` ishlaydi.
 	var buf bytes.Buffer
 	buflog := log.New(&buf, "buf:", log.LstdFlags)
 
-	// This call writes the log output into `buf`.
+	// Bu chaqiruv log chiqishini `buf` ga yozadi.
 	buflog.Println("hello")
 
-	// This will actually show it on standard output.
+	// Bu aslida uni standart chiqishda ko'rsatadi.
 	fmt.Print("from buflog:", buf.String())
 
-	// The `slog` package provides
-	// _structured_ log output. For example, logging
-	// in JSON format is straightforward.
+	// `slog` paketi _tuzilmali_ log chiqishini taqdim etadi.
+	// Masalan, JSON formatida loglash sodda.
 	jsonHandler := slog.NewJSONHandler(os.Stderr, nil)
 	myslog := slog.New(jsonHandler)
 	myslog.Info("hi there")
 
-	// In addition to the message, `slog` output can
-	// contain an arbitrary number of key=value
-	// pairs.
+	// Xabardan tashqari, `slog` chiqishi ixtiyoriy sondagi
+	// key=value juftliklarini o'z ichiga olishi mumkin.
 	myslog.Info("hello again", "key", "val", "age", 25)
 }

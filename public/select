@@ -30,9 +30,9 @@
         
         <tr>
           <td class="docs">
-            <p>Go&rsquo;s <em>select</em> lets you wait on multiple channel
-operations. Combining goroutines and channels with
-select is a powerful feature of Go.</p>
+            <p>Go&rsquo;ning _select_i bir nechta kanal operatsiyalarini
+kutishga imkon beradi. Goroutinalar va kanallarni select
+bilan birlashtirish Go&rsquo;ning kuchli xususiyatidir.</p>
 
           </td>
           <td class="code empty leading">
@@ -46,7 +46,7 @@ select is a powerful feature of Go.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/dOrjUfgGwB2"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/FvvpwbY-fJk"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -76,7 +76,7 @@ select is a powerful feature of Go.</p>
         
         <tr>
           <td class="docs">
-            <p>For our example we&rsquo;ll select across two channels.</p>
+            <p>Misolimiz uchun ikkita kanal bo&rsquo;ylab select qilamiz.</p>
 
           </td>
           <td class="code leading">
@@ -88,9 +88,9 @@ select is a powerful feature of Go.</p>
         
         <tr>
           <td class="docs">
-            <p>Each channel will receive a value after some amount
-of time, to simulate e.g. blocking RPC operations
-executing in concurrent goroutines.</p>
+            <p>Har bir kanal biroz vaqtdan so&rsquo;ng qiymat qabul qiladi,
+bu masalan parallel goroutinalarda bajarilayotgan
+bloklovchi RPC operatsiyalarini simulyatsiya qilish uchun.</p>
 
           </td>
           <td class="code leading">
@@ -108,8 +108,9 @@ executing in concurrent goroutines.</p>
         
         <tr>
           <td class="docs">
-            <p>We&rsquo;ll use <code>select</code> to await both of these values
-simultaneously, printing each one as it arrives.</p>
+            <p>Bu qiymatlarning ikkalasini bir vaqtning o&rsquo;zida kutish
+uchun <code>select</code>dan foydalanamiz, har birini kelishi bilan
+chop etamiz.</p>
 
           </td>
           <td class="code">
@@ -132,8 +133,8 @@ simultaneously, printing each one as it arrives.</p>
         
         <tr>
           <td class="docs">
-            <p>We receive the values <code>&quot;one&quot;</code> and then <code>&quot;two&quot;</code> as
-expected.</p>
+            <p>Biz kutilganidek <code>&quot;one&quot;</code> va keyin <code>&quot;two&quot;</code> qiymatlarini
+qabul qilamiz.</p>
 
           </td>
           <td class="code leading">
@@ -146,9 +147,9 @@ expected.</p>
         
         <tr>
           <td class="docs">
-            <p>Note that the total execution time is only ~2 seconds
-since both the 1 and 2 second <code>Sleeps</code> execute
-concurrently.</p>
+            <p>E&rsquo;tibor bering, umumiy bajarilish vaqti faqat ~2 sekund,
+chunki 1 va 2 sekundli <code>Sleep</code>larning ikkalasi ham
+parallel bajariladi.</p>
 
           </td>
           <td class="code">
@@ -161,12 +162,12 @@ concurrently.</p>
       
       
       <p class="next">
-        Next example: <a href="timeouts" rel="next">Timeouts</a>.
+        Keyingi misol: <a href="timeouts" rel="next">Timeouts</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

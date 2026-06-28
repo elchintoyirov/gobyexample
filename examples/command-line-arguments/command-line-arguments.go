@@ -1,7 +1,7 @@
-// [_Command-line arguments_](https://en.wikipedia.org/wiki/Command-line_interface#Arguments)
-// are a common way to parameterize execution of programs.
-// For example, `go run hello.go` uses `run` and
-// `hello.go` arguments to the `go` program.
+// [_Buyruq qatori argumentlari_](https://en.wikipedia.org/wiki/Command-line_interface#Arguments)
+// dasturlarning bajarilishini parametrlashning keng
+// tarqalgan usulidir. Masalan, `go run hello.go` `go`
+// dasturiga `run` va `hello.go` argumentlarini ishlatadi.
 
 package main
 
@@ -12,14 +12,15 @@ import (
 
 func main() {
 
-	// `os.Args` provides access to raw command-line
-	// arguments. Note that the first value in this slice
-	// is the path to the program, and `os.Args[1:]`
-	// holds the arguments to the program.
+	// `os.Args` xom buyruq qatori argumentlariga kirish
+	// imkonini beradi. E'tibor bering, bu slice'dagi
+	// birinchi qiymat dasturga yo'l (path) bo'ladi,
+	// `os.Args[1:]` esa dasturga argumentlarni saqlaydi.
 	argsWithProg := os.Args
 	argsWithoutProg := os.Args[1:]
 
-	// You can get individual args with normal indexing.
+	// Alohida argumentlarni oddiy indekslash orqali olishingiz
+	// mumkin.
 	arg := os.Args[3]
 
 	fmt.Println(argsWithProg)

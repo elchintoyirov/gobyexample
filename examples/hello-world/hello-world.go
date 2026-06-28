@@ -1,5 +1,5 @@
-// Our first program will print the classic "hello world"
-// message. Here's the full source code.
+// Bizning birinchi dasturimiz klassik "hello world"
+// xabarini chop etadi. Mana to'liq manba kodi.
 package main
 
 import "fmt"

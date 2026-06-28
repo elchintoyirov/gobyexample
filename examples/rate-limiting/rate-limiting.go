@@ -1,8 +1,8 @@
-// [_Rate limiting_](https://en.wikipedia.org/wiki/Rate_limiting)
-// is an important mechanism for controlling resource
-// utilization and maintaining quality of service. Go
-// elegantly supports rate limiting with goroutines,
-// channels, and [tickers](tickers).
+// [_So'rovlarni cheklash_](https://en.wikipedia.org/wiki/Rate_limiting)
+// resurslardan foydalanishni nazorat qilish va xizmat
+// sifatini saqlash uchun muhim mexanizmdir. Go
+// goroutinalar, kanallar va [tickerlar](tickers) yordamida
+// so'rovlarni cheklashni nafis tarzda qo'llab-quvvatlaydi.
 
 package main
 
@@ -13,52 +13,53 @@ import (
 
 func main() {
 
-	// First we'll look at basic rate limiting. Suppose
-	// we want to limit our handling of incoming requests.
-	// We'll serve these requests off a channel of the
-	// same name.
+	// Avval so'rovlarni cheklashning asosiy holatini ko'rib
+	// chiqamiz. Faraz qilaylik, kelayotgan so'rovlarni qayta
+	// ishlashni cheklamoqchimiz. Bu so'rovlarni xuddi shu
+	// nomdagi kanal orqali xizmat ko'rsatamiz.
 	requests := make(chan int, 5)
 	for i := 1; i <= 5; i++ {
 		requests <- i
 	}
 	close(requests)
 
-	// This `limiter` channel will receive a value
-	// every 200 milliseconds. This is the regulator in
-	// our rate limiting scheme.
+	// Bu `limiter` kanali har 200 millisekundda bitta qiymat
+	// qabul qiladi. Bu bizning so'rovlarni cheklash
+	// sxemamizdagi regulyatordir.
 	limiter := time.Tick(200 * time.Millisecond)
 
-	// By blocking on a receive from the `limiter` channel
-	// before serving each request, we limit ourselves to
-	// 1 request every 200 milliseconds.
+	// Har bir so'rovga xizmat ko'rsatishdan oldin `limiter`
+	// kanalidan qabul qilishni kutib bloklanish orqali, biz
+	// o'zimizni har 200 millisekundda 1 so'rov bilan
+	// cheklaymiz.
 	for req := range requests {
 		<-limiter
 		fmt.Println("request", req, time.Now())
 	}
 
-	// We may want to allow short bursts of requests in
-	// our rate limiting scheme while preserving the
-	// overall rate limit. We can accomplish this by
-	// buffering our limiter channel. This `burstyLimiter`
-	// channel will allow bursts of up to 3 events.
+	// Umumiy cheklovni saqlagan holda, so'rovlarni cheklash
+	// sxemamizda qisqa muddatli so'rovlar to'lqinlariga ruxsat
+	// berishni xohlashimiz mumkin. Buni limiter kanalimizni
+	// buferlash orqali amalga oshira olamiz. Bu `burstyLimiter`
+	// kanali 3 tagacha hodisaning to'lqiniga ruxsat beradi.
 	burstyLimiter := make(chan time.Time, 3)
 
-	// Fill up the channel to represent allowed bursting.
+	// Ruxsat etilgan to'lqinni ifodalash uchun kanalni to'ldiramiz.
 	for range 3 {
 		burstyLimiter <- time.Now()
 	}
 
-	// Every 200 milliseconds we'll try to add a new
-	// value to `burstyLimiter`, up to its limit of 3.
+	// Har 200 millisekundda `burstyLimiter`ga, uning 3 lik
+	// chegarasigacha, yangi qiymat qo'shishga harakat qilamiz.
 	go func() {
 		for t := range time.Tick(200 * time.Millisecond) {
 			burstyLimiter <- t
 		}
 	}()
 
-	// Now simulate 5 more incoming requests. The first
-	// 3 of these will benefit from the burst capability
-	// of `burstyLimiter`.
+	// Endi yana 5 ta kelayotgan so'rovni simulyatsiya qilamiz.
+	// Ulardan dastlabki 3 tasi `burstyLimiter`ning to'lqin
+	// imkoniyatidan foyda ko'radi.
 	burstyRequests := make(chan int, 5)
 	for i := 1; i <= 5; i++ {
 		burstyRequests <- i

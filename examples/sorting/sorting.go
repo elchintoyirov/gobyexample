@@ -1,6 +1,6 @@
-// Go's `slices` package implements sorting for builtins
-// and user-defined types. We'll look at sorting for
-// builtins first.
+// Go'ning `slices` paketi o'rnatilgan va foydalanuvchi
+// aniqlagan tiplar uchun saralashni amalga oshiradi. Avval
+// o'rnatilgan tiplar uchun saralashni ko'rib chiqamiz.
 
 package main
 
@@ -11,20 +11,21 @@ import (
 
 func main() {
 
-	// Sorting functions are generic, and work for any
-	// _ordered_ built-in type. For a list of ordered
-	// types, see [cmp.Ordered](https://pkg.go.dev/cmp#Ordered).
+	// Saralash funksiyalari generikdir va har qanday _tartibli_
+	// o'rnatilgan tip uchun ishlaydi. Tartibli tiplar ro'yxati
+	// uchun [cmp.Ordered](https://pkg.go.dev/cmp#Ordered)ga qarang.
 	strs := []string{"c", "a", "b"}
 	slices.Sort(strs)
 	fmt.Println("Strings:", strs)
 
-	// An example of sorting `int`s.
+	// `int`larni saralash misoli.
 	ints := []int{7, 2, 4}
 	slices.Sort(ints)
 	fmt.Println("Ints:   ", ints)
 
-	// We can also use the `slices` package to check if
-	// a slice is already in sorted order.
+	// Slice allaqachon saralangan tartibda ekanligini
+	// tekshirish uchun ham `slices` paketidan foydalanishimiz
+	// mumkin.
 	s := slices.IsSorted(ints)
 	fmt.Println("Sorted: ", s)
 }

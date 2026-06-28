@@ -1,5 +1,5 @@
-// `for` is Go's only looping construct. Here are
-// some basic types of `for` loops.
+// `for` Go'dagi yagona sikl konstruksiyasidir. Mana
+// `for` sikllarining ba'zi asosiy turlari.
 
 package main
 
@@ -7,34 +7,35 @@ import "fmt"
 
 func main() {
 
-	// The most basic type, with a single condition.
+	// Eng asosiy tur, bitta shart bilan.
 	i := 1
 	for i <= 3 {
 		fmt.Println(i)
 		i = i + 1
 	}
 
-	// A classic initial/condition/after `for` loop.
+	// Klassik boshlang'ich/shart/keyingi `for` sikli.
 	for j := 0; j < 3; j++ {
 		fmt.Println(j)
 	}
 
-	// Another way of accomplishing the basic "do this
-	// N times" iteration is `range` over an integer.
+	// "Buni N marta bajar" degan asosiy iteratsiyani amalga
+	// oshirishning yana bir usuli butun son ustidan `range`
+	// qilishdir.
 	for i := range 3 {
 		fmt.Println("range", i)
 	}
 
-	// `for` without a condition will loop repeatedly
-	// until you `break` out of the loop or `return` from
-	// the enclosing function.
+	// Shartsiz `for` sikldan `break` qilib chiqmaguningizcha
+	// yoki o'rab turuvchi funksiyadan `return` qilmaguningizcha
+	// takror-takror takrorlanadi.
 	for {
 		fmt.Println("loop")
 		break
 	}
 
-	// You can also `continue` to the next iteration of
-	// the loop.
+	// Shuningdek, siklning keyingi iteratsiyasiga `continue`
+	// qilishingiz mumkin.
 	for n := range 6 {
 		if n%2 == 0 {
 			continue

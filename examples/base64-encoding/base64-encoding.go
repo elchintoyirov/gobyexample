@@ -1,11 +1,12 @@
-// Go provides built-in support for [base64
-// encoding/decoding](https://en.wikipedia.org/wiki/Base64).
+// Go [base64
+// kodlash/dekodlash](https://en.wikipedia.org/wiki/Base64)
+// uchun o'rnatilgan qo'llab-quvvatlashni taqdim etadi.
 
 package main
 
-// This syntax imports the `encoding/base64` package with
-// the `b64` name instead of the default `base64`. It'll
-// save us some space below.
+// Ushbu sintaksis `encoding/base64` paketini standart
+// `base64` nomi o'rniga `b64` nomi bilan import qiladi. Bu
+// quyida bizga biroz joy tejaydi.
 import (
 	b64 "encoding/base64"
 	"fmt"
@@ -13,25 +14,26 @@ import (
 
 func main() {
 
-	// Here's the `string` we'll encode/decode.
+	// Mana biz kodlaydigan/dekodlaydigan `string`.
 	data := "abc123!?$*&()'-=@~"
 
-	// Go supports both standard and URL-compatible
-	// base64. Here's how to encode using the standard
-	// encoder. The encoder requires a `[]byte` so we
-	// convert our `string` to that type.
+	// Go ham standart, ham URL bilan mos keluvchi base64'ni
+	// qo'llab-quvvatlaydi. Mana standart enkoder yordamida
+	// qanday kodlash kerakligi. Enkoder `[]byte` talab
+	// qiladi, shuning uchun `string`imizni o'sha tipga
+	// o'tkazamiz.
 	sEnc := b64.StdEncoding.EncodeToString([]byte(data))
 	fmt.Println(sEnc)
 
-	// Decoding may return an error, which you can check
-	// if you don't already know the input to be
-	// well-formed.
+	// Dekodlash xato qaytarishi mumkin, agar kirish
+	// ma'lumotining to'g'ri shakllanganini oldindan
+	// bilmasangiz, buni tekshirishingiz mumkin.
 	sDec, _ := b64.StdEncoding.DecodeString(sEnc)
 	fmt.Println(string(sDec))
 	fmt.Println()
 
-	// This encodes/decodes using a URL-compatible base64
-	// format.
+	// Bu URL bilan mos keluvchi base64 formati yordamida
+	// kodlaydi/dekodlaydi.
 	uEnc := b64.URLEncoding.EncodeToString([]byte(data))
 	fmt.Println(uEnc)
 	uDec, _ := b64.URLEncoding.DecodeString(uEnc)

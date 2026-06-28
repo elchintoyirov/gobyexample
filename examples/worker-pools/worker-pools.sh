@@ -1,7 +1,8 @@
-# Our running program shows the 5 jobs being executed by
-# various workers. The program only takes about 2 seconds
-# despite doing about 5 seconds of total work because
-# there are 3 workers operating concurrently.
+# Ishlayotgan dasturimiz 5 ta ishning turli ishchilar
+# tomonidan bajarilayotganini ko'rsatadi. Dastur jami
+# taxminan 5 soniyalik ish bajarishiga qaramay, faqat
+# taxminan 2 soniya vaqt oladi, chunki 3 ta ishchi
+# parallel ishlaydi.
 $ time go run worker-pools.go 
 worker 1 started  job 1
 worker 2 started  job 2

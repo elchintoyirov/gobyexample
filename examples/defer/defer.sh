@@ -1,5 +1,5 @@
-# Running the program confirms that the file is closed
-# after being written.
+# Dasturni ishga tushirish faylning yozilgandan keyin
+# yopilganligini tasdiqlaydi.
 $ go run defer.go
 creating
 writing

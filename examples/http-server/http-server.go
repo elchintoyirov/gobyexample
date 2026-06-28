@@ -1,5 +1,5 @@
-// Writing a basic HTTP server is easy using the
-// `net/http` package.
+// `net/http` paketidan foydalanib asosiy HTTP server
+// yozish oson.
 package main
 
 import (
@@ -7,26 +7,27 @@ import (
 	"net/http"
 )
 
-// A fundamental concept in `net/http` servers is
-// *handlers*. A handler is an object implementing the
-// `http.Handler` interface. A common way to write
-// a handler is by using the `http.HandlerFunc` adapter
-// on functions with the appropriate signature.
+// `net/http` serverlarida asosiy tushuncha bu
+// *ishlovchilar*dir. Ishlovchi - bu `http.Handler`
+// interfeysini amalga oshiruvchi obyekt. Ishlovchi
+// yozishning keng tarqalgan usuli - mos imzoga ega
+// funksiyalarda `http.HandlerFunc` adapteridan
+// foydalanishdir.
 func hello(w http.ResponseWriter, req *http.Request) {
 
-	// Functions serving as handlers take a
-	// `http.ResponseWriter` and a `http.Request` as
-	// arguments. The response writer is used to fill in the
-	// HTTP response. Here our simple response is just
-	// "hello\n".
+	// Ishlovchi sifatida xizmat qiluvchi funksiyalar
+	// argument sifatida `http.ResponseWriter` va
+	// `http.Request` ni qabul qiladi. Response writer HTTP
+	// javobini to'ldirish uchun ishlatiladi. Bu yerda bizning
+	// oddiy javobimiz shunchaki "hello\n".
 	fmt.Fprintf(w, "hello\n")
 }
 
 func headers(w http.ResponseWriter, req *http.Request) {
 
-	// This handler does something a little more
-	// sophisticated by reading all the HTTP request
-	// headers and echoing them into the response body.
+	// Bu ishlovchi barcha HTTP so'rov sarlavhalarini o'qib,
+	// ularni javob tanasiga aks ettirib, biroz murakkabroq
+	// ish bajaradi.
 	for name, headers := range req.Header {
 		for _, h := range headers {
 			fmt.Fprintf(w, "%v: %v\n", name, h)
@@ -36,15 +37,16 @@ func headers(w http.ResponseWriter, req *http.Request) {
 
 func main() {
 
-	// We register our handlers on server routes using the
-	// `http.HandleFunc` convenience function. It sets up
-	// the *default router* in the `net/http` package and
-	// takes a function as an argument.
+	// Biz ishlovchilarimizni server marshrutlarida
+	// `http.HandleFunc` qulay funksiyasidan foydalanib
+	// ro'yxatdan o'tkazamiz. U `net/http` paketida *standart
+	// marshrutlovchini* o'rnatadi va argument sifatida
+	// funksiyani qabul qiladi.
 	http.HandleFunc("/hello", hello)
 	http.HandleFunc("/headers", headers)
 
-	// Finally, we call the `ListenAndServe` with the port
-	// and a handler. `nil` tells it to use the default
-	// router we've just set up.
+	// Nihoyat, biz `ListenAndServe` ni port va ishlovchi
+	// bilan chaqiramiz. `nil` unga biz hozirgina o'rnatgan
+	// standart marshrutlovchidan foydalanishni aytadi.
 	http.ListenAndServe(":8090", nil)
 }

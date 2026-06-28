@@ -1,10 +1,10 @@
-# We receive the values `"one"` and then `"two"` as
-# expected.
+# Biz kutilganidek `"one"` va keyin `"two"` qiymatlarini
+# qabul qilamiz.
 $ time go run select.go 
 received one
 received two
 
-# Note that the total execution time is only ~2 seconds
-# since both the 1 and 2 second `Sleeps` execute
-# concurrently.
+# E'tibor bering, umumiy bajarilish vaqti faqat ~2 sekund,
+# chunki 1 va 2 sekundli `Sleep`larning ikkalasi ham
+# parallel bajariladi.
 real	0m2.245s

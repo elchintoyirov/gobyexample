@@ -4,6 +4,6 @@ $ go run if-else.go
 either 8 or 7 are even
 9 has 1 digit
 
-# There is no [ternary if](https://en.wikipedia.org/wiki/%3F:)
-# in Go, so you'll need to use a full `if` statement even
-# for basic conditions.
+# Go'da [uchlik if](https://en.wikipedia.org/wiki/%3F:)
+# yo'q, shuning uchun oddiy shartlar uchun ham to'liq `if`
+# operatoridan foydalanishingiz kerak bo'ladi.

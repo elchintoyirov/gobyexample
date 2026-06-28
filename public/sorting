@@ -30,9 +30,9 @@
         
         <tr>
           <td class="docs">
-            <p>Go&rsquo;s <code>slices</code> package implements sorting for builtins
-and user-defined types. We&rsquo;ll look at sorting for
-builtins first.</p>
+            <p>Go&rsquo;ning <code>slices</code> paketi o&rsquo;rnatilgan va foydalanuvchi
+aniqlagan tiplar uchun saralashni amalga oshiradi. Avval
+o&rsquo;rnatilgan tiplar uchun saralashni ko&rsquo;rib chiqamiz.</p>
 
           </td>
           <td class="code empty leading">
@@ -46,7 +46,7 @@ builtins first.</p>
             
           </td>
           <td class="code leading">
-            <a href="https://go.dev/play/p/X7iJcIua02T"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+            <a href="https://go.dev/play/p/3nq_10SKUE9"><img title="Kodni ishga tushirish" src="play.png" class="run" /></a><img title="Kodni nusxalash" src="clipboard.png" class="copy" />
           <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
           </td>
         </tr>
@@ -76,9 +76,9 @@ builtins first.</p>
         
         <tr>
           <td class="docs">
-            <p>Sorting functions are generic, and work for any
-<em>ordered</em> built-in type. For a list of ordered
-types, see <a href="https://pkg.go.dev/cmp#Ordered">cmp.Ordered</a>.</p>
+            <p>Saralash funksiyalari generikdir va har qanday <em>tartibli</em>
+o&rsquo;rnatilgan tip uchun ishlaydi. Tartibli tiplar ro&rsquo;yxati
+uchun <a href="https://pkg.go.dev/cmp#Ordered">cmp.Ordered</a>ga qarang.</p>
 
           </td>
           <td class="code leading">
@@ -91,7 +91,7 @@ types, see <a href="https://pkg.go.dev/cmp#Ordered">cmp.Ordered</a>.</p>
         
         <tr>
           <td class="docs">
-            <p>An example of sorting <code>int</code>s.</p>
+            <p><code>int</code>larni saralash misoli.</p>
 
           </td>
           <td class="code leading">
@@ -104,8 +104,9 @@ types, see <a href="https://pkg.go.dev/cmp#Ordered">cmp.Ordered</a>.</p>
         
         <tr>
           <td class="docs">
-            <p>We can also use the <code>slices</code> package to check if
-a slice is already in sorted order.</p>
+            <p>Slice allaqachon saralangan tartibda ekanligini
+tekshirish uchun ham <code>slices</code> paketidan foydalanishimiz
+mumkin.</p>
 
           </td>
           <td class="code">
@@ -137,12 +138,12 @@ a slice is already in sorted order.</p>
       
       
       <p class="next">
-        Next example: <a href="sorting-by-functions" rel="next">Sorting by Functions</a>.
+        Keyingi misol: <a href="sorting-by-functions" rel="next">Sorting by Functions</a>.
       </p>
       
 
     <p class="footer">
-      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+      mualliflar: <a href="https://markmcgranaghan.com">Mark McGranaghan</a> va <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | tarjima: <a href="https://github.com/elchintoyirov">@elchintoyirov</a> | <a href="https://github.com/mmcgrana/gobyexample">manba</a> | <a href="https://github.com/mmcgrana/gobyexample#license">litsenziya</a>
     </p>
 
     </div>

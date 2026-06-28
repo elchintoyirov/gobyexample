@@ -1,5 +1,5 @@
-// Go has several useful functions for working with
-// *directories* in the file system.
+// Go fayl tizimidagi *kataloglar* bilan ishlash uchun
+// bir nechta foydali funksiyaga ega.
 
 package main
 
@@ -18,18 +18,16 @@ func check(e error) {
 
 func main() {
 
-	// Create a new sub-directory in the current working
-	// directory.
+	// Joriy ishchi katalogda yangi quyi-katalog yaratamiz.
 	err := os.Mkdir("subdir", 0755)
 	check(err)
 
-	// When creating temporary directories, it's good
-	// practice to `defer` their removal. `os.RemoveAll`
-	// will delete a whole directory tree (similarly to
-	// `rm -rf`).
+	// Vaqtinchalik kataloglar yaratayotganda ularni o'chirishni
+	// `defer` qilish yaxshi amaliyot hisoblanadi. `os.RemoveAll`
+	// butun katalog daraxtini o'chiradi (`rm -rf` ga o'xshash).
 	defer os.RemoveAll("subdir")
 
-	// Helper function to create a new empty file.
+	// Yangi bo'sh fayl yaratish uchun yordamchi funksiya.
 	createEmptyFile := func(name string) {
 		d := []byte("")
 		check(os.WriteFile(name, d, 0644))
@@ -37,9 +35,9 @@ func main() {
 
 	createEmptyFile("subdir/file1")
 
-	// We can create a hierarchy of directories, including
-	// parents with `MkdirAll`. This is similar to the
-	// command-line `mkdir -p`.
+	// Biz `MkdirAll` bilan ota-kataloglarni ham o'z ichiga olgan
+	// kataloglar iyerarxiyasini yaratishimiz mumkin. Bu buyruq
+	// satridagi `mkdir -p` ga o'xshash.
 	err = os.MkdirAll("subdir/parent/child", 0755)
 	check(err)
 
@@ -47,8 +45,8 @@ func main() {
 	createEmptyFile("subdir/parent/file3")
 	createEmptyFile("subdir/parent/child/file4")
 
-	// `ReadDir` lists directory contents, returning a
-	// slice of `os.DirEntry` objects.
+	// `ReadDir` katalog tarkibini ro'yxatlaydi va `os.DirEntry`
+	// obyektlari slice'ini qaytaradi.
 	c, err := os.ReadDir("subdir/parent")
 	check(err)
 
@@ -57,13 +55,13 @@ func main() {
 		fmt.Println(" ", entry.Name(), entry.IsDir())
 	}
 
-	// `Chdir` lets us change the current working directory,
-	// similarly to `cd`.
+	// `Chdir` joriy ishchi katalogni o'zgartirishga imkon beradi,
+	// `cd` ga o'xshash.
 	err = os.Chdir("subdir/parent/child")
 	check(err)
 
-	// Now we'll see the contents of `subdir/parent/child`
-	// when listing the *current* directory.
+	// Endi *joriy* katalogni ro'yxatlaganda `subdir/parent/child`
+	// tarkibini ko'ramiz.
 	c, err = os.ReadDir(".")
 	check(err)
 
@@ -72,21 +70,21 @@ func main() {
 		fmt.Println(" ", entry.Name(), entry.IsDir())
 	}
 
-	// `cd` back to where we started.
+	// Boshlagan joyimizga `cd` qilib qaytamiz.
 	err = os.Chdir("../../..")
 	check(err)
 
-	// We can also visit a directory *recursively*,
-	// including all its sub-directories. `WalkDir` accepts
-	// a callback function to handle every file or
-	// directory visited.
+	// Biz katalogni *rekursiv* tarzda, uning barcha
+	// quyi-kataloglari bilan birga aylanib chiqishimiz ham mumkin.
+	// `WalkDir` har bir tashrif buyurilgan fayl yoki katalogni
+	// qayta ishlash uchun callback funksiyani qabul qiladi.
 	fmt.Println("Visiting subdir")
 	err = filepath.WalkDir("subdir", visit)
 	check(err)
 }
 
-// `visit` is called for every file or directory found
-// recursively by `filepath.WalkDir`.
+// `visit` `filepath.WalkDir` tomonidan rekursiv ravishda
+// topilgan har bir fayl yoki katalog uchun chaqiriladi.
 func visit(path string, d fs.DirEntry, err error) error {
 	if err != nil {
 		return err
